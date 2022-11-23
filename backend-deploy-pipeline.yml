@@ -1,0 +1,16 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+steps:
+- script: |
+    cd backend-TIComo
+    export HEROKU_API_KEY="35d09b39-e06c-4a67-8a06-b5293de6c8ae"
+    mvn heroku:deploy -Dheroku.appName=ticomo01 -DskipTests
+  displayName: 'Heroku Deploy'

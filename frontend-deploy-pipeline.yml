@@ -1,0 +1,38 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+# Node.js with React
+trigger:
+- main
+
+variables:
+- group: Firebase
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Node.js tool installer'
+
+- script: |
+    cd frontend-TIComo
+    npm install   
+    npm install -g firebase-tools
+    npm install react-app-rewired
+    npm i --save @fortawesome/fontawesome-svg-core
+  displayName: 'npm install & npm install -g firebase-tools'
+
+- script: |
+    cd frontend-TIComo
+    yarn build 
+    firebase use ticomo01 --token=$(tokenFirebase)
+    firebase deploy --token=$(tokenFirebase)
+  displayName: 'deploy to firebase'
+
+
+
