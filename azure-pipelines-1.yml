@@ -23,6 +23,7 @@ steps:
     SonarCloud: 'SonarCloud'
     organization: 'sergiogarcia52'
     scannerMode: 'Other'
+    projectKey: 'Mantenimiento'
     extraProperties: |
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
