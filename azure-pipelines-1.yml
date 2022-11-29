@@ -29,3 +29,6 @@ steps:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=SergioGarcia52_TIComo
       sonar.projectName=TIComo
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
