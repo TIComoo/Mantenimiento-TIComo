@@ -29,6 +29,21 @@ steps:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=SergioGarcia52_TIComo
       sonar.projectName=TIComo
+
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'backend-TIComo/pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: 'backend-TIComo/target/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
+  
+- task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
