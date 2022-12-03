@@ -26,8 +26,8 @@ body {
 */
 .center {
     display: block;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 70px;
     padding: 0px;
 }
@@ -35,23 +35,23 @@ body {
 /* Para centrar los elementos dentro de los tabs */
 .centerInTab {
     display: block;
-    margin-left: 15px;
-    margin-right: 0px;
-    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
     padding: 0px;
 }
 .centerInTabV2 {
     display: block;
-    margin-left: 15px;
-    margin-right: 0px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 0px;
     padding: 0px;
 }
 .centerImage {
     display: block;
-    margin-left: 173px;
-    margin-right: 180px;
-    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
     margin-bottom: 25px;
     padding: 0px;
 }
@@ -68,9 +68,9 @@ body {
     border-radius: 0.25rem;
     padding: 30px 40px;
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.7);
-    margin-right: 325px;
-    margin-left: 325px;
-    margin-bottom: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: auto;
     position: relative;
     display: flex;
     flex-direction: column;
