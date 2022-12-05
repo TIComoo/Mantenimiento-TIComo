@@ -5,7 +5,7 @@ export const ROUTES = {
     ADMIN: '/admin',    
     ADDADMIN: '/admin/addAdmin',
     RESTAURANT: '/admin/consultRestaurant/:id',
-    PROXY: 'https://ticomo01.herokuapp.com'
+    PROXY: 'http://localhost:80'
 }
 
 export const IMAGES = {
