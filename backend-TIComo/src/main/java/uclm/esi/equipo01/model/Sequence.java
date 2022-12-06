@@ -8,7 +8,8 @@ public enum Sequence{
 	PLATE(5),
 	ORDER(6),
 	PLATEANDORDER(7),
-	SIMULTANEOUS_NUMBER_OF_ORDERS(8);
+	SIMULTANEOUS_NUMBER_OF_ORDERS(8),
+	ATENCION(9);
 	
     private int value;
   

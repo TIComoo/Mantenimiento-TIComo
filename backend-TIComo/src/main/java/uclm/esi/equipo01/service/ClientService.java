@@ -115,7 +115,6 @@ public class ClientService extends UserService{
 	*********************************************************************/
 	public List<Client> showAllClients(){
 		return Manager.get().getClientRepository().findAll();
-		
 	}
 	
 	/*********************************************************************

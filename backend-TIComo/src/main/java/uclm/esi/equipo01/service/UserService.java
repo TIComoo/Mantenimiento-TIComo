@@ -44,7 +44,6 @@ public abstract class UserService {
 		String email = jso.getString("email").toLowerCase();
 		String pwd = org.apache.commons.codec.digest.DigestUtils.sha512Hex(jso.getString("password"));
 		
-		
 		User user;
 			
 		user = Manager.get().getAdminRepository().findByEmailAndPwd(email, pwd);
@@ -85,6 +84,20 @@ public abstract class UserService {
 			}
 			JSONObject response = new JSONObject(user);
 			response.put("role", "CLIENT");
+			return new ResponseEntity<>(response.toString(), HttpStatus.OK);
+		}
+		
+		user = Manager.get().getAtencionTelefonicaRepository().findByEmailAndPwd(email, pwd);
+		
+		if (user != null) {
+			if (!user.isActiveAccount()) {
+				JSONObject response = new JSONObject();
+				response.put(ERRORACCOUNT, ACCOUNTNOTACTIVATED);
+				return new ResponseEntity<>(response.toString(), HttpStatus.UNAUTHORIZED);
+			}
+			
+			JSONObject response = new JSONObject(user);
+			response.put("role", "ATENCION_TELEFONICA");
 			return new ResponseEntity<>(response.toString(), HttpStatus.OK);
 		}
 		
