@@ -147,7 +147,6 @@ class AdminPage extends Component {
                 <TabPanel value={this.state.value} index={4}>
                     <h2>CLIENTES</h2>
                     {this.ClientsTable(this.state.clients)}
-                    <Link to={"/order/addOrder"}>Añadir un nuevo pedido</Link> {/* crear AddOrder.js */}
                 </TabPanel>
 
             </Box>
