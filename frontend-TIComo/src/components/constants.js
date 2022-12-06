@@ -19,5 +19,6 @@ export const IMAGES = {
 export const ROLES = {
     ADMIN: 'ADMIN',
     RIDER: 'RIDER',
-    CLIENT: 'CLIENT'
+    CLIENT: 'CLIENT',
+    ATENCION: 'ATENCION_TELEFONICA'
 }

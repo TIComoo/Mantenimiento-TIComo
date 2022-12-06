@@ -53,6 +53,8 @@ function Routes() {
 
         <Route exact path="/rider/consultOrder" component={RiderConsultOrder} />
         <PrivateRoute path="/rider" roles={[ROLES.RIDER]} component={Rider} />
+        
+        <PrivateRoute path="/atencion" roles={[ROLES.ATENCION]} component={Atencion} /> {/* como va esto??? */}
 
         <Route path="*" component={PageNotFound} />
       </Switch>
