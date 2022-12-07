@@ -25,7 +25,7 @@ import uclm.esi.equipo01.service.ClientService;
 *
 **********************************************************************/
 
-@CrossOrigin(origins = {"https://ticomo01.web.app", "http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:80", "http://localhost:3000"})
 @RestController
 @RequestMapping("client")
 public class ClientController {

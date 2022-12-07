@@ -24,7 +24,7 @@ import uclm.esi.equipo01.service.RiderService;
 *
 **********************************************************************/
 
-@CrossOrigin(origins = {"https://ticomo01.web.app", "http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:80", "http://localhost:3000"})
 @RestController
 @RequestMapping("rider")
 public class RiderController {
