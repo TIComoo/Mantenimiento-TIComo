@@ -22,6 +22,12 @@ import AdminConsultOrder from '../js/AdminConsultOrder';
 import Rider from '../js/RiderPage';
 import RiderConsultOrder from '../js/RiderConsultOrder';
 import ClientConsultPlate from '../js/ClientConsultPlate';
+
+import Atencion from '../js/AtencionPage';
+import ConsultOrdersClient from '../js/ConsultOrdersClient';
+import AtencionConsultOrder from '../js/AtencionConsultOrder';
+import ConsultRestaurantsAtencion from '../js/ConsultRestaurantsAtencion';
+
 import { ROUTES, ROLES} from './constants';
 import { PrivateRoute } from './privateRoute';
 
@@ -55,6 +61,9 @@ function Routes() {
         <PrivateRoute path="/rider" roles={[ROLES.RIDER]} component={Rider} />
         
         <PrivateRoute path="/atencion" roles={[ROLES.ATENCION]} component={Atencion} /> {/* como va esto??? */}
+        <Route exact path="/atencion/showAllOrdersByClient/:id" component={ConsultOrdersClient} />
+        <Route exact path="/atencion/consultOrder" component={AtencionConsultOrder} />
+        <Route exact path="/atencion/showAllRestaurants" component={ConsultRestaurantsAtencion} />
 
         <Route path="*" component={PageNotFound} />
       </Switch>

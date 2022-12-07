@@ -7,7 +7,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Table from 'react-bootstrap/Table';
-import { Link } from 'react-router-dom';
 import { IMAGES, ROUTES } from '../components/constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
@@ -46,7 +45,7 @@ function a11yProps(index) {
     };
 }
 
-class AdminPage extends Component {
+class AtencionPage extends Component {
     constructor(props) {
         super(props);
     }
@@ -75,7 +74,7 @@ class AdminPage extends Component {
     
     goToClient(clientID) {
         this.props.history.push({
-            pathname: '/order/showAllOrdersByClient/' + clientID,
+            pathname: '/atencion/showAllOrdersByClient/' + clientID,
         });
     }
 
@@ -158,4 +157,4 @@ class AdminPage extends Component {
 
 }
 
-export default AdminPage;
+export default AtencionPage;
