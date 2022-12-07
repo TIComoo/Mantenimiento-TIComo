@@ -86,7 +86,7 @@ class Register extends Component {
 
 	render() {
 		return (
-			<div class="center" height="auto" width="auto">
+			<div class="center">
 				<div className="center">
 					<div className="center">
 							<div class="card">

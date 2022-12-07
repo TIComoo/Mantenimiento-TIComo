@@ -60,10 +60,10 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div className="center">
+			<div className="center"  >
 				<div className="center">
 					<div className="center">
-						<div class="card">
+						<div class="card" auto>
 							<img src={IMAGES.LOGO} className="centerImage" width="150" height="80" alt="" />
 							<h5 class="text-center mb-4">BIENVENIDO A TICOMO</h5>
 							<label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>

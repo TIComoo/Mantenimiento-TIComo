@@ -5,7 +5,8 @@ export const ROUTES = {
     ADMIN: '/admin',    
     ADDADMIN: '/admin/addAdmin',
     RESTAURANT: '/admin/consultRestaurant/:id',
-    PROXY: 'http://localhost:80'
+    PROXY: 'http://192.168.2.187:80'
+
 }
 
 export const IMAGES = {

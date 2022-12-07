@@ -1,6 +1,47 @@
 
 /* Define el background de todo 
 y pone sans-serif como tipografía determinada */
+
+
+@media(max-width: 1200px){
+
+    div{
+           
+ 
+    }
+    div.card{
+        
+        width:100%;
+        height:auto;   
+        margin-left: 0px;
+   
+    
+    }
+
+    div.center{
+        
+        width:100%;
+        height:auto;  
+        margin-top: 100px; 
+
+   
+    
+    }
+    
+    {
+        
+        width:100%;
+        height:auto;  
+
+   
+    
+    }
+
+
+}
+
+
+
 body {
     background-image: url("https://firebasestorage.googleapis.com/v0/b/ticomo01.appspot.com/o/images%2FBackground.png?alt=media&token=5a7f79c7-c7bb-4717-a9c3-d3e52680b147");
     background-size: cover; 
@@ -26,32 +67,31 @@ body {
 */
 .center {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 70px;
+    margin: auto;
+    margin-top: 300px;
     padding: 0px;
+
 }
 
 /* Para centrar los elementos dentro de los tabs */
 .centerInTab {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
+    margin-left: 15px;
+    margin-right: 0px;
+    margin-top: 80px;
     padding: 0px;
 }
 .centerInTabV2 {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 15px;
+    margin-right: 0px;
     margin-top: 0px;
     padding: 0px;
 }
 .centerImage {
     display: block;
     margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
+    margin-top: 0px;
     margin-bottom: 25px;
     padding: 0px;
 }
@@ -68,13 +108,16 @@ body {
     border-radius: 0.25rem;
     padding: 30px 40px;
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.7);
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: auto;
+    margin-right: 900px;
+    margin-left: 900px;
+    margin-bottom: inline-block;
     position: relative;
-    display: flex;
+    display: block;
     flex-direction: column;
+
 }
+
+
 
 /* Estilo de la box que contiene los elementos de los formularios dentro de tabs */
 .cardInTab {

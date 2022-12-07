@@ -27,7 +27,7 @@ import uclm.esi.equipo01.service.OrderService;
 *
 **********************************************************************/
 
-@CrossOrigin(origins = {"http://localhost:80", "http://localhost:3000"})
+@CrossOrigin(origins = {"http://192.168.2.187:80", "http://192.168.2.187:3000","http://localhost:80", "http://localhost:3000"})
 @RestController
 @RequestMapping("order")
 public class OrderController {

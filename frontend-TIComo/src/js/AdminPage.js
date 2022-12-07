@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '../css/StylePage.css';
 import { Component } from 'react';
 import { authenticationService } from '../services/authentication-service';
 import PropTypes from 'prop-types';
