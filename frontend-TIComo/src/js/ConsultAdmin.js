@@ -99,9 +99,10 @@ class ConsultAdmin extends Component {
 			})
 				.then((responseJson) => {
 					responseJson = JSON.parse(responseJson);
-					document.getElementById("email").textContent = responseJson.errorEmail + "\n";
+					document.getElementById("email").textContent = responseJson.errorEmail;
 					document.getElementById("name").textContent = responseJson.errorName;
 					document.getElementById("surname").textContent = responseJson.errorSurname;
+					document.getElementById("zone").textContent=responseJson.errorZone;
 				}).catch((err) => {
 					console.log(err);
 				})
@@ -145,20 +146,21 @@ class ConsultAdmin extends Component {
 								<Tooltip title="No puede contener: [1-9]/*@..." placement="left-start">
 								<label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
 								</Tooltip>
-								<input class="Fields" type="text" name="name" placeholder={this.state.admin.name} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+								<input class="Fields" type="text" name="name" placeholder={this.state.admin.name} disabled={(this.state.disabled) ? "disabled" : ""} onChange={this.handleChange} />
 								<label class="text-danger-custom" id="name"></label>
 								<Tooltip title="No puede contener: [1-9]/*@..." placement="left-start">
 								<label class="form-control-label px-0">Apellido<span class="text-danger"> *</span></label>
 								</Tooltip>
-								<input class="Fields" type="text" name="surname" placeholder={this.state.admin.surname} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+								<input class="Fields" type="text" name="surname" placeholder={this.state.admin.surname} disabled={(this.state.disabled) ? "disabled" : ""}  onChange={this.handleChange} />
 								<label class="text-danger-custom" id="surname"></label>
 								<Tooltip title="No puede haber dos usuarios con el mismo email " placement="left-start">
 								<label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>
 								</Tooltip>
-								<input class="Fields" type="text" name="email" placeholder={this.state.admin.email} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+								<input class="Fields" type="text" name="email" placeholder={this.state.admin.email} disabled={(this.state.disabled) ? "disabled" : ""} onChange={this.handleChange} />
 								<label class="text-danger-custom" id="email"></label>
 								<label class="form-control-label px-0">Zona<span class="text-danger"> *</span></label>
-								<input class="Fields" type="text" name="zone" placeholder={this.state.admin.zone} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+								<input class="Fields" type="text" name="zone" placeholder={this.state.admin.zone} disabled={(this.state.disabled) ? "disabled" : ""}  onChange={this.handleChange} />
+								<label class="text-danger-custom" id="zone"></label>
 								<div class="columns">
 									<input type="submit" value="MODIFICAR" onClick={this.handleModifyClik.bind(this)} />
 									<input type="submit" value="ELIMINAR" onClick={() => this.deleteAdmin()} />

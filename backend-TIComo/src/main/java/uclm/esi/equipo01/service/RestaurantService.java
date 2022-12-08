@@ -73,7 +73,19 @@ public class RestaurantService {
 		
 		if (!validatorService.isValidCIF(cif))
 			response.put("errorCIF", "CIF no válido");
-		
+
+		if (name.isEmpty())
+			response.put("errorName", "Nombre no válido");
+
+		if (address.isEmpty())
+			response.put("errorAddress", "Dirección no válida");
+
+		if (category.isEmpty())
+			response.put("errorCategory", "Categoria no válida");
+
+		if (commercialRegister.isEmpty())
+			response.put("errorComercial", "Registro comercial no valido");
+
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
 		
@@ -120,6 +132,18 @@ public class RestaurantService {
 		
 		if (!validatorService.isValidCIF(cif))
 			response.put("errorCIF", "CIF no válido");
+
+		if (name.isEmpty())
+			response.put("errorName", "Nombre no válido");
+
+		if (address.isEmpty())
+			response.put("errorAddress", "Dirección no válida");
+
+		if (category.isEmpty())
+			response.put("errorCategory", "Categoria no válida");
+
+		if (commercialRegister.isEmpty())
+			response.put("errorComercial", "Registro comercial no valido");
 		
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
@@ -232,12 +256,16 @@ public class RestaurantService {
 		
 		List<Plate> plates = Manager.get().getPlateRepository().findPlateByRestaurantID(restaurantID);
 		
-		if (validatorService.isRepeatedPlate(plates, name)) {
+		if (validatorService.isRepeatedPlate(plates, name)|| name.isEmpty()) {
 			response.put("errorName", "Nombre no válido");
 		}
 
-		if (cost < 0) {
+		if (cost <= 0) {
 			response.put(ERRORCOST, COSTNOTVALID);
+		}
+		
+		if (description.isEmpty()) {
+			response.put("errorDescription", "Descripción vacia");
 		}
 		
 		if(response.length() != 0)
@@ -282,8 +310,12 @@ public class RestaurantService {
 			response.put(ERRORCOST, COSTNOTVALID);
 		}
 
-		if (cost < 0)
+		if (cost <= 0)
 			response.put(ERRORCOST, COSTNOTVALID);
+
+		if (name.isEmpty())
+			response.put("errorName", "Nombre no valido");
+
 		
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);

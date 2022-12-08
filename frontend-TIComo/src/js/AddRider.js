@@ -17,7 +17,7 @@ class AddRider extends Component {
 			surname: '',
 			email: '',
 			password: '',
-			NIF: '',
+			nif: '',
 			license: true,
 			licensePlate: '',
 			vehicleType: '',
@@ -27,46 +27,48 @@ class AddRider extends Component {
 
 	/* METHODS */
 	addRider = async () => {
-		if (this.state.form.validPassword) {
-			fetch(ROUTES.PROXY + '/user/register', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					role: 'RIDER',
-					name: this.state.form.name,
-					surname: this.state.form.surname,
-					email: this.state.form.email,
-					password: this.state.form.password,
-					nif: this.state.form.nif,
-					license: this.state.form.license,
-					licensePlate: this.state.form.licensePlate,
-					vehicleType: this.state.form.vehicleType,
-				})
-			}).then((response) => {
-				if (response.status == 200) {
-					alert("Rider registrado correctamente");
-					this.props.history.push({
-						pathname: '/admin',
-						value: 3,
-					});
-				}
-				return response.text();
+		
+		fetch(ROUTES.PROXY + '/user/register', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				role: 'RIDER',
+				name: this.state.form.name,
+				surname: this.state.form.surname,
+				email: this.state.form.email,
+				password: this.state.form.password,
+				nif: this.state.form.nif,
+				license: this.state.form.license,
+				licensePlate: this.state.form.licensePlate,
+				vehicleType: this.state.form.vehicleType,
 			})
-				.then((responseJson) => {
-					responseJson = JSON.parse(responseJson);
-					document.getElementById("email").textContent = responseJson.errorEmail;
-					document.getElementById("name").textContent = responseJson.errorName;
-					document.getElementById("surname").textContent = responseJson.errorSurname;
-					document.getElementById("license").textContent = responseJson.errorLicensePlate;
-					document.getElementById("nif").textContent = responseJson.errorNIF;
-					document.getElementById("password").textContent = responseJson.errorPwd;
-				}).catch((err) => {
-					console.log(err);
-				})
-		}
+		}).then((response) => {
+			if (response.status == 200) {
+				alert("Rider registrado correctamente");
+				this.props.history.push({
+					pathname: '/admin',
+					value: 3,
+				});
+			}
+			return response.text();
+		})
+			.then((responseJson) => {
+				responseJson = JSON.parse(responseJson);
+				document.getElementById("vehicle").textContent =responseJson.errorVehicle;
+				document.getElementById("email").textContent = responseJson.errorEmail;
+				document.getElementById("name").textContent = responseJson.errorName;
+				document.getElementById("surname").textContent = responseJson.errorSurname;
+				document.getElementById("license").textContent = responseJson.errorLicensePlate;
+				document.getElementById("nif").textContent = responseJson.errorNIF;
+				document.getElementById("password").textContent = responseJson.errorPwd;
+				
+			}).catch((err) => {
+				console.log(err);
+			})
+		
 	}
 
 	/* EVENTS */
@@ -181,6 +183,7 @@ class AddRider extends Component {
 								<label class="form-control-label px-0">Tipo de vehículo<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input type="text" name="vehicleType" placeholder="Coche/Moto/Bici" onChange={this.handleChange} />
+								<label class="text-danger-custom" id="vehicle"></label>
 
 								<div>
 									<label class="form-control-label px-0">Carné<span class="text-danger"> *</span></label>

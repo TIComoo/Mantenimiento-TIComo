@@ -22,44 +22,41 @@ class Register extends Component {
 
 	/* METHODS */
 	register = async () => {
-		if(this.state.form.validPassword){
-			fetch(ROUTES.PROXY + '/user/register', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					name: this.state.form.name,
-					surname: this.state.form.surname,
-					nif: this.state.form.nif,
-					address: this.state.form.address,
-					phone: this.state.form.phone,
-					email: this.state.form.email,
-					password: this.state.form.password,
-					role: "CLIENT"
-				})
-			}).then((response) => {
-				if (response.status == 200) {
-					alert("Usuario registrado correctamente");
-					this.props.history.push(ROUTES.LOGIN);
-				}
-				return response.text();
-			}).then((responseJson) => {
-				responseJson = JSON.parse(responseJson);
-				console.log(responseJson);
-				let errors = { "errorEmail": '', "errorPwd": '', "errorNIF": '', 'errorPhone': '', 
-				'errorName': '', 'errorSurname': '' }
-				for (const key in errors) {
-					document.getElementById(`${key}`).textContent = '';
-				}
-				for (const key in responseJson) {
-					document.getElementById(`${key}`).textContent = `${responseJson[key]}`;
-				}
-			}).catch((err) => {
-				console.log(err);
+		
+		fetch(ROUTES.PROXY + '/user/register', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name: this.state.form.name,
+				surname: this.state.form.surname,
+				nif: this.state.form.nif,
+				address: this.state.form.address,
+				phone: this.state.form.phone,
+				email: this.state.form.email,
+				password: this.state.form.password,
+				role: "CLIENT"
 			})
-		}
+		}).then((response) => {
+			if (response.status == 200) {
+				alert("Usuario registrado correctamente");
+				this.props.history.push(ROUTES.LOGIN);
+			}
+			return response.text();
+		}).then((responseJson) => {
+			responseJson = JSON.parse(responseJson);
+			document.getElementById("email").textContent = responseJson.errorEmail;
+			document.getElementById("name").textContent = responseJson.errorName;
+			document.getElementById("surname").textContent = responseJson.errorSurname;
+			document.getElementById("nif").textContent = responseJson.errorNIF;
+			document.getElementById("phone").textContent = responseJson.errorPhone;
+			document.getElementById("address").textContent = responseJson.errorAddress;
+		}).catch((err) => {
+			console.log(err);
+		})
+		
 	}
 
 	/* EVENTS */
@@ -97,19 +94,19 @@ class Register extends Component {
 								<label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input class="text" type="text" name="name" placeholder="Nombre" required="" onChange={this.handleChange} />
-								<label class="text-danger" id="Name"></label>
+								<label class="text-danger" id="name"></label>
 
 								<Tooltip title="No puede contener: [1-9]/*@..." placement="left-start">
 								<label class="form-control-label px-0">Apellidos<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input class="text" type="text" name="surname" placeholder="Apellidos" required="" onChange={this.handleChange} />
-								<label class="text-danger" id="Surname"></label>
+								<label class="text-danger" id="surname"></label>
 
 								<Tooltip title="Debe tener 8 números y 1 letra" placement="left-start">
 								<label class="form-control-label px-0">NIF<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input class="text" type="text" name="nif" placeholder="000000000X" required="" onChange={this.handleChange} />
-								<label class="text-danger" id="NIF"></label>
+								<label class="text-danger" id="nif"></label>
 
 								<label class="form-control-label px-0">Dirección<span class="text-danger"> *</span></label>
 								<input class="text" type="text" name="address" placeholder="C/" required="" onChange={this.handleChange} />
@@ -118,7 +115,7 @@ class Register extends Component {
 								<label class="form-control-label px-0">Teléfono<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input class="text" type="text" name="phone" placeholder="666666666" required="" onChange={this.handleChange} />
-								<label class="text-danger" id="Phone"></label>
+								<label class="text-danger" id="phone"></label>
 
 								<h5 class="text-center mb-4"></h5>
 								<h5 class="text-center mb-4">DATOS PARA EL LOGIN</h5>

@@ -234,6 +234,10 @@ class ConsultRestaurant extends Component {
 					document.getElementById("email").textContent = responseJson.errorEmail + "\n";
 					document.getElementById("phone").textContent = responseJson.errorPhone;
 					document.getElementById("cif").textContent = responseJson.errorCIF;
+					document.getElementById("category").textContent = responseJson.errorCategory;
+					document.getElementById("comercial").textContent = responseJson.errorComercial;
+					document.getElementById("address").textContent = responseJson.errorAddress;
+					document.getElementById("name").textContent = responseJson.errorName;
 				}).catch((err) => {
 					console.log(err);
 				})
@@ -293,6 +297,7 @@ class ConsultRestaurant extends Component {
 
 						<label class="form-control-label px-0">Dirección<span class="text-danger"> *</span></label>
 						<input class="Fieldsthis.state.restaurant.averageRate" type="text" name="address" placeholder={this.state.restaurant.address} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+						<label class="text-danger-custom" id="address"></label>
 
 						<Tooltip title="Debe tener 9 números y existir en España" placement="left-start">
 							<label class="form-control-label px-0">Teléfono<span class="text-danger"> *</span></label>
@@ -302,9 +307,11 @@ class ConsultRestaurant extends Component {
 
 						<label class="form-control-label px-0">Categoría<span class="text-danger"> *</span></label>
 						<input class="Fields" type="text" name="category" placeholder={this.state.restaurant.category} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+						<label class="text-danger-custom" id="category"></label>
 
 						<label class="form-control-label px-0">Registro Mercantil<span class="text-danger"> *</span></label>
 						<input class="Fields" type="text" name="commercialRegister" placeholder={this.state.restaurant.commercialRegister} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+						<label class="text-danger-custom" id="comercial"></label>
 
 						<label class="form-control-label px-0"> Rate </label>
 						<Rating

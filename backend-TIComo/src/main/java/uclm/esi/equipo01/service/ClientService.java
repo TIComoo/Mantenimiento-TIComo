@@ -57,10 +57,10 @@ public class ClientService extends UserService{
 		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(email))
 			response.put("errorEmail", "Email no válido");
 		
-		if (!validatorService.isValidName(name))
+		if (!validatorService.isValidName(name)|| name.isEmpty())
 			response.put("errorName", "Nombre no válido");
 		
-		if (!validatorService.isValidSurname(surname))
+		if (!validatorService.isValidSurname(surname)||surname.isEmpty())
 			response.put("errorSurname", "Apellido no válido");
 		
 		if(!validatorService.isValidNIF(nif))
@@ -168,13 +168,13 @@ public class ClientService extends UserService{
 		
 		JSONObject response = new JSONObject();
 		
-		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "CLIENT"))
+		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "CLIENT")||email.isEmpty())
 			response.put("errorEmail", "Email no válido");
 		
-		if (!validatorService.isValidName(name))
+		if (!validatorService.isValidName(name)|| name.isEmpty())
 			response.put("errorName", "Nombre no válido");
 		
-		if (!validatorService.isValidSurname(surname))
+		if (!validatorService.isValidSurname(surname)||surname.isEmpty())
 			response.put("errorSurname", "Apellido no válido");
 		
 		if(!validatorService.isValidNIF(nif))
@@ -182,6 +182,9 @@ public class ClientService extends UserService{
 		
 		if(!validatorService.isValidPhone(phone))
 			response.put("errorPhone", "Teléfono no válido");
+
+		if(address.isEmpty())
+			response.put("errorAddress", "Dirección no válida");
 		
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
