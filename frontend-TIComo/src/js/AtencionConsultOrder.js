@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { IMAGES, ROUTES } from '../components/constants';
 import Table from 'react-bootstrap/Table';
-import { authenticationService } from '../services/authentication-service';
-import easyinvoice from 'easyinvoice';
 import Tooltip from '@mui/material/Tooltip';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
@@ -17,20 +15,14 @@ class AtencionConsultOrder extends Component {
         restaurant: {},
         cart: [],
         plates: [],
-        bill: {},
-        disabledValorate: false,
-        disabledDelete: false,
+        disabledModificar: false,
     }
 
     /* INTIALIZER */
     async componentDidMount() {
 
-        if(this.state.order.state == "DELIVERED"){
-            this.state.disabledValorate = true;
-        }
-
-        if(this.state.order.state == "NEW"){
-            this.state.disabledDelete = true;
+        if (this.state.order.state == "DELIVERED") {
+            this.state.disabledModificar = true;
         }
 
         await fetch(ROUTES.PROXY + '/restaurant/showAllPlatesFromRestaurant/' + this.state.order.restaurantID, {
@@ -41,7 +33,7 @@ class AtencionConsultOrder extends Component {
             },
         }).then((response) => {
             if ([400].indexOf(response.status) !== -1) {
-                this.props.history.push(ROUTES.ADMIN);
+                this.props.history.push(ROUTES.ATENCION);
             }
             return response.json();
         }).then(data => {
@@ -58,7 +50,7 @@ class AtencionConsultOrder extends Component {
             },
         }).then((response) => {
             if ([400].indexOf(response.status) !== -1) {
-                this.props.history.push(ROUTES.ADMIN);
+                this.props.history.push(ROUTES.ATENCION);
             }
             return response.json();
         }).then(data => {
@@ -75,7 +67,7 @@ class AtencionConsultOrder extends Component {
             },
         }).then((response) => {
             if ([400].indexOf(response.status) !== -1) {
-                this.props.history.push(ROUTES.ADMIN);
+                this.props.history.push(ROUTES.ATENCION);
             }
             return response.json();
         }).then(data => {
@@ -83,86 +75,32 @@ class AtencionConsultOrder extends Component {
         }).catch((err) => {
             console.log(err);
         })
-
-        await this.prepareBild()
     }
 
-    prepareBild = async () => {
-        let dict = {};
-        dict["logo"] = "https://firebasestorage.googleapis.com/v0/b/ticomo01.appspot.com/o/images%2FLogo.png?alt=media&token=7974bbfb-833b-41a7-90a7-264ab0507559";
-        this.state.bill["images"] = dict;
-        dict = {};
-        dict["currency"] = "EUR";
-        this.state.bill["settings"] = dict;
-        dict = {};
-        dict["company"] = "TIComo";
-        dict["address"] = "Paseo de la Universidad, 4";
-        dict["zip"] = "13071";
-        dict["city"] = "Ciudad Real";
-        dict["country"] = "España";
-        this.state.bill["sender"] = dict;
-        dict = {}
-        dict["company"] = "Cliente";
-        dict["address"] = authenticationService.currentUserValue.address;
-        dict["zip"] = authenticationService.currentUserValue.name + ' ' + authenticationService.currentUserValue.surname;
-        dict["city"] = authenticationService.currentUserValue.NIF;
-        dict["country"] = "Ciudad Real, España";
-        this.state.bill["client"] = dict;
-        dict = {};
-        dict["number"] = this.state.order.id;
-        dict["date"] = this.state.order.releaseDate.substring(0, 10);
-        dict["due-date"] = this.state.order.releaseDate.substring(0, 10);
-        this.state.bill["information"] = dict;
-        let plates = [];
-        for (let i = 0; i < this.state.cart.length; i++) {
-            dict = {};
-            dict["quantity"] = this.state.cart[i].quantity;
-            dict["description"] = this.findArrayElementById(this.state.plates, this.state.cart[i].plateID).name;
-            dict["price"] = this.findArrayElementById(this.state.plates, this.state.cart[i].plateID).cost;
-            dict["tax-rate"] = 0;
-            plates.push(dict);
-        }
-        this.state.bill["products"] = plates;
-        dict = {}
-        dict["products"] = "Platos";
-        dict["quantity"] = "Cantidad";
-        dict["price"] = "Precio";
-        dict["invoice"] = "FACTURA";
-        dict["number"] = "Pedido";
-        dict["date"] = "Día";
-        dict["due-date"] = "Día de vencimiento";
-        this.state.bill["translate"] = dict;
-    }
-
-    deleteOrder=async()=>{
-       if(this.state.order.state == "NEW"){
-
-            var mensaje = confirm("¿Desea anular este pedido?");
-            if (mensaje) {
-                console.log(this.state.order.id),
-                    fetch(ROUTES.PROXY + '/order/deleteOrder/' + this.state.order.id, {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                    }).then((response) => {
-                    if(response.status==200){
-                        this.props.history.push({
-                            pathname: '/client',
-                            client: this.state.client,
-                            value: 3
-                        });
-                        }
-                        return response.text();
-                    })
-                        .then((responseJson) => {
-                            responseJson = JSON.parse(responseJson);
-                            document.getElementById("errors").textContent = responseJson.error;
-                        }).catch((err) => {
-                            console.log(err);
-                        })
-            }
+    deleteOrder = async () => {
+        let mensaje = confirm("¿Desea eliminar este pedido?");
+        if (mensaje) {
+            console.log(this.state.order.id);
+            fetch(ROUTES.PROXY + '/order/deleteOrder/' + this.state.order.id, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            }).then((response) => {
+                if (response.status == 200) {
+                    this.props.history.push({
+                        pathname: '/atencion/showAllOrdersByClient/' + this.state.order.clientID,
+                    });
+                }
+                return response.text();
+            })
+                .then((responseJson) => {
+                    responseJson = JSON.parse(responseJson);
+                    document.getElementById("errors").textContent = responseJson.error;
+                }).catch((err) => {
+                    console.log(err);
+                })
         }
     }
 
@@ -204,40 +142,17 @@ class AtencionConsultOrder extends Component {
     }
 
     /* EVENTS */
-    onClick(e) {
-        e.preventDefault();
-    }
-
     back = () => {
         this.props.history.push({
-            pathname: '/client',
-            value: 3
+            pathname: '/atencion/showAllOrdersByClient/' + this.state.order.clientID,
         })
     }
 
-    handleModifyClik() {
-        this.setState({ disabled: !this.state.disabled })
-    }
-
-    handleChange = async e => {
-        this.setState({
-            restaurant: {
-                ...this.state.restaurant,
-                [e.target.name]: e.target.value
-            }
-        });
-    }
-
-    goToRate(order) {
+    goToModify(order) {
         this.props.history.push({
-            pathname: '/client/orderRate',
+            pathname: '/atencion/modifyOrder',
             order: order
         })
-    }
-
-    generate = async (data) => {
-        const result = await easyinvoice.createInvoice(data);
-        easyinvoice.download(this.state.order.releaseDate.split('T')[0] + '-' + authenticationService.currentUserValue.NIF + '.pdf', result.pdf);
     }
 
     render() {
@@ -254,13 +169,12 @@ class AtencionConsultOrder extends Component {
                                 </div>
                                 <h5 class="text-center mb-4">PRECIO TOTAL: {this.state.order.price} €</h5>
                             </div>
-                            <div class="columns"><input type="submit" value="Factura" onClick={() => this.generate(this.state.bill)} /></div>
                             <div class="columns">
-                                <div hidden={this.state.disabledValorate ? false : true}>
-                                    <input type="submit" value="Valorar" onClick={() => this.goToRate(this.state.order)} />
+                                <div hidden={this.state.disabledModificar ? false : true}>
+                                    <input type="submit" value="Modificar" onClick={() => this.goToModify(this.state.order)} />
                                 </div>
-                                <div hidden={this.state.disabledDelete ? false : true}>
-                                    <input type="submit" value="Anular" onClick={() => this.deleteOrder(this.state.order)} />
+                                <div>
+                                    <input type="submit" value="Eliminar" onClick={() => this.deleteOrder(this.state.order)} />
                                 </div>
                             </div>
 

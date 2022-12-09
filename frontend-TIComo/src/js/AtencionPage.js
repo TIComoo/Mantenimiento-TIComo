@@ -130,7 +130,6 @@ class AtencionPage extends Component {
                     orientation='vertical'
                     variant="fullwidth"
                     value={this.state.value}
-                    onChange={this.handleTabChange}
                     aria-label="full width tabs example"
                     TabIndicatorProps={{ sx: { backgroundColor: '#D6C2B5' } }}
                     sx={{ borderRight: 1, borderColor: 'divider', backgroundColor: '#3F322B', width: 250 }}
@@ -139,11 +138,11 @@ class AtencionPage extends Component {
                 >
                     <img src={IMAGES.FONDO_TRANSPARENTE} className="logo" width="160" height="50" alt="" />
                     <img src={IMAGES.LOGO_FONDO} className="logo" width="160" height="90" alt="" />
-                    <Tab label={<span style={{ color: '#D6C2B5' }}>Clientes</span>} {...a11yProps(4)} />
+                    <Tab label={<span style={{ color: '#D6C2B5' }}>Clientes</span>} {...a11yProps(2)} />
                     <FontAwesomeIcon icon={faRightFromBracket} font-size={20} color={"#D6C2B5"} onClick={() => this.logout()} />
                 </Tabs>
 
-                <TabPanel value={this.state.value} index={4}>
+                <TabPanel value={this.state.value} index={2}>
                     <h2>CLIENTES</h2>
                     {this.ClientsTable(this.state.clients)}
                 </TabPanel>
