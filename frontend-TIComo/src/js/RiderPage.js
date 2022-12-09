@@ -9,10 +9,11 @@ import Box from '@mui/material/Box';
 import Table from 'react-bootstrap/Table';
 import { IMAGES, ROUTES } from '../components/constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faLeftRight } from '@fortawesome/free-solid-svg-icons'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import Tooltip from '@mui/material/Tooltip';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { borderLeft, height, textAlign } from '@mui/system';
 
 /* FUNCTIONS */
 function TabPanel(props) {
@@ -45,6 +46,8 @@ function a11yProps(index) {
     return {
         id: `full-width-tab-${index}`,
         'aria-controls': `full-width-tabpanel-${index}`,
+        
+    
     };
 }
 
@@ -167,7 +170,6 @@ class RiderPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
             <Table striped bordered hover variant="light">
                 <thead>
                     <tr>
@@ -181,7 +183,6 @@ class RiderPage extends Component {
                     {tableRows}
                 </tbody>
             </Table>
-            </div>
         );
     }
 
@@ -234,9 +235,8 @@ class RiderPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
             <Table striped bordered hover variant="light">
-                <thead>
+                <thead >
                     <tr>
                         <th>RESTAURANTE</th>
                         <th>FECHA PEDIDO</th>
@@ -248,7 +248,6 @@ class RiderPage extends Component {
                     {tableRows}
                 </tbody>
             </Table>
-            </div>
         );
     }
 
@@ -375,31 +374,27 @@ class RiderPage extends Component {
 
     render() {
         return (
-            <div>
+			<div class="center" auto >
+						<div class="card" auto >              
                 <><Box
-                    sx={{ flexGrow: 1, bgcolor: 'white', height: 800, display: 'flex', width: 1000 }}
                 >
-                    <Tabs
+                    <Tabs 
                         orientation='vertical'
                         variant="fullwidth"
                         value={this.state.value}
                         onChange={this.handleTabChange}
                         aria-label="full width tabs example"
-                        TabIndicatorProps={{ sx: { backgroundColor: '#D6C2B5' } }}
-                        sx={{ borderRight: 1, borderColor: 'divider', backgroundColor: '#3F322B', width: 250 }}
-                        textColor="white"
-                        centered
                     >
-                        <img src={IMAGES.FONDO_TRANSPARENTE} className="logo" width="160" height="50" alt="" />
+                        <img src={IMAGES.FONDO_TRANSPARENTE} className="logo" width="200" height="200" />
                         <img src={IMAGES.LOGO_FONDO} className="logo" width="160" height="90" alt="" />
-                        <Tab label={<span style={{ color: '#D6C2B5' }}>Pedidos</span>} {...a11yProps(2)} />
-                        <Tab label={<span style={{ color: '#D6C2B5' }}>Mis Pedidos</span>} {...a11yProps(3)} />
-                        <Tab label={<span style={{ color: '#D6C2B5' }}>Perfil</span>} {...a11yProps(4)} />
-                        <FontAwesomeIcon icon={faRightFromBracket} font-size={20} color={"#D6C2B5"} onClick={() => this.logout()} />
+                        <Tab label={<span class="rider">Pedidos</span>} {...a11yProps(2)} />
+                        <Tab label={<span class="rider">Mis Pedidos</span>} {...a11yProps(3)} />
+                        <Tab label={<span class="rider">Perfil</span>} {...a11yProps(4)} />
+                        <FontAwesomeIcon  icon={faRightFromBracket}  font-size={30} color={"#61412d"} onClick={() => this.logout()} />
                     </Tabs>
 
                     <TabPanel value={this.state.value} index={2}>
-                    <h2>TODOS LOS PEDIDOS</h2>
+                    <h2 >TODOS LOS PEDIDOS</h2>
                         {this.GlobalOrdersTable(this.state.globalOrders)}
                     </TabPanel>
 
@@ -476,6 +471,8 @@ class RiderPage extends Component {
                 </Box>
                 </>
             </div>
+            </div>
+
         )
     }
 

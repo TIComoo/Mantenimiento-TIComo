@@ -6,7 +6,6 @@ import Admin from '../js/AdminPage';
 import AddPlate from '../js/AddPlate';
 import AddRestaurant from '../js/AddRestaurant';
 import ConsultRestaurant from '../js/ConsultRestaurant';
-import Welcome from '../js/Welcome';
 import AddAdmin from '../js/AddAdmin';
 import ConsultAdmin from '../js/ConsultAdmin';
 import ConsultPlate from '../js/ConsultPlate';
@@ -30,7 +29,6 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route exact path={ROUTES.LOGIN} component={Login} />
-        <Route exact path={ROUTES.WELCOME} component={Welcome} />
         <Route exact path="/register" component={Register} />
 
         <Route exact path="/admin/consultRestaurant/:id/addPlate" component={AddPlate} />

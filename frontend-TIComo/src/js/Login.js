@@ -13,7 +13,7 @@ class Login extends Component {
 			if (authenticationService.currentUserValue.role == ROLES.ADMIN) {
 				this.props.history.push(ROUTES.ADMIN);
 			} else if (authenticationService.currentUserValue.role == ROLES.RIDER) {
-				this.props.history.push(ROUTES.WELCOME);
+				this.props.history.push(ROUTES.LOGIN);
 			} else {
 				this.props.history.push('/client');
 			}
@@ -60,10 +60,8 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div className="center"  >
-				<div className="center">
-					<div className="center">
-						<div class="card" auto>
+			<div class="center1" auto >
+						<div class="card1" auto>
 							<img src={IMAGES.LOGO} className="centerImage" width="150" height="80" alt="" />
 							<h5 class="text-center mb-4">BIENVENIDO A TICOMO</h5>
 							<label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>
@@ -79,8 +77,7 @@ class Login extends Component {
 
 						</div>
 					</div>
-				</div>
-			</div>
+
 		)
 	}
 }

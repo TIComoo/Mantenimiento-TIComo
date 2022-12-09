@@ -86,10 +86,10 @@ class Register extends Component {
 
 	render() {
 		return (
-			<div class="center">
-				<div className="center">
-					<div className="center">
-							<div class="card">
+			<div class="center1">
+				<div className="center1">
+					<div className="center1">
+							<div class="card1">
 								<img src={IMAGES.LOGO} className="centerImage" width="150" height="80" alt="" />
 								<h5 class="text-center mb-4">DATOS PERSONALES</h5>
 
