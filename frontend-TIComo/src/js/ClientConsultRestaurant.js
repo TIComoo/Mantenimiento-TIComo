@@ -252,7 +252,6 @@ class ClientConsultRestaurant extends Component {
     render() {
         return (
             <div class="row">
-                <div className='col-4'>
                     <div class="cardInColumn">
                         <h5 class="text-center mb-4">INFORMACIÓN RESTAURANTE</h5>
                         <label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
@@ -284,18 +283,14 @@ class ClientConsultRestaurant extends Component {
                             <FontAwesomeIcon icon={faLeftLong} font-size={20} color={"#000000"} onClick={() => this.back()} />
                         </Tooltip>
                         </div>
-                    </div>
                 </div>
 
-                <div className='col-4'>
                     <div class="cardInColumn">
                         <h5 class="text-center mb-4">CARTA DEL RESTAURANTE</h5>
                         <div className="subheading mb-5">
                             {this.PlatesTable(this.state.plates)}
                         </div>
-                    </div>
                 </div>
-                <div className='col-4'>
                     <div class="cardInColumn">
                         <h5 class="text-center mb-4">PEDIDO</h5>
                         <div className="subheading mb-5">
@@ -307,7 +302,6 @@ class ClientConsultRestaurant extends Component {
                         </Tooltip>
                     </div>
                 </div>
-            </div>
         )
     }
 }

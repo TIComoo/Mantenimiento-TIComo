@@ -6,47 +6,77 @@ y pone sans-serif como tipografía determinada */
 @media(max-width: 1200px){
 
 
-    div.card{
-        
+    /*AJUSTE VENTANA RIDER*/
+    div.card{  
         width:inline-flex;
-        height:inline-flex;  
+        height:inline-flex; 
         margin-left: -20px;
-    
+        
+
+
+
     }
 
+    div.center{ 
+        width:inline-flex; 
+        height:inline-flex; 
+        margin-right: 0px; 
+        margin-left: -40px;
 
-    div.center{
-        
+        margin-top: -10px;  
+    }
+
+    /*AJUSTE ORDEN RIDER*/
+
+    div.card3{
         width:100%;
         height:auto;   
-        margin-left: -40px;
-        margin-right: 0px;
-        margin-top: -10px;
-
-
-    
+        margin-left: 0px;
+        margin-top: 100px;
+        background-color: #fff;
+    }
+        
+    div.center3{
+        width:auto;
+        height:auto;  
+        margin-top: 10px; 
+        background-color: #fff;
     }
 
+    /*AJUSTE VENTANA LOGIN*/
     div.card1{
-
         width:100%;
         height:auto;   
         margin-left: 0px;
         margin-top: 0px;
-        
-
-
     }
 
     div.center1{
-
         width:100%;
         height:auto;  
-        margin-top: 100px; 
+        margin-top: 120px; 
+        margin-left: 0px;
+    }
 
+    /*AJUSTE VENTANA CLIENTES*/
 
+    div.card2{
+        width:inline-flex;
+        height:auto; 
+        margin-top: 0px;
+        margin-left: -10px;
+        margin-right: 0px;
 
     }
+
+    div.center2{
+        width:inline-flex;
+        height:auto; 
+        margin-top: 0px; 
+    }
+
+
+
 
 }
 
@@ -64,26 +94,38 @@ body {
         - Página AddAdmin
 */
 .logo {
+    margin-left: 120px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-top: -100px;
+}
+
+.logo1 {
     margin-left: 150px;
     margin-right: 0px;
     margin-bottom: 20px;
     margin-top: -50px;
 }
-
-
 /* Para centrar los elementos
     - Utilizado en:
         - Página AddAdmin: centrar la card (box)
 */
+    /*AJUSTE VENTANA RIDER*/
 .center {
     display: inline-flex;
     padding: 0px;
     margin-right: inline-flex;
     margin-left: inline-flex;
-
 }
 
+    /*AJUSTE VENTANA CLIENTE*/
+.center2 {
+    display: auto;
+    padding: 0px;
+    margin-left: -40px;
+    margin-right: 0px;
 
+    }
 
 
 /* Para centrar los elementos dentro de los tabs */
@@ -113,6 +155,10 @@ body {
     - Utilizado en:
         - Muchas
 */
+
+
+/*AJUSTE VENTANA RIDER*/
+
 .card {
     word-wrap: break-word;
     background-color: rgb(255, 255, 255);
@@ -127,7 +173,44 @@ body {
     display: flex;
     flex-direction: column;
 
+
 }
+
+.card3 {
+    word-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 30px 40px;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.7);
+    margin-right: -140px;
+    margin-left: 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/*AJUSTE VENTANA CLIENTE*/
+
+.card2 {
+    word-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 30px 40px;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.7);
+    margin-right: 0px;
+    margin-left: 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/*AJUSTE VENTANA LOGIN */
 
 .card1 {
     word-wrap: break-word;
@@ -277,6 +360,16 @@ input[type="submit"]:hover {
 
 }
 
+.cliente{
+
+    color:#61412d;
+    margin-left: 50px;
+
+}
+
+.icon{
+float: right;
+}
 
 /* CHECKBOX */
 input[type="checkbox"],
@@ -306,8 +399,8 @@ h2,
 .h2,
 h1,
 .h1 {
-    margin-top: 0;
-    margin-left: -1000px;
+    margin-top: 0px;
+    margin-left: inline-flex;
     margin-bottom: 0.5rem;
     font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-weight: 300;

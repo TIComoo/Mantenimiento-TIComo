@@ -163,11 +163,8 @@ class RiderConsultOrder extends Component {
 
     render() {
         return (
-            <div class="center">
-                <img src={IMAGES.LOGO} className="logo" width="150" height="80" alt="" />
-                <div class="center">
-                    <div class="center">
-                        <div class="card">
+			<div class="center3" auto >
+						<div class="card3" auto >   
                             <div>
                                 <h5 class="text-center mb-4">PEDIDO</h5>
                                 <div className="subheading mb-5">
@@ -183,8 +180,7 @@ class RiderConsultOrder extends Component {
 								</div>
                         </div>
                     </div>
-                </div>
-            </div>
+
         )
     }
 }

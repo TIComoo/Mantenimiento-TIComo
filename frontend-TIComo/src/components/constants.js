@@ -4,7 +4,7 @@ export const ROUTES = {
     ADMIN: '/admin',    
     ADDADMIN: '/admin/addAdmin',
     RESTAURANT: '/admin/consultRestaurant/:id',
-    PROXY: 'http://192.168.43.133'
+    PROXY: 'http://192.168.2.187'
 
 }
 

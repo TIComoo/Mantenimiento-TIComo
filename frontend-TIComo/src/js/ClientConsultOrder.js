@@ -242,11 +242,10 @@ class ClientConsultOrder extends Component {
 
     render() {
         return (
-            <div class="center">
-                <img src={IMAGES.LOGO} className="logo" width="150" height="80" alt="" />
-                <div class="center">
-                    <div class="center">
-                        <div class="card">
+            <div class="center1">
+                <div class="center1">
+                    <div class="center1">
+                        <div class="card1">
                             <div>
                                 <h5 class="text-center mb-4">PEDIDO</h5>
                                 <div className="subheading mb-5">
@@ -254,8 +253,8 @@ class ClientConsultOrder extends Component {
                                 </div>
                                 <h5 class="text-center mb-4">PRECIO TOTAL: {this.state.order.price} €</h5>
                             </div>
-                            <div class="columns"><input type="submit" value="Factura" onClick={() => this.generate(this.state.bill)} /></div>
-                            <div class="columns">
+                            <div class="vertical"><input type="submit" value="Factura" onClick={() => this.generate(this.state.bill)} /></div>
+                            <div class="vertical">
                                 <div hidden={this.state.disabledValorate ? false : true}>
                                     <input type="submit" value="Valorar" onClick={() => this.goToRate(this.state.order)} />
                                 </div>

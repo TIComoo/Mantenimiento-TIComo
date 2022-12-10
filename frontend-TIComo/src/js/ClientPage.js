@@ -210,7 +210,6 @@ class ClientPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
                 <Table striped bordered hover variant="light">
                     <thead>
                         <tr>
@@ -223,7 +222,6 @@ class ClientPage extends Component {
                         {tableRows}
                     </tbody>
                 </Table>
-            </div>
         );
     }
 
@@ -278,7 +276,6 @@ class ClientPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
                 <Table striped bordered hover variant="light">
                     <thead>
                         <tr>
@@ -292,7 +289,6 @@ class ClientPage extends Component {
                         {tableRows}
                     </tbody>
                 </Table>
-            </div>
         );
     }
 
@@ -337,27 +333,22 @@ class ClientPage extends Component {
 
     render() {
         return (
-            <div>
+			<div class="center2" auto >
+						<div class="card2" auto >              
                 <><Box
-                    sx={{ flexGrow: 1, bgcolor: 'white', height: 800, display: 'flex', width: 1000 }}
                 >
-                    <Tabs
+                    <Tabs 
                         orientation='vertical'
                         variant="fullwidth"
                         value={this.state.value}
                         onChange={this.handleTabChange}
                         aria-label="full width tabs example"
-                        TabIndicatorProps={{ sx: { backgroundColor: '#D6C2B5' } }}
-                        sx={{ borderRight: 1, borderColor: 'divider', backgroundColor: '#3F322B', width: 250 }}
-                        textColor="white"
-                        centered
                     >
-                        <img src={IMAGES.FONDO_TRANSPARENTE} className="logo" width="160" height="50" alt="" />
-                        <img src={IMAGES.LOGO_FONDO} className="logo" width="160" height="90" alt="" />
-                        <Tab label={<span style={{ color: '#D6C2B5' }}>Restaurantes</span>} {...a11yProps(2)} />
-                        <Tab label={<span style={{ color: '#D6C2B5' }}>Pedidos</span>} {...a11yProps(3)} />
-                        <Tab label={<span style={{ color: '#D6C2B5' }}>Perfil</span>} {...a11yProps(4)} />
-                        <FontAwesomeIcon icon={faRightFromBracket} font-size={20} color={"#D6C2B5"} onClick={() => this.logout()} />
+                        <img src={IMAGES.FONDO_TRANSPARENTE} className="logo" width="200" height="200" />
+                        <img src={IMAGES.LOGO_FONDO} className="logo" width="160" height="90" />
+                        <Tab label={<span class="cliente">Restaurantes</span>} {...a11yProps(2)} />
+                        <Tab label={<span class="cliente">Pedidos</span>} {...a11yProps(3)} />
+                        <Tab label={<span class="cliente">Perfil</span>} {...a11yProps(4)} />
                     </Tabs>
 
                     <TabPanel value={this.state.value} index={2}>
@@ -367,15 +358,22 @@ class ClientPage extends Component {
 
                     <TabPanel value={this.state.value} index={3}>
                         <h2>MIS PEDIDOS</h2>
+                        
                         {this.OrdersTable(this.state.orders)}
                     </TabPanel>
 
                     <TabPanel value={this.state.value} index={4}>
                         <h2>MI PERFIL</h2>
-                        <div class="centerInTab">
+                        <div  class="icon">
+                                    <Tooltip title="Editar" placement="top-start">
+                                    <FontAwesomeIcon icon={faEdit} font-size={20} location="left" color={"#deb619"} onClick={() => this.handleModifyClick()} />
+                                    </Tooltip>
+                                    </div>
+                        <div class="center3">
                             <div class="centerInTab">
-                                <div class="columns">
+                                <div class="vertical">
                                     <div class='cardInTab'>
+                                        
                                         <Tooltip title="No puede contener: [1-9]/*@..." placement="top-start">
                                             <label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
                                         </Tooltip>
@@ -408,9 +406,8 @@ class ClientPage extends Component {
                                         <input class="Fields" type="text" name="phone" placeholder={this.state.client.phone} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="phone"></label>
                                     </div>
-                                    <Tooltip title="Editar" placement="top-start">
-                                    <FontAwesomeIcon icon={faEdit} font-size={20} color={"#deb619"} onClick={() => this.handleModifyClick()} />
-                                    </Tooltip>
+
+
                                 </div>
                             </div>
                         </div>
@@ -428,6 +425,8 @@ class ClientPage extends Component {
                 </Box>
                 </>
             </div>
+            </div>
+
 
         )
     }

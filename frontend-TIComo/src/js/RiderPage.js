@@ -170,7 +170,9 @@ class RiderPage extends Component {
             }
         )
         return (
+
             <Table striped bordered hover variant="light">
+
                 <thead>
                     <tr>
                         <th>RESTAURANTE</th>
@@ -235,7 +237,7 @@ class RiderPage extends Component {
             }
         )
         return (
-            <Table striped bordered hover variant="light">
+            <Table striped bordered hover variant="auto">
                 <thead >
                     <tr>
                         <th>RESTAURANTE</th>
@@ -385,12 +387,11 @@ class RiderPage extends Component {
                         onChange={this.handleTabChange}
                         aria-label="full width tabs example"
                     >
-                        <img src={IMAGES.FONDO_TRANSPARENTE} className="logo" width="200" height="200" />
-                        <img src={IMAGES.LOGO_FONDO} className="logo" width="160" height="90" alt="" />
+                        <img src={IMAGES.FONDO_TRANSPARENTE} className="logo1" width="200" height="200" />
+                        <img src={IMAGES.LOGO_FONDO} className="logo1" width="160" height="90" alt="" />
                         <Tab label={<span class="rider">Pedidos</span>} {...a11yProps(2)} />
                         <Tab label={<span class="rider">Mis Pedidos</span>} {...a11yProps(3)} />
                         <Tab label={<span class="rider">Perfil</span>} {...a11yProps(4)} />
-                        <FontAwesomeIcon  icon={faRightFromBracket}  font-size={30} color={"#61412d"} onClick={() => this.logout()} />
                     </Tabs>
 
                     <TabPanel value={this.state.value} index={2}>
@@ -405,10 +406,16 @@ class RiderPage extends Component {
 
                     <TabPanel value={this.state.value} index={4}>
                         <h2>MI PERFIL</h2>
+                        <div  class="icon">
+                                    <Tooltip title="Editar" placement="top-start">
+                                    <FontAwesomeIcon icon={faEdit} font-size={20} location="left" color={"#deb619"} onClick={() => this.handleModifyClick()} />
+                                    </Tooltip>
+                                    </div>
                         <div class="centerInTab">
                             <div class="centerInTab">
-                                <div class="columns">
+                                <div class="vertical">
                                     <div class='cardInTab'>
+
 
                                         <Tooltip title="No puede contener: [1-9]/*@..." placement="top-start">
                                             <label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
@@ -450,9 +457,7 @@ class RiderPage extends Component {
                                             <input class="Fields" type="checkbox" name="license" defaultChecked={this.state.rider.license} disabled={(this.state.disabled) ? "disabled" : ""} required="" onClick={this.handleChangeCheckBox} />
                                         </div>
                                     </div>
-                                    <Tooltip title="Editar" placement="top-start">
-                                        <FontAwesomeIcon icon={faEdit} font-size={20} color={"#deb619"} onClick={() => this.handleModifyClick()} />
-                                    </Tooltip>
+
                                 </div>
                             </div>
 
