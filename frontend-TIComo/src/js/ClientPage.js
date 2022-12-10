@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Table from 'react-bootstrap/Table';
 import { IMAGES, ROUTES } from '../components/constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faEdit, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faEdit, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from '@mui/material/Tooltip';
 
 /* FUNCTIONS */

@@ -170,7 +170,7 @@ class AtencionConsultOrder extends Component {
                                 <h5 class="text-center mb-4">PRECIO TOTAL: {this.state.order.price} €</h5>
                             </div>
                             <div class="columns">
-                                <div hidden={this.state.disabledModificar ? false : true}>
+                                <div hidden={this.state.disabledModificar ? true : false}>
                                     <input type="submit" value="Modificar" onClick={() => this.goToModify(this.state.order)} />
                                 </div>
                                 <div>

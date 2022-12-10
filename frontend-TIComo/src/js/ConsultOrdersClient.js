@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import Table from 'react-bootstrap/Table';
+import { Link } from 'react-router-dom';
 import { IMAGES, ROUTES } from '../components/constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
@@ -154,10 +155,13 @@ class ConsultOrdersClient extends Component {
 					<div class="center">
 						<div class="card">
 							<div>
-								<h2 class="text-center mb-4">PEDIDOS</h2>
+								<h2 className="text-center mb-4">PEDIDOS</h2>
 								<div className="subheading mb-5">
 									{this.OrdersTable(this.state.orders)}
 								</div>
+							</div>
+							<div>
+								<Link to={"/atencion/showAllRestaurants/" + window.location.href.substring(window.location.href.lastIndexOf('/') + 1)}>Añadir un nuevo pedido</Link>
 							</div>
 							<div class="columnsForIcons">
 								<Tooltip title="Cancelar" placement="top-start">
