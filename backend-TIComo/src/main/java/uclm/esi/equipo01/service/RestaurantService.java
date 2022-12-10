@@ -25,6 +25,7 @@ import uclm.esi.equipo01.model.Restaurant;
 *
 **********************************************************************/
 
+
 @Service
 public class RestaurantService {
 	
@@ -32,6 +33,8 @@ public class RestaurantService {
 	private static final String COSTNOTVALID = "Coste no válido";
 	private static final String ERRORCOST = "errorCost";
 	private static final String PLATENOTFOUND = "Plato no encontrado";
+	private static final String ERROR_NAME="errorName";
+	private static final String NAMENOTVALID="Nombre no válido";
 	
 	private ValidatorService validatorService;
 	
@@ -55,41 +58,22 @@ public class RestaurantService {
 	*********************************************************************/
 	public ResponseEntity<String> addRestaurant(JSONObject jso) {
 		
-		String name = jso.getString("name");
-		String commercialRegister = jso.getString("commercialRegister");
+		String nombre = jso.getString("name");
+		String registroComercial = jso.getString("commercialRegister");
 		String cif = jso.getString("cif");
-		String address = jso.getString("address");
-		String phone = jso.getString("phone");
+		String direccion = jso.getString("address");
+		String telefono = jso.getString("phone");
 		String email = jso.getString("email");
-		String category = jso.getString("category");
+		String categoria = jso.getString("category");
 		
-		JSONObject response = new JSONObject();
+		JSONObject response ;
 		
-		if (!validatorService.isValidEmail(email))
-			response.put("errorEmail", "Email no válido");
-				
-		if (!validatorService.isValidPhone(phone))
-			response.put("errorPhone", "Teléfono no válido");
-		
-		if (!validatorService.isValidCIF(cif))
-			response.put("errorCIF", "CIF no válido");
-
-		if (name.isEmpty())
-			response.put("errorName", "Nombre no válido");
-
-		if (address.isEmpty())
-			response.put("errorAddress", "Dirección no válida");
-
-		if (category.isEmpty())
-			response.put("errorCategory", "Categoria no válida");
-
-		if (commercialRegister.isEmpty())
-			response.put("errorComercial", "Registro comercial no valido");
+		response=validation(validatorService, registroComercial, cif, direccion, telefono, email, cif, categoria);
 
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
 		
-		Restaurant restaurant = new Restaurant(name,commercialRegister,cif,address,phone,email,category);	
+		Restaurant restaurant = new Restaurant(nombre,registroComercial,cif,direccion,telefono,email,categoria);	
 		Manager.get().getRestaurantRepository().save(restaurant);
 		return new ResponseEntity<>("Restaurante añadido correctamente", HttpStatus.OK);
 	}
@@ -122,28 +106,11 @@ public class RestaurantService {
 		String email = jso.getString("email");
 		String category = jso.getString("category");
 		
-		JSONObject response = new JSONObject();
+		JSONObject response ;
+
+		response=validation(validatorService, name, cif, phone, address, email, commercialRegister, category);
 		
-		if (!validatorService.isValidEmail(email))
-			response.put("errorEmail", "Email no válido");
-				
-		if (!validatorService.isValidPhone(phone))
-			response.put("errorPhone", "Teléfono no válido");
-		
-		if (!validatorService.isValidCIF(cif))
-			response.put("errorCIF", "CIF no válido");
-
-		if (name.isEmpty())
-			response.put("errorName", "Nombre no válido");
-
-		if (address.isEmpty())
-			response.put("errorAddress", "Dirección no válida");
-
-		if (category.isEmpty())
-			response.put("errorCategory", "Categoria no válida");
-
-		if (commercialRegister.isEmpty())
-			response.put("errorComercial", "Registro comercial no valido");
+	
 		
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
@@ -257,7 +224,7 @@ public class RestaurantService {
 		List<Plate> plates = Manager.get().getPlateRepository().findPlateByRestaurantID(restaurantID);
 		
 		if (validatorService.isRepeatedPlate(plates, name)|| name.isEmpty()) {
-			response.put("errorName", "Nombre no válido");
+			response.put(ERROR_NAME, NAMENOTVALID);
 		}
 
 		if (cost <= 0) {
@@ -314,7 +281,7 @@ public class RestaurantService {
 			response.put(ERRORCOST, COSTNOTVALID);
 
 		if (name.isEmpty())
-			response.put("errorName", "Nombre no valido");
+			response.put(ERROR_NAME, "Nombre no valido");
 
 		
 		if(response.length() != 0)
@@ -399,6 +366,35 @@ public class RestaurantService {
 		
 		return plates;
 		
+	}
+
+	public JSONObject validation(ValidatorService validatorService,String name,String cif, String phone,String address,String email,String commercialRegister,String category){
+
+		JSONObject response = new JSONObject();
+		
+		
+		if (!validatorService.isValidEmail(email))
+			response.put("errorEmail", "Email no válido");
+				
+		if (!validatorService.isValidPhone(phone))
+			response.put("errorPhone", "Teléfono no válido");
+		
+		if (!validatorService.isValidCIF(cif))
+			response.put("errorCIF", "CIF no válido");
+
+		if (name.isEmpty())
+			response.put(ERROR_NAME,NAMENOTVALID );
+
+		if (address.isEmpty())
+			response.put("errorAddress", "Dirección no válida");
+
+		if (category.isEmpty())
+			response.put("errorCategory", "Categoria no válida");
+
+		if (commercialRegister.isEmpty())
+			response.put("errorComercial", "Registro comercial no valido");
+
+			return response;
 	}
 	
 	

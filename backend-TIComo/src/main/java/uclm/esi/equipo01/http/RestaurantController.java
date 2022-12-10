@@ -30,27 +30,10 @@ import uclm.esi.equipo01.service.RestaurantService;
 @RequestMapping("restaurant")
 public class RestaurantController {
 
-	private static RestaurantService restaurantService;
-	
-	
-	/*********************************************************************
-	*
-	* - Method name: setRestaurantService
-	* - Description of the Method: Initialize the restaurantService
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: 
-	* 		• RestaurantService restaurantService: Class global variable
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
 	@Autowired
-	public void setRestaurantService(RestaurantService restaurantService) {
-		RestaurantController.restaurantService = restaurantService;
-	}
+	private RestaurantService restaurantService;
 	
+
 	/*********************************************************************
 	*
 	* - Method name: addRestaurant

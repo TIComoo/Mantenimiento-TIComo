@@ -110,7 +110,8 @@ class Register extends Component {
 
 								<label class="form-control-label px-0">Dirección<span class="text-danger"> *</span></label>
 								<input class="text" type="text" name="address" placeholder="C/" required="" onChange={this.handleChange} />
-								
+								<label class="text-danger" id="address"></label>
+
 								<Tooltip title="Debe tener 9 números y existir en España" placement="left-start">
 								<label class="form-control-label px-0">Teléfono<span class="text-danger"> *</span></label>
 								</Tooltip>

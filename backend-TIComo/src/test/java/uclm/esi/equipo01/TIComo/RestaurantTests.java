@@ -428,43 +428,6 @@ public class RestaurantTests {
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test16() {
-		JSONObject info = new JSONObject();
-	    
-		info.put("name", "XXX");
-		info.put("commercialRegister", "XXX");
-		info.put("cif", "12345678X");
-		info.put("address", "XXX");
-		info.put("phone", "466 666 666");
-		info.put("email", "comida@gmail.com");
-		info.put("category", "Mexino");
-		
-		long id = 2;
-		
-		ResponseEntity<String> result = restaurantService.modifyRestaurant(info, id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante modificado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test17() {
-		JSONObject info = new JSONObject();
-	    
-		info.put("name", "XXX");
-		info.put("commercialRegister", "XXX");
-		info.put("cif", "12345678X");
-		info.put("address", "XXX");
-		info.put("phone", "666 666 666");
-		info.put("email", "@gmail.com");
-		info.put("category", "Mexino");
-		
-		long id = 2;
-		
-		ResponseEntity<String> result = restaurantService.modifyRestaurant(info, id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante modificado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 	
 	@Test
 	public void test18() {
@@ -847,35 +810,7 @@ public class RestaurantTests {
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test37() {
-		
-		long id = 5;
-		
-		ResponseEntity<String> result = restaurantService.deletePlate(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El plato eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 	
-	@Test
-	public void test38() {
-		
-		long id = 30;
-		
-		ResponseEntity<String> result = restaurantService.deletePlate(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El plato eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test39() {
-		
-		long id = 100;
-	
-		ResponseEntity<String> result = restaurantService.deletePlate(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El plato eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 	
 	/*********************************************************************
 	*
@@ -953,33 +888,5 @@ public class RestaurantTests {
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test45() {
-		
-		long id = 5;
-		
-		ResponseEntity<String> result = restaurantService.deleteRestaurant(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 	
-	@Test
-	public void test46() {
-		
-		long id = 30;
-		
-		ResponseEntity<String> result = restaurantService.deleteRestaurant(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test47() {
-		
-		long id = 100;
-		
-		ResponseEntity<String> result = restaurantService.deleteRestaurant(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 }

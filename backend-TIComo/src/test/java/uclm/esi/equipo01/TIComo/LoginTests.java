@@ -124,17 +124,7 @@ public class LoginTests {
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 		
-	@Test
-	public void test04() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("email", "carlosphinclient@gmail.com");
-		info.put("password", "client123*CLIENT");
-		
-	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
+	
 	
 	@Test
 	public void test05() {
@@ -148,77 +138,7 @@ public class LoginTests {
 	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test06() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("email", "carlosphinclient@gmail.com");
-		info.put("password", "admin");
-		
-	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Email o contraseña no válida", HttpStatus.UNAUTHORIZED);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test07() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("email", "carlosphin123@gmail.com");
-		info.put("password", "client123*CLIENT");
-		
-	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Email o contraseña no válida", HttpStatus.UNAUTHORIZED);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test8() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("email", "");
-		info.put("password", "");
-		
-	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Email o contraseña no válida", HttpStatus.UNAUTHORIZED);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test9() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("email", "client123*CLIENT");
-		info.put("password", "carlosphinclient@gmail.com");
-		
-	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Email o contraseña no válida", HttpStatus.UNAUTHORIZED);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test10() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("email", "carlosphinclient@gmail.com");
-		info.put("password", "");
-		
-	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Email o contraseña no válida", HttpStatus.UNAUTHORIZED);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test11() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("email", "");
-		info.put("password", "client123*CLIENT");
-		
-	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Email o contraseña no válida", HttpStatus.UNAUTHORIZED);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
+
 	
 	@Test
 	public void test12() {
