@@ -24,6 +24,7 @@ import RiderConsultOrder from '../js/RiderConsultOrder';
 import ClientConsultPlate from '../js/ClientConsultPlate';
 import { ROUTES, ROLES} from './constants';
 import { PrivateRoute } from './privateRoute';
+import DeniedAccess from '../js/DeniedAccess';
 
 function Routes() {
   return (
@@ -32,6 +33,7 @@ function Routes() {
         <Route exact path={ROUTES.LOGIN} component={Login} />
         <Route exact path={ROUTES.WELCOME} component={Welcome} />
         <Route exact path="/register" component={Register} />
+        <Route exact path = "/deniedAccess" component={DeniedAccess} />
 
         <Route exact path="/admin/consultRestaurant/:id/addPlate" component={AddPlate} />
         <Route exact path="/admin/addRestaurant" component={AddRestaurant} />
@@ -54,10 +56,18 @@ function Routes() {
         <Route exact path="/rider/consultOrder" component={RiderConsultOrder} />
         <PrivateRoute path="/rider" roles={[ROLES.RIDER]} component={Rider} />
 
-        <Route path="*" component={PageNotFound} />
+        <Route path="*" component={DeniedAccess} />
       </Switch>
     </BrowserRouter>
   );
 }
+
+/*
+  
+
+
+
+
+*/ 
 
 export default Routes;
