@@ -333,6 +333,7 @@ class ClientPage extends Component {
 
     render() {
         return (
+            
 			<div class="center2" auto >
 						<div class="card2" auto >              
                 <><Box
@@ -349,6 +350,7 @@ class ClientPage extends Component {
                         <Tab label={<span class="cliente">Restaurantes</span>} {...a11yProps(2)} />
                         <Tab label={<span class="cliente">Pedidos</span>} {...a11yProps(3)} />
                         <Tab label={<span class="cliente">Perfil</span>} {...a11yProps(4)} />
+                        <FontAwesomeIcon icon={faRightFromBracket} font-size={30} color={"#61412d"} onClick={() => this.logout()} />
                     </Tabs>
 
                     <TabPanel value={this.state.value} index={2}>
@@ -369,7 +371,7 @@ class ClientPage extends Component {
                                     <FontAwesomeIcon icon={faEdit} font-size={20} location="left" color={"#deb619"} onClick={() => this.handleModifyClick()} />
                                     </Tooltip>
                                     </div>
-                        <div class="center3">
+                        <div class="center2">
                             <div class="centerInTab">
                                 <div class="vertical">
                                     <div class='cardInTab'>

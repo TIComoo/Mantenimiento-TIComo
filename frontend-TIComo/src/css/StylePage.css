@@ -10,8 +10,8 @@ y pone sans-serif como tipografía determinada */
     div.card{  
         width:inline-flex;
         height:inline-flex; 
-        margin-left: -20px;
-        
+        margin-left: -10px;
+        margin-right: -100px;
 
 
 
@@ -20,8 +20,8 @@ y pone sans-serif como tipografía determinada */
     div.center{ 
         width:inline-flex; 
         height:inline-flex; 
-        margin-right: 0px; 
-        margin-left: -40px;
+        margin-left: -50px;
+        margin-right: 100px;
 
         margin-top: -10px;  
     }
@@ -73,6 +73,7 @@ y pone sans-serif como tipografía determinada */
         width:inline-flex;
         height:auto; 
         margin-top: 0px; 
+        margin-right: -20px;
     }
 
 
@@ -114,8 +115,8 @@ body {
 .center {
     display: inline-flex;
     padding: 0px;
-    margin-right: inline-flex;
-    margin-left: inline-flex;
+    margin-right: -10px;
+    margin-left: 0px;
 }
 
     /*AJUSTE VENTANA CLIENTE*/

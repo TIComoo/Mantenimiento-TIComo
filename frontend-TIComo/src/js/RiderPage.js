@@ -392,6 +392,7 @@ class RiderPage extends Component {
                         <Tab label={<span class="rider">Pedidos</span>} {...a11yProps(2)} />
                         <Tab label={<span class="rider">Mis Pedidos</span>} {...a11yProps(3)} />
                         <Tab label={<span class="rider">Perfil</span>} {...a11yProps(4)} />
+                        <FontAwesomeIcon icon={faRightFromBracket} font-size={30} color={"#61412d"} onClick={() => this.logout()} />
                     </Tabs>
 
                     <TabPanel value={this.state.value} index={2}>
