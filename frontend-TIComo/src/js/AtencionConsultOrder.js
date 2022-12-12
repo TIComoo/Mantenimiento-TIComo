@@ -4,8 +4,9 @@ import Table from 'react-bootstrap/Table';
 import Tooltip from '@mui/material/Tooltip';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons'
-
-
+import { Button } from '@mui/material';
+import RemoveCircleTwoToneIcon from '@mui/icons-material/RemoveCircleTwoTone';
+import IconButton from '@mui/material/IconButton';
 class AtencionConsultOrder extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +16,7 @@ class AtencionConsultOrder extends Component {
         restaurant: {},
         cart: [],
         plates: [],
-        disabledModificar: false,
+        disabledModificar: true,
     }
 
     /* INTIALIZER */
@@ -120,6 +121,10 @@ class AtencionConsultOrder extends Component {
                         <td>{(this.findArrayElementById(this.state.plates, Number(element.plateID))).name}</td>
                         <td>{element.quantity}</td>
                         <td>{element.quantity * (this.findArrayElementById(this.state.plates, Number(element.plateID))).cost}</td>
+                        <td hidden={this.state.disabledModificar ? true : false}><IconButton color='secondary' aria-label="delete">
+                                <RemoveCircleTwoToneIcon />
+                            </IconButton>
+                        </td>
                     </tr>
                 )
             }
@@ -132,6 +137,7 @@ class AtencionConsultOrder extends Component {
                         <th>Nombre</th>
                         <th>Cantidad</th>
                         <th>Coste</th>
+                        <th hidden={this.state.disabledModificar ? true : false}>Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,6 +161,9 @@ class AtencionConsultOrder extends Component {
         })
     }
 
+    handleModifyClik() {
+		this.setState({ disabledModificar: !this.state.disabledModificar })
+	}
     render() {
         return (
             <div class="center">
@@ -170,14 +179,18 @@ class AtencionConsultOrder extends Component {
                                 <h5 class="text-center mb-4">PRECIO TOTAL: {this.state.order.price} €</h5>
                             </div>
                             <div class="columns">
-                                <div hidden={this.state.disabledModificar ? true : false}>
-                                    <input type="submit" value="Modificar" onClick={() => this.goToModify(this.state.order)} />
-                                </div>
-                                <div>
+                               
+                                    <input type="submit" value="Modificar" onClick={this.handleModifyClik.bind(this)} />
                                     <input type="submit" value="Eliminar" onClick={() => this.deleteOrder(this.state.order)} />
-                                </div>
+                                
                             </div>
-
+                            <div hidden={this.state.disabledModificar ? true : false}>
+									<label>¿Desea guardar los cambios?</label>
+									<div class="columns">
+										<input type="submit" value="ACEPTAR" onClick={() => this.modifyAdmin()} />
+										<input type="submit" value="CANCELAR" onClick={() => this.back()} />
+									</div>
+								</div>
                             <div class="columnsForIcons">
                                 <Tooltip title="Cancelar" placement="top-start">
                                     <FontAwesomeIcon icon={faLeftLong} font-size={20} color={"#000000"} onClick={() => this.back()} />
