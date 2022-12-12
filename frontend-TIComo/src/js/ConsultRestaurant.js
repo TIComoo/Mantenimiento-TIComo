@@ -269,9 +269,8 @@ class ConsultRestaurant extends Component {
 	render() {
 		return (
 
-			<div class="row">
-				<div className="col-4">
-					<div class="cardInColumn">
+
+					<div class="card5">
 						<h5 class="text-center mb-4">INFORMACIÓN RESTAURANTE</h5>
 						<Tooltip title="No puede contener: [1-9]/*@..." placement="left-start">
 							<label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
@@ -327,30 +326,28 @@ class ConsultRestaurant extends Component {
 								<input type="submit" value="CANCELAR" onClick={() => this.back()} />
 							</div>
 						</div>
-						<div class="columnsForIcons">
-							<Tooltip title="Editar" placement="top-start">
-								<FontAwesomeIcon icon={faLeftLong} font-size={20} color={"#000000"} onClick={() => this.back()} />
-							</Tooltip>
+
+
+					<div>
 						</div>
-					</div>
-				</div>
-				<div className="col-4">
-					<div class="cardInColumn">
 						<h5 class="text-center mb-4">CARTA DEL RESTAURANTE</h5>
+						
 						<div className="subheading mb-5">
 							{this.PlatesTable(this.state.plates)}
 						</div>
 						<Link to={"/admin/consultRestaurant/" + this.state.restaurant.id + "/addPlate"}>Añadir un nuevo plato a la carta</Link>
-					</div>
-				</div>
+						
 
-				<div className="col-4">
-					<div class="cardInColumn">
 						<h5 class="text-center mb-4">LISTA DE PEDIDOS</h5>
 						<div className="subheading mb-5">
 							{this.OrdersTable(this.state.orders)}
+
+							<div class="columnsForIcons">
+							<Tooltip title="Editar" placement="top-start">
+								<FontAwesomeIcon icon={faLeftLong} font-size={20} color={"#000000"} onClick={() => this.back()} />
+							</Tooltip>
 						</div>
-					</div>
+			
 				</div>
 			</div>
 		)

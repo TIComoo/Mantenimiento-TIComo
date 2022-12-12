@@ -12,9 +12,6 @@ y pone sans-serif como tipografía determinada */
         height:inline-flex; 
         margin-left: -10px;
         margin-right: -100px;
-
-
-
     }
 
     div.center{ 
@@ -26,22 +23,6 @@ y pone sans-serif como tipografía determinada */
         margin-top: -10px;  
     }
 
-    /*AJUSTE ORDEN RIDER*/
-
-    div.card3{
-        width:100%;
-        height:auto;   
-        margin-left: 0px;
-        margin-top: 100px;
-        background-color: #fff;
-    }
-        
-    div.center3{
-        width:auto;
-        height:auto;  
-        margin-top: 10px; 
-        background-color: #fff;
-    }
 
     /*AJUSTE VENTANA LOGIN*/
     div.card1{
@@ -77,6 +58,42 @@ y pone sans-serif como tipografía determinada */
     }
 
 
+        /*AJUSTE ORDEN RIDER*/
+
+    div.card3{
+        width:100%;
+        height:auto;   
+        margin-left: 0px;
+        margin-top: 100px;
+        background-color: #fff;
+    }
+        
+    div.center3{
+        width:auto;
+        height:auto;  
+        margin-top: 10px; 
+        background-color: #fff;
+    }
+    
+    /*AJUSTE VENTANA ADMINISTRADORES*/
+    div.card4{  
+        width:inline-flex;
+        height:inline-flex; 
+        margin-left: -10px;
+        margin-right: -100px;
+    }
+
+    div.center4{ 
+        width:inline-flex; 
+        height:inline-flex; 
+        margin-left: -50px;
+        margin-right: 100px;
+
+        margin-top: -10px;  
+    }
+
+
+    
 
 
 }
@@ -118,6 +135,7 @@ body {
     margin-right: -10px;
     margin-left: 0px;
 }
+
 
     /*AJUSTE VENTANA CLIENTE*/
 .center2 {
@@ -192,7 +210,39 @@ body {
     flex-direction: column;
 
 }
+/*AJUSTE VENTANA ADMINISTRADORES*/
 
+.card4 {
+    word-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 30px 40px;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.7);
+    margin-right: -140px;
+    margin-left: 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/*AJUSTE VENTANA ADMINISTRADORES RESTAURANTE*/
+
+.card5 {
+    word-wrap: break-word;
+    background-color: rgb(255, 255, 255);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    padding: 30px 40px;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.7);
+    margin-right: -50px;
+    margin-left: 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
 /*AJUSTE VENTANA CLIENTE*/
 
 .card2 {

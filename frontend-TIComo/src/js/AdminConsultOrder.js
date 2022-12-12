@@ -200,11 +200,8 @@ class AdminConsultOrder extends Component {
 
     render() {
         return (
-            <div class="center">
-                <img src={IMAGES.LOGO} className="logo" width="150" height="80" alt="" />
-                <div class="center">
-                    <div class="center">
-                        <div class="card">
+            <div class="card1">
+
                             <div>
                                 <h5 class="text-center mb-4">PEDIDO</h5>
                                 <div className="subheading mb-5">
@@ -219,9 +216,7 @@ class AdminConsultOrder extends Component {
                                 </Tooltip>
 								</div>
                         </div>
-                    </div>
-                </div>
-            </div>
+ 
         )
     }
 }

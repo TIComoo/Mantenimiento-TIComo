@@ -135,12 +135,8 @@ class ConsultAdmin extends Component {
 
 	render() {
 		return (
-			<div class="center">
-				<img src={IMAGES.LOGO} className="logo" width="150" height="80" alt="" />
-				<div class="center">
-					<div class="center">
-						<div>
-							<div class="card">
+	
+							<div class="card1">
 								<h5 class="text-center mb-4">INFORMACIÓN ADMINISTRADOR</h5>
 								<Tooltip title="No puede contener: [1-9]/*@..." placement="left-start">
 								<label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
@@ -176,10 +172,7 @@ class ConsultAdmin extends Component {
                                 </Tooltip>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+
 		)
 	}
 }

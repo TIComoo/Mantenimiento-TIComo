@@ -145,12 +145,8 @@ class AddPlate extends Component {
 
 	render() {
 		return (
-			<div class="center">
-				<img src={IMAGES.LOGO} className="logo" width="150" height="80" alt=""/> 
-				<div class="center">
-					<div class="center">
-						<div>
-							<div class="card">
+
+							<div class="card2">
 								<h5 class="text-center mb-4">AÑADIR PLATO</h5>
 								
 								<label class="form-control-label px-0">Restaurante<span class="text-danger"> *</span></label>
@@ -191,14 +187,7 @@ class AddPlate extends Component {
 									<input type="submit" value="CANCELAR" onClick={()=> this.back()}/>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div>
 
-					</div>
-				</div>
-
-			</div>
 
 		)
 	}

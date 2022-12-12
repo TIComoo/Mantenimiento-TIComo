@@ -193,7 +193,6 @@ class AdminPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
                 <Table striped bordered hover variant="light">
                     <thead>
                         <tr>
@@ -205,7 +204,6 @@ class AdminPage extends Component {
                         {tableRows}
                     </tbody>
                 </Table>
-            </div>
         );
     }
 
@@ -229,7 +227,6 @@ class AdminPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
                 <Table striped bordered hover variant="light">
                     <thead>
                         <tr>
@@ -241,7 +238,6 @@ class AdminPage extends Component {
                         {tableRows}
                     </tbody>
                 </Table>
-            </div>
         );
     }
 
@@ -265,7 +261,6 @@ class AdminPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
             <Table striped bordered hover variant="light">
                 <thead>
                     <tr>
@@ -277,7 +272,6 @@ class AdminPage extends Component {
                     {tableRows}
                 </tbody>
             </Table>
-            </div>
         );
     }
 
@@ -304,7 +298,6 @@ class AdminPage extends Component {
             }
         )
         return (
-            <div style={{ width: "695px" }}>
             <Table striped bordered hover variant="light">
                 <thead>
                     <tr>
@@ -317,7 +310,6 @@ class AdminPage extends Component {
                     {tableRows}
                 </tbody>
             </Table>
-            </div>
         );
     }
 
@@ -333,27 +325,25 @@ class AdminPage extends Component {
 
     render() {
         return (
+            <div class="center4" auto >
+            <div class="card4" auto >  
             <><Box
-                sx={{ flexGrow: 1, bgcolor: 'white', height: 800, display: 'flex', width: 1000 }}
             >
                 <Tabs
-                    orientation='vertical'
-                    variant="fullwidth"
-                    value={this.state.value}
-                    onChange={this.handleTabChange}
-                    aria-label="full width tabs example"
-                    TabIndicatorProps={{ sx: { backgroundColor: '#D6C2B5' } }}
-                    sx={{ borderRight: 1, borderColor: 'divider', backgroundColor: '#3F322B', width: 250 }}
-                    textColor="white"
-                    centered
+                        orientation='vertical'
+                        variant="fullwidth"
+                        value={this.state.value}
+                        onChange={this.handleTabChange}
+                        aria-label="full width tabs example"
                 >
-                    <img src={IMAGES.FONDO_TRANSPARENTE} className="logo" width="160" height="50" alt="" />
-                    <img src={IMAGES.LOGO_FONDO} className="logo" width="160" height="90" alt="" />
-                    <Tab label={<span style={{ color: '#D6C2B5' }}>Administradores</span>} {...a11yProps(2)} />
-                    <Tab label={<span style={{ color: '#D6C2B5' }}>Riders</span>} {...a11yProps(3)} />
-                    <Tab label={<span style={{ color: '#D6C2B5' }}>Usuarios</span>} {...a11yProps(4)} />
-                    <Tab label={<span style={{ color: '#D6C2B5' }}>Restaurantes</span>} {...a11yProps(5)} />
-                    <FontAwesomeIcon icon={faRightFromBracket} font-size={20} color={"#D6C2B5"} onClick={() => this.logout()} />
+                        <img src={IMAGES.FONDO_TRANSPARENTE} className="logo1" width="200" height="200" />
+                        <img src={IMAGES.LOGO_FONDO} className="logo1" width="160" height="90" alt="" />
+                        <Tab label={<span class="rider">Administradores</span>} {...a11yProps(2)} />
+                        <Tab label={<span class="rider">Riders</span>} {...a11yProps(3)} />
+                        <Tab label={<span class="rider">Clientes</span>} {...a11yProps(4)} />
+                        <Tab label={<span class="rider">Restaurantes</span>} {...a11yProps(4)} />
+
+                        <FontAwesomeIcon icon={faRightFromBracket} font-size={30} color={"#61412d"} onClick={() => this.logout()} />
                 </Tabs>
 
                 <TabPanel value={this.state.value} index={2}>
@@ -380,9 +370,9 @@ class AdminPage extends Component {
                 </TabPanel>
 
             </Box>
-                <div>
-                    <input type="button" value="LOGOUT" onClick={() => this.logout()} />
-                </div></>
+</>
+                </div>
+            </div>
         )
     }
 
