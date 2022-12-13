@@ -16,11 +16,13 @@ import com.github.openjson.JSONObject;
 import uclm.esi.equipo01.http.Manager;
 import uclm.esi.equipo01.model.Order;
 import uclm.esi.equipo01.model.OrderRate;
+import uclm.esi.equipo01.model.Plate;
 import uclm.esi.equipo01.model.PlateAndOrder;
 import uclm.esi.equipo01.model.Restaurant;
 import uclm.esi.equipo01.model.Rider;
 import uclm.esi.equipo01.model.Sequence;
 import uclm.esi.equipo01.model.State;
+import uclm.esi.equipo01.exception.CustomException;
 
 /*********************************************************************
 *
@@ -88,6 +90,12 @@ public class OrderService {
 		if (!Manager.get().getOrderRepository().existsById(idOrder)) {
 			return new ResponseEntity<>("Plato no encontrado", HttpStatus.BAD_REQUEST);
 		}
+		List<PlateAndOrder> pYp= Manager.get().getPlateAndOrderRepository().findAll();
+		for(int i=0;i<pYp.size();i++){
+			if(pYp.get(i).getOrderID()==idOrder){
+				Manager.get().getPlateAndOrderRepository().delete(pYp.get(i));
+			}
+		}
 		Manager.get().getOrderRepository().deleteById(idOrder);
 		return new ResponseEntity<>("Plato eliminado correctamente", HttpStatus.OK);
 	}
@@ -105,6 +113,33 @@ public class OrderService {
 	* is thrown: None.
 	*
 	*********************************************************************/
+	public List<Plate> orderCart(long id) throws CustomException{
+
+		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+		List<Plate> aux=new ArrayList<Plate>();
+
+		System.out.println(pYp.size());
+
+		for(int i=0;i<pYp.size();i++){
+
+			Plate plato=new Plate();
+
+			if(pYp.get(i).getOrderID()==id){
+				int cant=pYp.get(i).getQuantity();
+				plato=Manager.get().getPlateRepository().findById(pYp.get(i).getPlateID()).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
+
+				for(int k=0;k<cant;k++){
+					aux.add(plato);
+				}
+				
+
+			}
+
+		}
+
+		return aux;
+
+	}
 	public ResponseEntity<String> rateOrder(JSONObject jso) {
 		JSONObject jsoOrder = (JSONObject) jso.get("order");
 		long orderID = jsoOrder.getLong("id");
