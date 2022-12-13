@@ -202,19 +202,13 @@ class AdminConsultOrder extends Component {
         return (
             <div class="card1">
 
-                            <div>
                                 <h5 class="text-center mb-4">PEDIDO</h5>
-                                <div className="subheading mb-5">
                                     {this.CartTable(this.state.cart)}
-                                </div>
                                 <h5 class="text-center mb-4">PRECIO TOTAL: {this.state.order.price} €</h5>
-                            </div>
-                            <div><input type="submit" value="Factura" onClick={() => this.generate(this.state.bill)}/></div>
-                            <div class="columnsForIcons">
+                            <input type="submit" value="Factura" onClick={() => this.generate(this.state.bill)}/>
 								<Tooltip title="Cancelar" placement="top-start">
                                     <FontAwesomeIcon icon={faLeftLong} font-size={20} color={"#000000"} onClick={() => this.back()} />
                                 </Tooltip>
-								</div>
                         </div>
  
         )

@@ -106,12 +106,9 @@ class Value extends Component {
 
 	render() {
 		return (
-			<div class="center">
-				<img src={IMAGES.LOGO} className="logo" width="150" height="80" alt="" />
-				<div class="center">
-					<div class="center">
+
 						<div>
-							<div class="card">
+							<div class="card1">
 								<h5 class="text-center mb-4">VALORAR PEDIDO</h5>
 								<label class="form-control-label px-0"> Restaurante </label>
 								<Rating
@@ -150,9 +147,7 @@ class Value extends Component {
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
+
 		)
 	}
 }

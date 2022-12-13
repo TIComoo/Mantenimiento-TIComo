@@ -173,11 +173,6 @@ class RiderConsultOrder extends Component {
                                 <h5 class="text-center mb-4">PRECIO TOTAL: {this.state.order.price} €</h5>
                             </div>
                             <div class="columns"><input type="submit" value="Entregar" onClick={() => this.markAsDelivered()} /></div>
-                            <div class="columnsForIcons">
-								<Tooltip title="Cancelar" placement="top-start">
-                                    <FontAwesomeIcon icon={faLeftLong} font-size={20} color={"#000000"} onClick={() => this.back()} />
-                                </Tooltip>
-								</div>
                         </div>
                     </div>
 
