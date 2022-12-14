@@ -57,11 +57,7 @@ class AtencionPage extends Component {
 
     /* INITIALIZER */
     componentDidMount() {
-    let n=0
-    if(n=0){
-        window.location.reload();
-        n++
-    }
+
         fetch(ROUTES.PROXY + '/client/showAllClients', {
             method: 'GET',
             headers: {

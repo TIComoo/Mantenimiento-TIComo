@@ -43,32 +43,32 @@ function Routes() {
         <Route exact path="/register" component={Register} />
         <Route exact path = "/deniedAccess" component={DeniedAccess} />
 
-        <Route exact path="/admin/consultRestaurant/:id/addPlate" component={AddPlate} />
-        <Route exact path="/admin/addRestaurant" component={AddRestaurant} />
-        <Route exact path={ROUTES.ADDADMIN} component={AddAdmin} />
-        <Route exact path="/admin/addRider" component={AddRider} />
-        <Route exact path="/admin/ConsultOrder" component={AdminConsultOrder} />
-        <Route exact path="/admin/consultRestaurant/:id" component={ConsultRestaurant} />
-        <Route exact path="/admin/consultAdmin/:id" component={ConsultAdmin} />
-        <Route exact path="/admin/consultRestaurant/:id/consultPlate/:id" component={ConsultPlate} />
-        <Route exact path="/admin/consultRider/:id" component={ConsultRider} />
-        <Route exact path="/admin/consultClient/:id" component={ConsultClient} />
+        <PrivateRoute exact path="/admin/consultRestaurant/:id/addPlate" component={AddPlate} />
+        <PrivateRoute exact path="/admin/addRestaurant" component={AddRestaurant} />
+        <PrivateRoute exact path={ROUTES.ADDADMIN} component={AddAdmin} />
+        <PrivateRoute exact path="/admin/addRider" component={AddRider} />
+        <PrivateRoute exact path="/admin/ConsultOrder" component={AdminConsultOrder} />
+        <PrivateRoute exact path="/admin/consultRestaurant/:id" component={ConsultRestaurant} />
+        <PrivateRoute exact path="/admin/consultAdmin/:id" component={ConsultAdmin} />
+        <PrivateRoute exact path="/admin/consultRestaurant/:id/consultPlate/:id" component={ConsultPlate} />
+        <PrivateRoute exact path="/admin/consultRider/:id" component={ConsultRider} />
+        <PrivateRoute exact path="/admin/consultClient/:id" component={ConsultClient} />
         <PrivateRoute path="/admin" roles={[ROLES.ADMIN]} component={Admin} />
         
-        <Route exact path="/client/ConsultPlate" component={ClientConsultPlate} />
-        <Route exact path="/client/consultRestaurant" component={ClientConsultRestaurant} />
-        <Route exact path="/client/consultOrder" component={ClientConsultOrder} />
-        <Route exact path="/client/orderRate" component={Value} />
+        <PrivateRoute exact path="/client/ConsultPlate" component={ClientConsultPlate} />
+        <PrivateRoute exact path="/client/consultRestaurant" component={ClientConsultRestaurant} />
+        <PrivateRoute exact path="/client/consultOrder" component={ClientConsultOrder} />
+        <PrivateRoute exact path="/client/orderRate" component={Value} />
         <PrivateRoute path="/client" roles={[ROLES.CLIENT]} component={Client} />
 
-        <Route exact path="/rider/consultOrder" component={RiderConsultOrder} />
+        <PrivateRoute exact path="/rider/consultOrder" component={RiderConsultOrder} />
         <PrivateRoute path="/rider" roles={[ROLES.RIDER]} component={Rider} />
         
-        <Route exact path="/atencion/showAllOrdersByClient/:id" component={ConsultOrdersClient} />
-        <Route exact path="/atencion/consultOrder" component={AtencionConsultOrder} />
-        <Route exact path="/atencion/showAllRestaurants/:id" component={ConsultRestaurantsAtencion} />
-        <Route exact path="/atencion/consultRestaurant" component={AtencionConsultRestaurant} />
-        <Route exact path="/atencion/modifyOrder" component={ModifyOrder} />
+        <PrivateRoute exact path="/atencion/showAllOrdersByClient/:id" component={ConsultOrdersClient} />
+        <PrivateRoute exact path="/atencion/consultOrder" component={AtencionConsultOrder} />
+        <PrivateRoute exact path="/atencion/showAllRestaurants/:id" component={ConsultRestaurantsAtencion} />
+        <PrivateRoute exact path="/atencion/consultRestaurant" component={AtencionConsultRestaurant} />
+        <PrivateRoute exact path="/atencion/modifyOrder" component={ModifyOrder} />
         <PrivateRoute path="/atencion" roles={[ROLES.ATENCION]} component={Atencion} />
 
         <Route path="*" component={DeniedAccess} />
