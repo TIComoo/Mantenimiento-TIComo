@@ -151,8 +151,7 @@ class AtencionConsultOrder extends Component {
     }
 
     goToModify(order) {
-        console.log(order)
-        console.log("AAAAAAAAAAAA")
+
         this.props.history.push({
             pathname: '/atencion/modifyOrder',
             order: order

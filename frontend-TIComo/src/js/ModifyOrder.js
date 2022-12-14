@@ -251,37 +251,38 @@ class ModifyOrder extends Component {
 
 
     goToOrders(data){
-        console.log(JSON.stringify({cart: this.state.cart}));
-        // var mensaje = confirm("¿Desea guardar los cambios?");
-        // if (mensaje) {
+        console.log(this.state.cart);
+        var mensaje = confirm("¿Desea guardar los cambios?");
+        if (mensaje) {
 
-        //     fetch(ROUTES.PROXY +'/order/modifyOrder/' + data, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             cart: this.state.cart,
-        //             restaurantID: this.state.restaurantID,
-        //         })
-        //     }).then((response) => {
-        //         console.log(response)
-        //         if (response.status == 200) {
-        //             alert("Cambios guardados correctamente");
-        //             this.props.history.push({
-        //                 pathname: '/client',
-        //                 client: this.state.client,
-        //                 restaurantID: this.state.restaurantID,
-        //                 value: 3
-        //             });
-        //         }
-        //         return response.text();
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     })
-        // }
+
+            fetch(ROUTES.PROXY +'/order/modifyOrderAtencion/' + data, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    cart: this.state.cart,
+                    orderID: this.state.orderID,
+                })
+            }).then((response) => {
+                console.log(response)
+                if (response.status == 200) {
+                    alert("Cambios guardados correctamente");
+                    this.props.history.push({
+                        pathname: '/atencion',
+                        id: this.state.client,
+                        restaurantID: this.state.restaurantID,
+                        value: 3
+                    });
+                }
+                return response.text();
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
     }
 
     render() {

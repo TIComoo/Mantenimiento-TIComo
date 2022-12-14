@@ -91,6 +91,11 @@ public class OrderController {
 	public ResponseEntity<String> deleteOrder(@PathVariable long id) {
 		return orderService.deleteOrder(id);
 	}
+
+	@PostMapping("/deleteOrderAtencion/{id}")
+	public ResponseEntity<String> deleteOrderAtencion(@PathVariable long id) {
+		return orderService.deleteOrderAtencion(id);
+	}
 	
 	/*********************************************************************
 	*
@@ -110,6 +115,12 @@ public class OrderController {
 	public ResponseEntity<String> modifyOrder(@RequestBody Map<String, Object> info, @PathVariable long id) {
 		JSONObject jso = new JSONObject(info);
 		return orderService.modifyOrder(jso, id);
+	}
+
+	@PostMapping("/modifyOrderAtencion/{id}")
+	public ResponseEntity<String> modifyOrderAtencion(@RequestBody Map<String, Object> info, @PathVariable long id) throws CustomException {
+		JSONObject jso = new JSONObject(info);
+		return orderService.modifyAtencion(jso, id);
 	}
 	
 	/*********************************************************************
