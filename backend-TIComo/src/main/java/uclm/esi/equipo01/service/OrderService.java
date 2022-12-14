@@ -2,6 +2,7 @@ package uclm.esi.equipo01.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -375,10 +376,12 @@ public class OrderService {
 		JSONObject plates = new JSONObject(jso.getString("cart"));
 		Iterator<String> keys = plates.keys();
 		
-		Order order = Manager.get().getOrderRepository().findById(orderID).orElseThrow(() -> new CustomException("El Id del pedido no existe."));;
-		
+		Order order = Manager.get().getOrderRepository().findById(orderID).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
+		List<Long> carta=new ArrayList<Long>();
 		while(keys.hasNext()) {
 			String key = keys.next();
+			
+			carta.add(Long.parseLong(key));
 
 			if(esta(Long.parseLong(key),orderID)){
 				JSONObject aux = new JSONObject(plates.get(key));
@@ -407,6 +410,27 @@ public class OrderService {
 		return new ResponseEntity<>("Pedido añadido correctamente", HttpStatus.OK);
 	}
 
+	public void noEstaEnCarta(List<Long> carta,long idO) throws CustomException{
+
+		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+		
+		for(int i=0;i<pYp.size();i++){
+			if(pYp.get(i).getOrderID()==idO){
+				aux.add(pYp.get(i));
+			}
+		}
+
+		for(int i=0;i<aux.size();i++){
+
+			if(	Arrays.asList(carta).contains((long)aux.get(i).getPlateID())){
+				Manager.get().getPlateAndOrderRepository().delete(aux.get(i));
+			}
+
+		}
+
+
+	}
 	public long idEnMongo(long idP, long idO){
 		long idAux=0;
 
@@ -418,7 +442,7 @@ public class OrderService {
 				aux.add(pYp.get(i));
 			}
 		}
-		System.out.println(aux);
+
 		for(int i=0;i<aux.size();i++){
 			if(aux.get(i).getPlateID()==idP){
 				idAux=aux.get(i).getId();

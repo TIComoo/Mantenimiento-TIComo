@@ -283,7 +283,16 @@ class ModifyOrder extends Component {
                 console.log(err);
             })
         }
+        
     }
+
+    //  clearCacheData = () => {
+    //     caches.keys().then((names) => {
+    //       names.forEach((name) => {
+    //         caches.delete(name);
+    //       });
+    //     });
+    //   };
 
     render() {
         return (
