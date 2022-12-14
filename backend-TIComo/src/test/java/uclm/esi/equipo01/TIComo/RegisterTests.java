@@ -7,7 +7,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.http.ResponseEntity; 
+import org.springframework.http.ResponseEntity;  
 import org.springframework.http.HttpStatus;
 import com.github.openjson.JSONObject;
 import org.junit.Test;
