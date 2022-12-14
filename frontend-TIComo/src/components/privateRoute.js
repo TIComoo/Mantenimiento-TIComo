@@ -7,14 +7,14 @@ export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
     <Route {...rest} render={props => {
         const currentUser = authenticationService.currentUserValue;
         if (!currentUser) {
-            return <Redirect to={{ pathname: ROUTES.LOGIN, state: { from: props.location } }} />
+            return <Redirect to={{ pathname: '/accessDenied', state: { from: props.location } }} />
         }
 
         console.log(currentUser.role);
         console.log(roles);
 
         if (roles && roles.indexOf(currentUser.role) === -1) {
-            return <Redirect to={{ pathname: '/'}} />
+            return <Redirect to={{ pathname: '/accessDenied'}} />
         }
 
         return <Component {...props} />

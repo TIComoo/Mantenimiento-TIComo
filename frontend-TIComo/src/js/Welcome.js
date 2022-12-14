@@ -11,7 +11,7 @@ class Welcome extends Component {
 	render() {
 		return (
 			<div class="center">
-				<img src={IMAGES.LOGO} className="logo" width="150" height="80" alt=""/> 
+				{/* <img src={IMAGES.LOGO} className="logo" width="150" height="80" alt=""/>  */}
 				<div class="center">
 					<div class="center">
 						<div>
