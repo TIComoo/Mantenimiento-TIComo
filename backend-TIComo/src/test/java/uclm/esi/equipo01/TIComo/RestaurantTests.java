@@ -183,7 +183,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.addRestaurant(info);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -217,7 +217,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.addRestaurant(info);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -406,7 +406,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.modifyRestaurant(info, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante modificado correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -445,7 +445,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.modifyRestaurant(info, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante modificado incorrectamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 		
 	/*********************************************************************
@@ -807,7 +807,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.deletePlate(id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El plato eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	
@@ -865,7 +865,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.deleteRestaurant(id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante eliminado correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 		
 	@Test
@@ -875,7 +875,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.deleteRestaurant(id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante eliminado correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test

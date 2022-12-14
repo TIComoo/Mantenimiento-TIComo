@@ -183,7 +183,7 @@ public class RiderTests {
 		
 	    ResponseEntity<String> result = riderService.register(info);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Rider registrado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test

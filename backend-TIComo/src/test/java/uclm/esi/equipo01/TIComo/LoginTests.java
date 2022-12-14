@@ -121,7 +121,7 @@ public class LoginTests {
 		
 	    ResponseEntity<String> result = clientService.login(info);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 		
 	
@@ -149,7 +149,7 @@ public class LoginTests {
 		
 	    ResponseEntity<String> result = clientService.login(info);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+	    assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 
 }

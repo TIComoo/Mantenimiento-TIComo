@@ -174,7 +174,7 @@ public class ClientTests {
 		
 		ResponseEntity<String> result = clientService.modifyClient(jso, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -196,7 +196,7 @@ public class ClientTests {
 		
 		ResponseEntity<String> result = clientService.modifyClient(jso, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -218,7 +218,7 @@ public class ClientTests {
 		
 		ResponseEntity<String> result = clientService.modifyClient(jso, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -240,7 +240,7 @@ public class ClientTests {
 		
 		ResponseEntity<String> result = clientService.modifyClient(jso, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test

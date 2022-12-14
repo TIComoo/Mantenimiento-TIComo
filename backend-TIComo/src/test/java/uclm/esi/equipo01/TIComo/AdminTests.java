@@ -181,7 +181,7 @@ public class AdminTests {
 		
 	    ResponseEntity<String> result = adminService.register(info);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador registrado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -713,7 +713,7 @@ public class AdminTests {
 		
 	    ResponseEntity<String> result = adminService.deleteAdmin(id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 		
