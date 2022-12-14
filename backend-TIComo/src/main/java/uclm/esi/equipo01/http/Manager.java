@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import uclm.esi.equipo01.dao.AdminRepository;
+import uclm.esi.equipo01.dao.AtencionTelefonicaRepository;
 import uclm.esi.equipo01.dao.ClientRepository;
 import uclm.esi.equipo01.dao.OrderRateRepository;
 import uclm.esi.equipo01.dao.OrderRepository;
@@ -49,6 +50,9 @@ public class Manager {
 	
 	@Autowired
 	private PlateAndOrderRepository plateAndOrderRepository;
+	
+	@Autowired
+	private AtencionTelefonicaRepository atencionRepository;
 		
 	/*********************************************************************
 	*
@@ -128,6 +132,10 @@ public class Manager {
 	
 	public PlateAndOrderRepository getPlateAndOrderRepository() {
 		return plateAndOrderRepository;
+	}
+	
+	public AtencionTelefonicaRepository getAtencionTelefonicaRepository() {
+		return atencionRepository;
 	}
 	
 }

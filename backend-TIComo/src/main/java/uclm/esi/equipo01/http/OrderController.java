@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.openjson.JSONObject;
 
+import uclm.esi.equipo01.exception.CustomException;
 import uclm.esi.equipo01.model.Order;
 import uclm.esi.equipo01.model.OrderRate;
+import uclm.esi.equipo01.model.Plate;
 import uclm.esi.equipo01.model.PlateAndOrder;
 import uclm.esi.equipo01.service.OrderService;
 
@@ -74,6 +76,11 @@ public class OrderController {
 	public ResponseEntity<String> deleteOrder(@PathVariable long id) {
 		return orderService.deleteOrder(id);
 	}
+
+	@PostMapping("/deleteOrderAtencion/{id}")
+	public ResponseEntity<String> deleteOrderAtencion(@PathVariable long id) {
+		return orderService.deleteOrderAtencion(id);
+	}
 	
 	/*********************************************************************
 	*
@@ -94,6 +101,12 @@ public class OrderController {
 		JSONObject jso = new JSONObject(info);
 		return orderService.modifyOrder(jso, id);
 	}
+
+	@PostMapping("/modifyOrderAtencion/{id}")
+	public ResponseEntity<String> modifyOrderAtencion(@RequestBody Map<String, Object> info, @PathVariable long id) throws CustomException {
+		JSONObject jso = new JSONObject(info);
+		return orderService.modifyAtencion(jso, id);
+	}
 	
 	/*********************************************************************
 	*
@@ -112,6 +125,11 @@ public class OrderController {
 	public ResponseEntity<String> rateOrder(@RequestBody Map<String, Object> info) {
 		JSONObject jso = new JSONObject(info);
 		return orderService.rateOrder(jso);		
+	}
+
+	@GetMapping("/orderCart/{id}")
+	public List<Plate> orderCart(@PathVariable Long id) throws CustomException {
+		return orderService.orderCart(id);		
 	}
 	
 	/*********************************************************************

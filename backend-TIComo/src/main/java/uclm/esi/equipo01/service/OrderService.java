@@ -2,6 +2,7 @@ package uclm.esi.equipo01.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -16,11 +17,13 @@ import com.github.openjson.JSONObject;
 import uclm.esi.equipo01.http.Manager;
 import uclm.esi.equipo01.model.Order;
 import uclm.esi.equipo01.model.OrderRate;
+import uclm.esi.equipo01.model.Plate;
 import uclm.esi.equipo01.model.PlateAndOrder;
 import uclm.esi.equipo01.model.Restaurant;
 import uclm.esi.equipo01.model.Rider;
 import uclm.esi.equipo01.model.Sequence;
 import uclm.esi.equipo01.model.State;
+import uclm.esi.equipo01.exception.CustomException;
 
 /*********************************************************************
 *
@@ -84,10 +87,43 @@ public class OrderService {
 	* is thrown: None.
 	*
 	*********************************************************************/
+	public ResponseEntity<String> deleteOrderAtencion(long idOrder) {
+		if (!Manager.get().getOrderRepository().existsById(idOrder)) {
+			return new ResponseEntity<>("Plato no encontrado", HttpStatus.BAD_REQUEST);
+		}
+		List<PlateAndOrder> pYp= Manager.get().getPlateAndOrderRepository().findAll();
+		int contador=0;
+		int idAlto=0;
+		for(int i=0;i<pYp.size();i++){
+			if(pYp.get(i).getOrderID()==idOrder){
+				if(pYp.get(i).getId()>idAlto){
+					idAlto=(int)pYp.get(i).getId();
+				}
+				contador++;
+				Manager.get().getPlateAndOrderRepository().delete(pYp.get(i));
+			}
+		}
+		Manager.get().setSequence(7, (int)idAlto-contador);
+		Manager.get().setSequence(6, (int)idOrder-1);
+
+		Manager.get().getOrderRepository().deleteById(idOrder);
+		return new ResponseEntity<>("Plato eliminado correctamente", HttpStatus.OK);
+	}
+
 	public ResponseEntity<String> deleteOrder(long idOrder) {
 		if (!Manager.get().getOrderRepository().existsById(idOrder)) {
 			return new ResponseEntity<>("Plato no encontrado", HttpStatus.BAD_REQUEST);
 		}
+		List<PlateAndOrder> pYp= Manager.get().getPlateAndOrderRepository().findAll();
+
+		for(int i=0;i<pYp.size();i++){
+			if(pYp.get(i).getOrderID()==idOrder){
+				
+				Manager.get().getPlateAndOrderRepository().delete(pYp.get(i));
+			}
+		}
+
+
 		Manager.get().getOrderRepository().deleteById(idOrder);
 		return new ResponseEntity<>("Plato eliminado correctamente", HttpStatus.OK);
 	}
@@ -105,6 +141,33 @@ public class OrderService {
 	* is thrown: None.
 	*
 	*********************************************************************/
+	public List<Plate> orderCart(long id) throws CustomException{
+
+		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+		List<Plate> aux=new ArrayList<Plate>();
+
+		System.out.println(pYp.size());
+
+		for(int i=0;i<pYp.size();i++){
+
+			Plate plato=new Plate();
+
+			if(pYp.get(i).getOrderID()==id){
+				int cant=pYp.get(i).getQuantity();
+				plato=Manager.get().getPlateRepository().findById(pYp.get(i).getPlateID()).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
+
+				for(int k=0;k<cant;k++){
+					aux.add(plato);
+				}
+				
+
+			}
+
+		}
+
+		return aux;
+
+	}
 	public ResponseEntity<String> rateOrder(JSONObject jso) {
 		JSONObject jsoOrder = (JSONObject) jso.get("order");
 		long orderID = jsoOrder.getLong("id");
@@ -307,6 +370,106 @@ public class OrderService {
 		return new ResponseEntity<>("Pedido modificado correctamente", HttpStatus.OK);
 	}
 	
+	public ResponseEntity<String> modifyAtencion(JSONObject jso, long clientID)throws CustomException {
+		long orderID = Long.parseLong(jso.getString("orderID"));
+		double totalPrice = 0;
+		JSONObject plates = new JSONObject(jso.getString("cart"));
+		Iterator<String> keys = plates.keys();
+		
+		Order order = Manager.get().getOrderRepository().findById(orderID).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
+		List<Long> carta=new ArrayList<Long>();
+		while(keys.hasNext()) {
+			String key = keys.next();
+			
+			carta.add(Long.parseLong(key));
+
+			if(esta(Long.parseLong(key),orderID)){
+				JSONObject aux = new JSONObject(plates.get(key));
+				double price = Double.parseDouble(aux.getString("price"));
+				int quantity = Integer.parseInt(aux.getString("quantity"));
+				totalPrice += price*quantity;
+			
+				PlateAndOrder plateAndOrder = new PlateAndOrder(idEnMongo(Long.parseLong(key),orderID),Long.parseLong(key), order.getId(), quantity);
+			
+				Manager.get().getPlateAndOrderRepository().save(plateAndOrder);
+			}else{
+				JSONObject aux = new JSONObject(plates.get(key));
+				double price = Double.parseDouble(aux.getString("price"));
+				int quantity = Integer.parseInt(aux.getString("quantity"));
+				totalPrice += price*quantity;
+			
+				PlateAndOrder plateAndOrder = new PlateAndOrder(Long.parseLong(key), order.getId(), quantity);
+			
+				Manager.get().getPlateAndOrderRepository().save(plateAndOrder);
+			}
+			
+		}
+		
+		order.setPrice(totalPrice);
+		Manager.get().getOrderRepository().save(order);
+		return new ResponseEntity<>("Pedido añadido correctamente", HttpStatus.OK);
+	}
+
+	public void noEstaEnCarta(List<Long> carta,long idO) throws CustomException{
+
+		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+		
+		for(int i=0;i<pYp.size();i++){
+			if(pYp.get(i).getOrderID()==idO){
+				aux.add(pYp.get(i));
+			}
+		}
+
+		for(int i=0;i<aux.size();i++){
+
+			if(	Arrays.asList(carta).contains((long)aux.get(i).getPlateID())){
+				Manager.get().getPlateAndOrderRepository().delete(aux.get(i));
+			}
+
+		}
+
+
+	}
+	public long idEnMongo(long idP, long idO){
+		long idAux=0;
+
+		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+		
+		for(int i=0;i<pYp.size();i++){
+			if(pYp.get(i).getOrderID()==idO){
+				aux.add(pYp.get(i));
+			}
+		}
+
+		for(int i=0;i<aux.size();i++){
+			if(aux.get(i).getPlateID()==idP){
+				idAux=aux.get(i).getId();
+			}
+		}
+
+		return idAux;
+	}
+	public boolean esta(long idP, long idO){
+		boolean esta=false;
+		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+		
+		for(int i=0;i<pYp.size();i++){
+			if(pYp.get(i).getOrderID()==idO){
+				aux.add(pYp.get(i));
+			}
+		}
+		System.out.println(aux);
+
+		for(int i=0;i<aux.size();i++){
+			if(aux.get(i).getPlateID()==idP){
+				esta=true;
+			}
+		}
+		return esta;
+	}
 	/*********************************************************************
 	*
 	* - Method name: calculateAverageRate

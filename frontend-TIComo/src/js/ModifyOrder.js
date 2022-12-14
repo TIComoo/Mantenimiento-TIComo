@@ -11,7 +11,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import Table from 'react-bootstrap/Table';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLeftLong, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faLeftLong ,faEdit} from '@fortawesome/free-solid-svg-icons'
 import Tooltip from '@mui/material/Tooltip';
 import { authenticationService } from '../services/authentication-service';
 
@@ -22,23 +22,30 @@ const fillColorArray = [
     "#f1b345",
     "#f1d045",
 ];
-class ClientConsultRestaurant extends Component {
+class ModifyOrder extends Component {
     constructor(props) {
         super(props);
     }
+    
     state = {
-        restaurantID: this.props.location.restaurantID,
+        
+        restaurantID: this.props.location.order.restaurantID,
+        orderID: this.props.location.order.id,
         restaurant: [],
         plates: [],
         disabled: true,
+        platesAndOrder:[],
         cart: {},
         rateRestaurant: 0,
         totalPrice: 0,
-        client: this.props.location.client,
+        client: this.props.location.order.clientID,
+        rellenar: true
     }
+
 
     /* INTIALIZER */
     async componentDidMount() {
+
         await fetch(ROUTES.PROXY + '/restaurant/showRestaurant/' + this.state.restaurantID, {
             method: 'GET',
             headers: {
@@ -57,6 +64,24 @@ class ClientConsultRestaurant extends Component {
             console.log(err);
         })
 
+        await fetch(ROUTES.PROXY + '/order/orderCart/' + this.state.orderID, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then((response) => {
+            if ([400].indexOf(response.status) !== -1) {
+                this.props.history.push(ROUTES.ADMIN);
+                authenticationService.logout();
+            }
+            return response.json();
+        }).then(data => {
+            this.setState({ platesAndOrder: data })
+        }).catch((err) => {
+            console.log(err);
+        })
+
         await fetch(ROUTES.PROXY + '/restaurant/showAllPlatesFromRestaurant/' + this.state.restaurantID, {
             method: 'GET',
             headers: {
@@ -70,6 +95,8 @@ class ClientConsultRestaurant extends Component {
         }).catch((err) => {
             console.log(err);
         })
+
+        this.rellenar(this.state.platesAndOrder)
     }
 
     findArrayElementById = (array, id) => {
@@ -79,6 +106,13 @@ class ClientConsultRestaurant extends Component {
     }
 
     /* METHODS */
+    rellenar = async (datap)=>{
+
+        for(let i=0;i<datap.length;i++){
+            this.shop(datap[i].id,1)
+        }
+
+    }
     shop = async (plateID, action) => {
         switch (action) {
             case 1: {
@@ -215,11 +249,14 @@ class ClientConsultRestaurant extends Component {
         });
     }
 
-    goToOrders(){
+
+    goToOrders(data){
         console.log(this.state.cart);
         var mensaje = confirm("¿Desea guardar los cambios?");
         if (mensaje) {
-            fetch(ROUTES.PROXY +'/order/makeOrder/' + authenticationService.currentUserValue.id, {
+
+
+            fetch(ROUTES.PROXY +'/order/modifyOrderAtencion/' + data, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -227,15 +264,15 @@ class ClientConsultRestaurant extends Component {
                 },
                 body: JSON.stringify({
                     cart: this.state.cart,
-                    restaurantID: this.state.restaurantID,
+                    orderID: this.state.orderID,
                 })
             }).then((response) => {
                 console.log(response)
                 if (response.status == 200) {
                     alert("Cambios guardados correctamente");
                     this.props.history.push({
-                        pathname: '/client',
-                        client: this.state.client,
+                        pathname: '/atencion',
+                        id: this.state.client,
                         restaurantID: this.state.restaurantID,
                         value: 3
                     });
@@ -246,7 +283,16 @@ class ClientConsultRestaurant extends Component {
                 console.log(err);
             })
         }
+        
     }
+
+    //  clearCacheData = () => {
+    //     caches.keys().then((names) => {
+    //       names.forEach((name) => {
+    //         caches.delete(name);
+    //       });
+    //     });
+    //   };
 
     render() {
         return (
@@ -254,7 +300,7 @@ class ClientConsultRestaurant extends Component {
                 <div className='col-4'>
                     <div class="cardInColumn">
                         <h5 class="text-center mb-4">INFORMACIÓN RESTAURANTE</h5>
-                        <label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
+                        <label class="form-control-label px-0" >Nombre<span class="text-danger"> *</span></label>
                         <input type="text" name="name" placeholder={this.state.restaurant.name} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                         <label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>
                         <input type="text" name="email" placeholder={this.state.restaurant.email} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
@@ -301,14 +347,14 @@ class ClientConsultRestaurant extends Component {
                             {this.CartTable(this.state.cart)}
                         </div>
                         <h5 class="text-center mb-4">PRECIO TOTAL: {this.state.totalPrice} €</h5>
-                        <Tooltip title="Tramitar pedido" placement="top-start">
-                            <FontAwesomeIcon icon={faCartShopping} font-size={20} color={"#000000"} onClick={() => this.goToOrders()} />
+                        <Tooltip title="Modificar pedido" placement="top-start">
+                            <FontAwesomeIcon icon={faEdit} font-size={20} color={"#000000"} onClick={() => this.goToOrders(this.state.orderID)} />
                         </Tooltip>
-                    </div>
+                    </div>                                    
                 </div>
             </div>
         )
     }
 }
-
-export default ClientConsultRestaurant;
+<FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
+export default ModifyOrder;

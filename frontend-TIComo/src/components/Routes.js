@@ -22,6 +22,14 @@ import AdminConsultOrder from '../js/AdminConsultOrder';
 import Rider from '../js/RiderPage';
 import RiderConsultOrder from '../js/RiderConsultOrder';
 import ClientConsultPlate from '../js/ClientConsultPlate';
+
+import Atencion from '../js/AtencionPage';
+import ConsultOrdersClient from '../js/ConsultOrdersClient';
+import AtencionConsultOrder from '../js/AtencionConsultOrder';
+import ModifyOrder from '../js/ModifyOrder';
+import ConsultRestaurantsAtencion from '../js/ConsultRestaurantsAtencion';
+import AtencionConsultRestaurant from '../js/AtencionConsultRestaurant';
+
 import { ROUTES, ROLES} from './constants';
 import { PrivateRoute } from './privateRoute';
 import DeniedAccess from '../js/DeniedAccess';
@@ -55,6 +63,13 @@ function Routes() {
 
         <Route exact path="/rider/consultOrder" component={RiderConsultOrder} />
         <PrivateRoute path="/rider" roles={[ROLES.RIDER]} component={Rider} />
+        
+        <Route exact path="/atencion/showAllOrdersByClient/:id" component={ConsultOrdersClient} />
+        <Route exact path="/atencion/consultOrder" component={AtencionConsultOrder} />
+        <Route exact path="/atencion/showAllRestaurants/:id" component={ConsultRestaurantsAtencion} />
+        <Route exact path="/atencion/consultRestaurant" component={AtencionConsultRestaurant} />
+        <Route exact path="/atencion/modifyOrder" component={ModifyOrder} />
+        <PrivateRoute path="/atencion" roles={[ROLES.ATENCION]} component={Atencion} />
 
         <Route path="*" component={DeniedAccess} />
       </Switch>

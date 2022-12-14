@@ -6,7 +6,6 @@ import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 class ConsultClient extends Component {
 
-	uploader = React.createRef();
 	constructor(props) {
 		super(props);
 		this.onClick = this.onClick.bind(this);

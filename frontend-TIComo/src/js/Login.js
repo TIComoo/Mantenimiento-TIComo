@@ -13,9 +13,11 @@ class Login extends Component {
 			if (authenticationService.currentUserValue.role == ROLES.ADMIN) {
 				this.props.history.push(ROUTES.ADMIN);
 			} else if (authenticationService.currentUserValue.role == ROLES.RIDER) {
-				this.props.history.push(ROUTES.WELCOME);
+				this.props.history.push('/rider');
+			} else if (authenticationService.currentUserValue.role == ROLES.CLIENT) {
+				this.props.history.push("/client");
 			} else {
-				this.props.history.push('/client');
+				this.props.history.push("/atencion"); // no sé que habría que añadir para que funcione
 			}
 		}
 	}
@@ -37,8 +39,10 @@ class Login extends Component {
 							this.props.history.push(ROUTES.ADMIN);
 						} else if (authenticationService.currentUserValue.role == ROLES.RIDER) {
 							this.props.history.push("/rider");
-						} else {
+						} else if (authenticationService.currentUserValue.role == ROLES.CLIENT) {
 							this.props.history.push("/client");
+						} else {
+							this.props.history.push("/atencion"); // no sé que habría que añadir para que funcione
 						}
 					}
 				},
