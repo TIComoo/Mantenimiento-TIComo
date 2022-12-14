@@ -22,10 +22,12 @@ const fillColorArray = [
     "#f1b345",
     "#f1d045",
 ];
-class ClientConsultRestaurant extends Component {
+
+class AtencionConsultRestaurant extends Component {
     constructor(props) {
         super(props);
     }
+
     state = {
         restaurantID: this.props.location.restaurantID,
         restaurant: [],
@@ -118,7 +120,6 @@ class ClientConsultRestaurant extends Component {
                             srcSet={`${element.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
                             alt={element.name}
                             loading="lazy"
-                            onClick={() => this.goToPlate(element)}
                             style={{ cursor: 'pointer' }}
                         />
                         <ImageListItemBar
@@ -173,19 +174,10 @@ class ClientConsultRestaurant extends Component {
     }
 
     /* EVENTS */
-    onClick(e) {
-        e.preventDefault();
-    }
-
     back = () => {
         this.props.history.push({
-            pathname: '/client'
+            pathname: '/atencion/showAllOrdersByClient/' + this.state.client.id,
         })
-    }
-
-    handleModifyClik() {
-        console.log(this.state)
-        this.setState({ disabled: !this.state.disabled })
     }
 
     handleChange = async e => {
@@ -197,29 +189,11 @@ class ClientConsultRestaurant extends Component {
         });
     }
 
-    goToCart() {
-        this.props.history.push({
-            pathname: '/makeOrder',
-            cart: this.state.cart,
-            plates: this.state.plates,
-            client: this.state.client,
-            restaurantID: this.state.restaurantID,
-        });
-    }
-
-    goToPlate(plate,) {
-        this.props.history.push({
-            pathname: '/client/consultPlate',
-            plate: plate,
-            restaurant: this.state.restaurant
-        });
-    }
-
     goToOrders(){
         console.log(this.state.cart);
-        var mensaje = confirm("¿Desea guardar los cambios?");
+        const mensaje = confirm("¿Desea guardar los cambios?");
         if (mensaje) {
-            fetch(ROUTES.PROXY +'/order/makeOrder/' + authenticationService.currentUserValue.id, {
+            fetch(ROUTES.PROXY +'/order/makeOrder/' + this.state.client.id, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -234,10 +208,7 @@ class ClientConsultRestaurant extends Component {
                 if (response.status == 200) {
                     alert("Cambios guardados correctamente");
                     this.props.history.push({
-                        pathname: '/client',
-                        client: this.state.client,
-                        restaurantID: this.state.restaurantID,
-                        value: 3
+                        pathname: '/atencion/showAllOrdersByClient/' + this.state.client.id,
                     });
                 }
                 return response.text();
@@ -311,4 +282,4 @@ class ClientConsultRestaurant extends Component {
     }
 }
 
-export default ClientConsultRestaurant;
+export default AtencionConsultRestaurant;

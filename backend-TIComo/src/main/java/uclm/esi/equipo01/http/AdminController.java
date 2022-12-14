@@ -30,26 +30,10 @@ import uclm.esi.equipo01.service.AdminService;
 @RequestMapping("admin")
 public class AdminController {
 	
-	private static AdminService adminService;
-	
-	/*********************************************************************
-	*
-	* - Method name: setAdminService
-	* - Description of the Method: Initialize the adminService
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: 
-	* 		• AdminService adminService: Class global variable
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
 	@Autowired
-	public void setAdminService(AdminService adminService) {
-		AdminController.adminService = adminService;
-	}
+	private AdminService adminService;
 	
+
 	/*********************************************************************
 	*
 	* - Method name: showAllAdmins

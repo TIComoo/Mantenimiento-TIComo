@@ -9,9 +9,7 @@ import Box from '@mui/material/Box';
 import Table from 'react-bootstrap/Table';
 import { IMAGES, ROUTES } from '../components/constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faEdit, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from '@mui/material/Tooltip';
 
 /* FUNCTIONS */
@@ -56,7 +54,7 @@ class ClientPage extends Component {
     }
 
     state = {
-        restaurants: [], orders: [], client: {}, orders: [], disabled: true,
+        restaurants: [], orders: [], client: {}, disabled: true,
         value: (this.props.location.value == undefined) ? 2 : this.props.location.value
     }
 

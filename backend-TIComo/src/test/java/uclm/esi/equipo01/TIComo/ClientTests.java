@@ -14,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import uclm.esi.equipo01.http.ClientController;
 import uclm.esi.equipo01.http.Manager;
-import uclm.esi.equipo01.http.UserController;
 import uclm.esi.equipo01.model.Client;
 import uclm.esi.equipo01.model.DatabaseSequence;
 import uclm.esi.equipo01.service.ClientService;
@@ -25,7 +24,6 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.mockito.Mockito;
 
 /*********************************************************************
@@ -42,9 +40,11 @@ public class ClientTests {
 	
 	@Autowired
 	private ClientService clientService;
-	
-	private UserController controller;
+
+	@Autowired
 	private ClientService service;
+
+	@Autowired
 	private ClientController clientController;
 	
     private static MongoOperations mongoOperations;
@@ -84,24 +84,6 @@ public class ClientTests {
     	mongoOperations.findAndRemove(query(where("_id").is(Client.SEQUENCE_ID)), DatabaseSequence.class);
     }
     
-	/*********************************************************************
-	*
-	* - Method name: setUp
-	* - Description of the Method: initialize the data of the service and controller before execution
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: None
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
-	@Before
-    public void setUp() {
-        service = Mockito.mock(ClientService.class);
-        controller = new UserController();
-        clientController = new ClientController(); 
-    }
 	
 	/*********************************************************************
 	*
@@ -405,33 +387,5 @@ public class ClientTests {
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test14() {
 
-		long id = 100;
-		
-		ResponseEntity<String> result = clientService.deleteClient(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El cliente eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test15() {
-
-		long id = 38;
-		
-		ResponseEntity<String> result = clientService.deleteClient(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El cliente eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test16() {
-
-		long id = 49;
-		
-		ResponseEntity<String> result = clientService.deleteClient(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El cliente eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 }

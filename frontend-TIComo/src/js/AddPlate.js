@@ -104,8 +104,8 @@ class AddPlate extends Component {
 	}
 
 	addPlate=async()=>{
-		if(this.state.form.validPassword){
-		await this.uploadPhoto();
+		
+		//await this.uploadPhoto();
 		console.log(this.state.imageUrls);
 		fetch(ROUTES.PROXY + '/restaurant/addPlate',{
       		method: 'POST',
@@ -124,20 +124,19 @@ class AddPlate extends Component {
 			if(response.status==200){
 				alert("Plato registrado correctamente");
                 this.props.history.push('/admin/consultRestaurant/'+this.state.restaurant.id);
-			}else{
-				deleteObject(ref(storage, this.state.imageUrls));
 			}
 			return response.text();
 		})
 		 .then((responseJson) => {
 			responseJson = JSON.parse(responseJson);
-			document.getElementById("name").textContent = responseJson.errorName;
 			document.getElementById("cost").textContent = responseJson.errorCost;
+			document.getElementById("name").textContent = responseJson.errorName;
+			document.getElementById("description").textContent = responseJson.errorDescription;
 			document.getElementById("image").textContent = responseJson.errorImage;
    		}).catch((err)=>{
 			console.log(err);
 		})
-	}}
+	}
 	
 	back = () => {
 		window.location.href = '/admin/consultRestaurant/'+this.state.restaurant.id;
@@ -160,21 +159,22 @@ class AddPlate extends Component {
 								<label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input type="text" name="name" placeholder="Nombre" required="" onChange={this.handleChange}/>
-								<label class="text-danger" id="name"></label>
+								<label class="text-danger-custom" id="name"></label>
 								
 								<label class="form-control-label px-0">Descripción<span class="text-danger"> *</span></label>
 								<input type="text" name="description"  placeholder="Descripción" required="" onChange={this.handleChange}/>
-								
+								<label class="text-danger-custom" id="description"></label>
+
 								<Tooltip title="En €. Tiene que ser un número" placement="left-start">
 								<label class="form-control-label px-0">Coste<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input type="text" name="cost" placeholder="Coste" required="" onChange={this.handleChange}/>
-								<label class="text-danger" id="cost"></label>
+								<label class="text-danger-custom" id="cost"></label>
 								
-									<div>
-										<label class="form-control-label px-0">Vegano<span class="text-danger"> *</span></label>
-							  			<input type="checkbox" name="veganFriendly" defaultChecked={false} required="" onClick={this.handleChangeCheckBox}/>
-									</div>
+								<div>
+									<label class="form-control-label px-0">Vegano<span class="text-danger"> *</span></label>
+									<input type="checkbox" name="veganFriendly" defaultChecked={false} required="" onClick={this.handleChangeCheckBox}/>
+								</div>
 								
 								<label class="form-control-label px-0">Suba una imagen del plato<span class="text-danger"> *</span></label>
 								<div>

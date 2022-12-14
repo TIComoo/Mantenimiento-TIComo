@@ -150,7 +150,7 @@ class ConsultPlate extends Component {
 	}
 
 	modifyPlate=async()=>{
-		await this.uploadPhoto();
+		//await this.uploadPhoto();
 		var mensaje = confirm("¿Desea guardar los cambios?");
 		if(mensaje){
 			fetch(ROUTES.PROXY + '/restaurant/modifyPlate/'+this.state.plate.id,{
@@ -171,14 +171,13 @@ class ConsultPlate extends Component {
 					alert("Plato modificado correctamente");
 					deleteObject(ref(storage, this.state.plate.photo));
 					this.props.history.push('/admin/consultRestaurant/'+this.state.plate.restaurantID);
-				}else{
-					deleteObject(ref(storage, this.state.imageUrls));
 				}
 				return response.text();
 			})
 			.then((responseJson) => {
 				responseJson = JSON.parse(responseJson);
 				document.getElementById("cost").textContent = responseJson.errorCost;
+				document.getElementById("name").textContent = responseJson.errorName;
 			}).catch((err)=>{
 				console.log(err);
 			})
@@ -210,12 +209,13 @@ class ConsultPlate extends Component {
 								<label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input class="Fields" type="text" name="name" placeholder={this.state.plate.name} disabled = {(this.state.disabled)? "disabled" : ""}required="" onChange={this.handleChange}/>
+								<label class="text-danger-custom" id="name"></label>
 
 								<Tooltip title="En €. Tiene que ser un números" placement="left-start">
 								<label class="form-control-label px-0">Coste<span class="text-danger"> *</span></label>
 								</Tooltip>
 								<input class="Fields" type="text" name="cost" placeholder={this.state.plate.cost} disabled = {(this.state.disabled)? "disabled" : ""}required="" onChange={this.handleChange}/>
-								<label class="text-danger" id="cost"></label>
+								<label class="text-danger-custom" id="cost"></label>
 								
 								<div>
 									<label class="form-control-label px-0">Vegano<span class="text-danger"> *</span></label>

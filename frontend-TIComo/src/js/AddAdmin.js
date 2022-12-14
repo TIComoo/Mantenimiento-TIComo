@@ -29,41 +29,42 @@ class AddAdmin extends Component {
 
 	/* METHODS */
 	addAdmin = async () => {
-		if(this.state.form.validPassword){
-			fetch(ROUTES.PROXY + '/user/register', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					role: "ADMIN",
-					name: this.state.form.name,
-					surname: this.state.form.surname,
-					email: this.state.form.email,
-					password: this.state.form.password,
-					zone: this.state.form.zone,
-				})
-			}).then((response) => {
-				if (response.status == 200) {
-					alert("Administrador registrado correctamente");
-					this.props.history.push({
-						pathname: '/admin',
-						value: 2,
-					});
-				}
-				return response.text();
+		
+		fetch(ROUTES.PROXY + '/user/register', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				role: "ADMIN",
+				name: this.state.form.name,
+				surname: this.state.form.surname,
+				email: this.state.form.email,
+				password: this.state.form.password,
+				zone: this.state.form.zone,
 			})
-				.then((responseJson) => {
-					responseJson = JSON.parse(responseJson);
-					document.getElementById("email").textContent = responseJson.errorEmail;
-					document.getElementById("name").textContent = responseJson.errorName;
-					document.getElementById("surname").textContent = responseJson.errorSurname;
-				}).catch((err) => {
-					console.log(err);
-				})
+		}).then((response) => {
+			if (response.status == 200) {
+				alert("Administrador registrado correctamente");
+				this.props.history.push({
+					pathname: '/admin',
+					value: 2,
+				});
 			}
-	}
+			return response.text();
+		})
+			.then((responseJson) => {
+				responseJson = JSON.parse(responseJson);
+				document.getElementById("email").textContent = responseJson.errorEmail;
+				document.getElementById("name").textContent = responseJson.errorName;
+				document.getElementById("surname").textContent = responseJson.errorSurname;
+				document.getElementById("zone").textContent=responseJson.errorZone;
+			}).catch((err) => {
+				console.log(err);
+			})
+		}
+		
 
 	/* EVENTS HANDLER */
 	back = () => {
@@ -118,6 +119,7 @@ class AddAdmin extends Component {
 
 								<label class="form-control-label px-0">Zona<span class="text-danger"> *</span></label>
 								<input type="text" name="zone" placeholder="Torreón" required="" onChange={this.handleChange} />
+								<label class="text-danger-custom" id="zone"></label>
 
 								<label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>
 								<input type="text" name="email" placeholder="Example@mail.com" required="" onChange={this.handleChange} />

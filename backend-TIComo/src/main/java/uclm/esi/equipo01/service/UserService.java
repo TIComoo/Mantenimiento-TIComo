@@ -23,7 +23,8 @@ public abstract class UserService {
 	private static final String ERRORACCOUNT = "errorAccount";
 	private static final String ACCOUNTNOTACTIVATED = "Account not activated";
 	
-	protected static ValidatorService validatorService;
+	@Autowired
+	protected  ValidatorService validatorService;
 
 	public abstract ResponseEntity<String> register(JSONObject jso);
 	
@@ -43,7 +44,6 @@ public abstract class UserService {
 	public ResponseEntity<String> login(JSONObject jso){
 		String email = jso.getString("email").toLowerCase();
 		String pwd = org.apache.commons.codec.digest.DigestUtils.sha512Hex(jso.getString("password"));
-		
 		
 		User user;
 			
@@ -88,14 +88,24 @@ public abstract class UserService {
 			return new ResponseEntity<>(response.toString(), HttpStatus.OK);
 		}
 		
+		user = Manager.get().getAtencionTelefonicaRepository().findByEmailAndPwd(email, pwd);
+		
+		if (user != null) {
+			if (!user.isActiveAccount()) {
+				JSONObject response = new JSONObject();
+				response.put(ERRORACCOUNT, ACCOUNTNOTACTIVATED);
+				return new ResponseEntity<>(response.toString(), HttpStatus.UNAUTHORIZED);
+			}
+			
+			JSONObject response = new JSONObject(user);
+			response.put("role", "ATENCION_TELEFONICA");
+			return new ResponseEntity<>(response.toString(), HttpStatus.OK);
+		}
+		
 		JSONObject response = new JSONObject();
 		response.put("error", "Email o contraseña no válida");
 		return new ResponseEntity<>(response.toString(), HttpStatus.UNAUTHORIZED);
 	}
 	
-	@Autowired
-	public void setValidatorService(ValidatorService validatorService) {
-		UserService.validatorService = validatorService;
-	}
 	
 }

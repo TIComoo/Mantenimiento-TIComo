@@ -14,7 +14,7 @@ import uclm.esi.equipo01.http.Manager;
 **********************************************************************/
 
 @Document(collection = "Admins")
-public class Admin extends User{
+public class Admin extends User {
 	
 	@Transient
 	public static final int SEQUENCE_ID = Sequence.ADMIN.getValue();

@@ -72,10 +72,10 @@ public class RiderService extends UserService{
 		
 		JSONObject response = new JSONObject();
 		
-		if (!validatorService.isValidName(name))
+		if (!validatorService.isValidName(name)||name.isEmpty())
 			response.put("errorName", "Nombre no válido");
 		
-		if (!validatorService.isValidSurname(surname))
+		if (!validatorService.isValidSurname(surname)||surname.isEmpty())
 			response.put("errorSurname", "Apellido no válido");
 		
 		if(!validatorService.isValidNIF(nif))
@@ -84,11 +84,14 @@ public class RiderService extends UserService{
 		if(license && !validatorService.isValidLicensePlate(licensePlate))
 			response.put("errorLicensePlate", "Matrícula no válida");
 		
-		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(email))
+		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(email)|| email.isEmpty())
 			response.put("errorEmail", "Email no válido");
 		
 		if(!validatorService.isValidPwd(password)) 
 			response.put("errorPwd", "Contraseña no válida");
+
+		if(vehicle.isEmpty()) 
+			response.put("errorVehicle", "Vehiculo no valido");
 		
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
@@ -130,19 +133,19 @@ public class RiderService extends UserService{
 		
 		JSONObject response = new JSONObject();
 		
-		if (!validatorService.isValidName(name))
+		if (!validatorService.isValidName(name)|| name.isEmpty())
 			response.put("errorName", "Nombre no válido");
 		
-		if (!validatorService.isValidSurname(surname))
+		if (!validatorService.isValidSurname(surname)|| surname.isEmpty())
 			response.put("errorSurname", "Apellido no válido");
 		
-		if(!validatorService.isValidNIF(nif))
+		if(!validatorService.isValidNIF(nif)||nif.isEmpty())
 			response.put("errorNIF", "nif no válido");
 		
 		if(license && !validatorService.isValidLicensePlate(licensePlate))
 			response.put("errorLicensePlate", "Matrícula no válida");
 		
-		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "RIDER"))
+		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "RIDER")||email.isEmpty())
 			response.put("errorEmail", "Email no válido");
 		
 		if(response.length() != 0)

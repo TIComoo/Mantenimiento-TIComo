@@ -1,5 +1,6 @@
 package uclm.esi.equipo01.http;
 
+
 import java.util.Map;
 
 import com.github.openjson.JSONObject;
@@ -27,65 +28,16 @@ import uclm.esi.equipo01.service.RiderService;
 @RequestMapping("user")
 public class UserController {
 	
-	private static AdminService adminService;
-	
-	/*********************************************************************
-	*
-	* - Method name: setAdminService
-	* - Description of the Method: Initialize the adminService
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: 
-	* 		• AdminService adminService: Class global variable
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
 	@Autowired
-	public void setAdminService(AdminService adminService) {
-		UserController.adminService = adminService;
-	}
+	private  AdminService adminService;
 	
-	private static RiderService riderService;
-	
-	/*********************************************************************
-	*
-	* - Method name: setRiderService
-	* - Description of the Method: Initialize the riderService
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: 
-	* 		• RiderService riderService: Class global variable
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
 	@Autowired
-	public void setRiderService(RiderService riderService) {
-		UserController.riderService = riderService;
-	}
+	private  RiderService riderService;
 	
-	private static ClientService clientService;
-	
-	/*********************************************************************
-	*
-	* - Method name: setClientService
-	* - Description of the Method: Initialize the clientService
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: 
-	* 		• ClientService clientService: Class global variable
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
 	@Autowired
-	public void setClientService(ClientService clientService) {
-		UserController.clientService = clientService;
-	}
+	private  ClientService clientService;
+	
+
 	
 	/*********************************************************************
 	*

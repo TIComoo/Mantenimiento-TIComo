@@ -2,9 +2,10 @@ export const ROUTES = {
     WELCOME: '/welcome',
     LOGIN: '/',
     REGISTER: '/register',
-    ADMIN: '/admin',    
+    ADMIN: '/admin', 
     ADDADMIN: '/admin/addAdmin',
     RESTAURANT: '/admin/consultRestaurant/:id',
+    ATENCION: '/atencion',
     PROXY: 'http://localhost:80'
 }
 
@@ -19,5 +20,6 @@ export const IMAGES = {
 export const ROLES = {
     ADMIN: 'ADMIN',
     RIDER: 'RIDER',
-    CLIENT: 'CLIENT'
+    CLIENT: 'CLIENT',
+    ATENCION: 'ATENCION_TELEFONICA'
 }

@@ -10,8 +10,7 @@ import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import { IMAGES, ROUTES } from '../components/constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 const starsArray = [
 	"#f17a45",
