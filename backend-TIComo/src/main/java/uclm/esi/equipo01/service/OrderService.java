@@ -410,27 +410,7 @@ public class OrderService {
 		return new ResponseEntity<>("Pedido añadido correctamente", HttpStatus.OK);
 	}
 
-	public void noEstaEnCarta(List<Long> carta,long idO) throws CustomException{
 
-		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
-		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
-		
-		for(int i=0;i<pYp.size();i++){
-			if(pYp.get(i).getOrderID()==idO){
-				aux.add(pYp.get(i));
-			}
-		}
-
-		for(int i=0;i<aux.size();i++){
-
-			if(	Arrays.asList(carta).contains((long)aux.get(i).getPlateID())){
-				Manager.get().getPlateAndOrderRepository().delete(aux.get(i));
-			}
-
-		}
-
-
-	}
 	public long idEnMongo(long idP, long idO){
 		long idAux=0;
 
