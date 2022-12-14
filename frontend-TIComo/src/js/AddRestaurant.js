@@ -53,6 +53,10 @@ class AddRestaurant extends Component {
 				document.getElementById("email").textContent = responseJson.errorEmail;
 				document.getElementById("phone").textContent = responseJson.errorPhone;
 				document.getElementById("cif").textContent = responseJson.errorCIF;
+				document.getElementById("category").textContent = responseJson.errorCategory;
+				document.getElementById("comercial").textContent = responseJson.errorComercial;
+				document.getElementById("address").textContent = responseJson.errorAddress;
+				document.getElementById("name").textContent = responseJson.errorName;
 			}).catch((err) => {
 				console.log(err);
 			})
@@ -91,10 +95,12 @@ class AddRestaurant extends Component {
 								
 								<label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
 								<input type="text" name="name" placeholder="Nombre" required="" onChange={this.handleChange} />
+								<label class="text-danger-custom" id="name"></label>
 								
 								<label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>
-								<input type="text" name="email" placeholder="Example@mail.com" required="" onChange={this.handleChange} />
-								
+								<input type="text" name="email" placeholder="Example@mail.com"  onChange={this.handleChange} />
+								<label class="text-danger-custom" id="email"></label>
+
 								<Tooltip title="Debe tener 8 números y 1 letra" placement="left-start">
 								<label class="form-control-label px-0">CIF<span class="text-danger"> *</span></label>
 								</Tooltip>
@@ -103,6 +109,7 @@ class AddRestaurant extends Component {
 								
 								<label class="form-control-label px-0">Dirección<span class="text-danger"> *</span></label>
 								<input type="text" name="address" placeholder="C/" required="" onChange={this.handleChange} />
+								<label class="text-danger-custom" id="address"></label>
 								
 								<Tooltip title="Debe tener 9 números y existir en España" placement="left-start">
 								<label class="form-control-label px-0">Teléfono<span class="text-danger"> *</span></label>
@@ -112,9 +119,11 @@ class AddRestaurant extends Component {
 								
 								<label class="form-control-label px-0">Categoría<span class="text-danger"> *</span></label>
 								<input type="text" name="category" placeholder="Mexicano" required="" onChange={this.handleChange} />
+								<label class="text-danger-custom" id="category"></label>
 								
 								<label class="form-control-label px-0">Registro Mercantil<span class="text-danger"> *</span></label>
 								<input type="text" name="commercialRegister" placeholder="Nombre SL" required="" onChange={this.handleChange} />
+								<label class="text-danger-custom" id="comercial"></label>
 								
 								<div class="columns">
 									<input type="submit" value="ACEPTAR" onClick={() => this.addRestaurant()} />

@@ -34,26 +34,11 @@ import uclm.esi.equipo01.service.OrderService;
 @RequestMapping("order")
 public class OrderController {
 
-	private static OrderService orderService;
-	
-	/*********************************************************************
-	*
-	* - Method name: setOrderService
-	* - Description of the Method: Initialize the orderService
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: 
-	* 		• OrderService orderService: Class global variable
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
 	@Autowired
-	public void setOrderService(OrderService orderService) {
-		OrderController.orderService = orderService;
-	}
+	private OrderService orderService;
 	
+	
+
 	/*********************************************************************
 	*
 	* - Method name: makeOrder

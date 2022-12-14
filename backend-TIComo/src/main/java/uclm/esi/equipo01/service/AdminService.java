@@ -65,14 +65,17 @@ public class AdminService extends UserService{
 		if(!validatorService.isValidPwd(pwd)) 
 			response.put("errorPwd", "Contraseña no válida");
 		
-		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(email))
+		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(email)||email.isEmpty())
 			response.put("errorEmail", "Email no válido");
 		
-		if (!validatorService.isValidName(name))
+		if (!validatorService.isValidName(name)|| name.isEmpty())
 			response.put("errorName", "Nombre no válido");
 		
-		if (!validatorService.isValidSurname(surname))
+		if (!validatorService.isValidSurname(surname)|| surname.isEmpty())
 			response.put("errorSurname", "Apellido no válido");
+
+		if(zone.isEmpty())
+			response.put("errorZone", "Zona no valida");
 
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
@@ -131,18 +134,23 @@ public class AdminService extends UserService{
 		String zone = jso.getString("zone");
 		
 		JSONObject response = new JSONObject();
+
 		
-		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "ADMIN"))
+		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "ADMIN")||email.isEmpty())
 			response.put("errorEmail", "Email no válido");
 		
-		if (!validatorService.isValidName(name))
+		if (!validatorService.isValidName(name)|| name.isEmpty())
 			response.put("errorName", "Nombre no válido");
 		
-		if (!validatorService.isValidSurname(surname))
+		if (!validatorService.isValidSurname(surname)|| surname.isEmpty())
 			response.put("errorSurname", "Apellido no válido");
-		
+
+		if(zone.isEmpty())
+			response.put("errorZone", "Zona no valida");
+
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
+		
 		
 		User admin = optAdmin.get();
 		admin.setEmail(email);

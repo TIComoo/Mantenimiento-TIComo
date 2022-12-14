@@ -49,7 +49,9 @@ public class ClientService extends UserService{
 		String direction = jso.getString("address");
 		String phone = jso.getString("phone");
 		
-		JSONObject response = new JSONObject();
+		JSONObject response ;
+
+		response=validation(validatorService, name, surname, nif, phone,direction);
 		
 		if(!validatorService.isValidPwd(pwd)) 
 			response.put("errorPwd", "Contraseña no válida");
@@ -57,17 +59,6 @@ public class ClientService extends UserService{
 		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(email))
 			response.put("errorEmail", "Email no válido");
 		
-		if (!validatorService.isValidName(name))
-			response.put("errorName", "Nombre no válido");
-		
-		if (!validatorService.isValidSurname(surname))
-			response.put("errorSurname", "Apellido no válido");
-		
-		if(!validatorService.isValidNIF(nif))
-			response.put("errorNIF", "NIF no válido");
-				
-		if(!validatorService.isValidPhone(phone))
-			response.put("errorPhone", "Teléfono no válido");
 		
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
@@ -165,22 +156,13 @@ public class ClientService extends UserService{
 	    String phone = jso.getString("phone");	
 		boolean activeAccount = jso.getBoolean("activeAccount");
 		
-		JSONObject response = new JSONObject();
+		JSONObject response;
 		
-		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "CLIENT"))
+		response=validation(validatorService, name, surname, nif, phone,address);
+
+		if (!validatorService.isValidEmail(email) || validatorService.isRepeatedEmail(id, email, "CLIENT")||email.isEmpty())
 			response.put("errorEmail", "Email no válido");
-		
-		if (!validatorService.isValidName(name))
-			response.put("errorName", "Nombre no válido");
-		
-		if (!validatorService.isValidSurname(surname))
-			response.put("errorSurname", "Apellido no válido");
-		
-		if(!validatorService.isValidNIF(nif))
-			response.put("errorNIF", "nif no válido");
-		
-		if(!validatorService.isValidPhone(phone))
-			response.put("errorPhone", "Teléfono no válido");
+
 		
 		if(response.length() != 0)
 			return new ResponseEntity<>(response.toString(), HttpStatus.BAD_REQUEST);
@@ -199,6 +181,29 @@ public class ClientService extends UserService{
 		response.put("status", "Cliente modificado correctamente");
 		
 		return new ResponseEntity<>(response.toString(), HttpStatus.OK);
+	}
+
+	public JSONObject validation(ValidatorService validatorService,String name,String surname,String nif, String phone,String address){
+
+		JSONObject response = new JSONObject();
+		
+		
+		if (!validatorService.isValidName(name)|| name.isEmpty())
+			response.put("errorName", "Nombre no válido");
+		
+		if (!validatorService.isValidSurname(surname)||surname.isEmpty())
+			response.put("errorSurname", "Apellido no válido");
+		
+		if(!validatorService.isValidNIF(nif))
+			response.put("errorNIF", "nif no válido");
+		
+		if(!validatorService.isValidPhone(phone))
+			response.put("errorPhone", "Teléfono no válido");
+
+		if(address.isEmpty())
+			response.put("errorAddress", "Dirección no válida");
+
+			return response;
 	}
 
 	

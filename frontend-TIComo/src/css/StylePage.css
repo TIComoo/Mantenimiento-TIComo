@@ -16,7 +16,7 @@ body {
     float: left;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     margin-top: auto;
 }
 
@@ -224,7 +224,7 @@ button {
     background-color: #ffa43d;
 }
 
-/* TIPOS DE LETRA */
+/* TIPOS DE LETRA */    
 h2,
 .h2,
 h1,

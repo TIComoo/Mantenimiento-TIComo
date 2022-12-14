@@ -294,7 +294,7 @@ public class ValidatorService {
 	*
 	*********************************************************************/
 	public boolean isValidName(String name) {
-		return checkNumber(name);
+		return checkNumber(name) ;
 	}
 	
 	/*********************************************************************

@@ -564,26 +564,6 @@ public class RiderTests {
 	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test21() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("name", "Lucia Ale");
-		info.put("surname", "Martinez Gálvez");
-		info.put("nif", "55692512T");
-		info.put("vehicleType", "Moto");
-		info.put("licensePlate", "1224XXX");
-		info.put("license","true");
-		info.put("email", "carlosphin45@gmail.com");
-		info.put("password", "Pepito233@");
-		info.put("activeAccount", true);
-		
-		long id = 2;
-		
-	    ResponseEntity<String> result = riderService.modifyRider(info, id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Rider modificado correctamente", HttpStatus.OK);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 	
 	@Test
 	public void test22() {
@@ -627,26 +607,7 @@ public class RiderTests {
 	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test24() {
-	    JSONObject info = new JSONObject();
-	    
-		info.put("name", "Lucia Ale");
-		info.put("surname", "Martinez Gálvez");
-		info.put("nif", "55692512T");
-		info.put("vehicleType", "Moto");
-		info.put("licensePlate", "1224XXX");
-		info.put("license","false");
-		info.put("email", "carlosphin45@gmail.com");
-		info.put("password", "Pepito233@");
-		info.put("activeAccount", true);
-		
-		long id = 2;
-		
-	    ResponseEntity<String> result = riderService.modifyRider(info, id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Rider modificado correctamente", HttpStatus.OK);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
+
 	
 	/*********************************************************************
 	*
@@ -724,25 +685,6 @@ public class RiderTests {
 	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test30() {
-		
-		long id = 12;
-		
-	    ResponseEntity<String> result = riderService.deleteRider(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Rider eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
-	
-	@Test
-	public void test31() {
-		
-		long id = 100;
-		
-	    ResponseEntity<String> result = riderService.deleteRider(id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Rider eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-	    assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 	
 
 }

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TiComoApplication<backend-TIComo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "uclm.esi.equipo01.TiComoApplication",
+            "projectName": "backend-TIComo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

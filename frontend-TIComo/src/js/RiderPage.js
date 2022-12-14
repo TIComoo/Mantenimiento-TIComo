@@ -55,7 +55,7 @@ class RiderPage extends Component {
 
 
     state = {
-        rider: {}, globalOrders: [], myOrders: [], restaurants: [], disabled: true, disabledMatricula: true,
+        rider: {}, riderAux:{}, globalOrders: [], myOrders: [], restaurants: [], disabled: true, disabledMatricula: true,
         value: (this.props.location.value == undefined) ? 2 : this.props.location.value
     }
 
@@ -116,6 +116,7 @@ class RiderPage extends Component {
             return response.json();
         }).then(data => {
             this.setState({ rider: data })
+            this.setState({ riderAux: data })
         }).catch((err) => {
             console.log(err);
         })
@@ -259,8 +260,8 @@ class RiderPage extends Component {
 
     handleChange = async e => {
         this.setState({
-            client: {
-                ...this.state.client,
+            rider: {
+                ...this.state.rider,
                 [e.target.name]: e.target.value
             }
         });
@@ -317,8 +318,10 @@ class RiderPage extends Component {
 			}).then((response) => {
 				if (response.status == 200) {
 					alert("Cambios guardados correctamente");
+                    this.state.riderAux=this.state.rider
+                    this.handleModifyClick();
 					this.props.history.push({
-						pathname: '/admin',
+						pathname: '/rider',
 						value: 1,
 					});
 				}
@@ -417,17 +420,17 @@ class RiderPage extends Component {
                                         <Tooltip title="No puede contener: [1-9]/*@..." placement="top-start">
                                             <label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input type="text" name="name" placeholder={this.state.rider.name} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input type="text" name="name" placeholder={this.state.riderAux.name} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="name"></label>
 
                                         <Tooltip title="No puede contener: [1-9]/*@..." placement="top-start">
                                             <label class="form-control-label px-0">Apellidos<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input class="Fields" type="text" name="surname" placeholder={this.state.rider.surname} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="surname" placeholder={this.state.riderAux.surname} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="surname"></label>
                                         
                                         <label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>
-                                        <input class="Fields" type="text" name="email" placeholder={this.state.rider.email} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="email" placeholder={this.state.riderAux.email} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="email"></label>
 
                                     </div><div class='cardInTab'>
@@ -435,23 +438,23 @@ class RiderPage extends Component {
                                         <Tooltip title="Debe tener 8 números y 1 letra" placement="top-start">
                                             <label class="form-control-label px-0">NIF<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input class="Fields" type="text" name="nif" placeholder={this.state.rider.nif} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="nif" placeholder={this.state.riderAux.nif} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="nif"></label>
 
                                         <Tooltip title="Si conduce un coche, moto o bici" placement="top-start">
                                             <label class="form-control-label px-0">Tipo de vehículo<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input class="Fields" type="text" name="vehicleType" placeholder={this.state.rider.vehicleType} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="vehicleType" placeholder={this.state.riderAux.vehicleType} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
 
                                         <Tooltip title="Debe tener 4 números y 3 letras" placement="top-start">
                                             <label class="form-control-label px-0">Matrícula<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input class="Fields" type="text" name="licensePlate" placeholder={(this.state.disabled) ? "XXXXXXX" : this.state.rider.licensePlate} disabled={(this.state.disabled || this.state.disabledMatricula) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="licensePlate" placeholder={(this.state.disabled) ? "XXXXXXX" : this.state.riderAux.licensePlate} disabled={(this.state.disabled || this.state.disabledMatricula) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="license"></label>
 
                                         <div>
                                             <label class="form-control-label px-0">Carné<span class="text-danger"> *</span></label>
-                                            <input class="Fields" type="checkbox" name="license" defaultChecked={this.state.rider.license} disabled={(this.state.disabled) ? "disabled" : ""} required="" onClick={this.handleChangeCheckBox} />
+                                            <input class="Fields" type="checkbox" name="license" defaultChecked={this.state.riderAux.license} disabled={(this.state.disabled) ? "disabled" : ""} required="" onClick={this.handleChangeCheckBox} />
                                         </div>
                                     </div>
                                     <Tooltip title="Editar" placement="top-start">

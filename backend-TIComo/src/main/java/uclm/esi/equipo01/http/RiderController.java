@@ -29,25 +29,10 @@ import uclm.esi.equipo01.service.RiderService;
 @RequestMapping("rider")
 public class RiderController {
 
-	private static RiderService riderService;
-	
-	/*********************************************************************
-	*
-	* - Method name: setRiderService
-	* - Description of the Method: Initialize the riderService
-	* - Calling arguments: A list of the calling arguments, their types, and
-	* brief explanations of what they do: 
-	* 		• RiderService riderService: Class global variable
-	* - Return value: None
-	* - Required Files: None
-	* - List of Checked Exceptions and an indication of when each exception
-	* is thrown: None.
-	*
-	*********************************************************************/
 	@Autowired
-	public void setRiderService(RiderService riderService) {
-		RiderController.riderService = riderService;
-	}
+	private  RiderService riderService;
+
+	
 	
 	/*********************************************************************
 	*

@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
 import uclm.esi.equipo01.http.Manager;
-
+import uclm.esi.equipo01.service.AES;
 /*********************************************************************
 *
 * Class Name: Restaurant
@@ -15,6 +15,7 @@ import uclm.esi.equipo01.http.Manager;
 
 @Document(collection = "Restaurants")
 public class Restaurant {
+	
 	
 	@Transient
 	public static final int SEQUENCE_ID = Sequence.RESTAURANT.getValue();
@@ -62,7 +63,7 @@ public class Restaurant {
 		this.setId(Manager.get().generateSequence(SEQUENCE_ID));
 		this.name = name;
 		this.commercialRegister = commercialRegister;
-		this.cif = cif;
+		this.cif = AES.encrypt( cif, "sha256");
 		this.address = address;
 		this.phone = phone;
 		this.email = email;

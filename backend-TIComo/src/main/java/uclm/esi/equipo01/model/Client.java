@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import uclm.esi.equipo01.http.Manager;
-
+import uclm.esi.equipo01.service.AES;
 /*********************************************************************
 *
 * Class Name: Client
@@ -50,7 +50,7 @@ public class Client extends User {
 			String phone) {
 		super(email, pwd, name, surname);
 		super.setId(Manager.get().generateSequence(SEQUENCE_ID));
-		this.nif = nif;
+		this.nif = AES.encrypt(nif, "sha256");;;
 		this.address = address;
 		this.phone = phone;
 		this.activeAccount = true;

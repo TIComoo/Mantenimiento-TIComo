@@ -32,6 +32,7 @@ import AtencionConsultRestaurant from '../js/AtencionConsultRestaurant';
 
 import { ROUTES, ROLES} from './constants';
 import { PrivateRoute } from './privateRoute';
+import DeniedAccess from '../js/DeniedAccess';
 
 function Routes() {
   return (
@@ -40,6 +41,7 @@ function Routes() {
         <Route exact path={ROUTES.LOGIN} component={Login} />
         <Route exact path={ROUTES.WELCOME} component={Welcome} />
         <Route exact path="/register" component={Register} />
+        <Route exact path = "/deniedAccess" component={DeniedAccess} />
 
         <Route exact path="/admin/consultRestaurant/:id/addPlate" component={AddPlate} />
         <Route exact path="/admin/addRestaurant" component={AddRestaurant} />
@@ -69,10 +71,18 @@ function Routes() {
         <Route exact path="/atencion/modifyOrder" component={ModifyOrder} />
         <PrivateRoute path="/atencion" roles={[ROLES.ATENCION]} component={Atencion} />
 
-        <Route path="*" component={PageNotFound} />
+        <Route path="*" component={DeniedAccess} />
       </Switch>
     </BrowserRouter>
   );
 }
+
+/*
+  
+
+
+
+
+*/ 
 
 export default Routes;

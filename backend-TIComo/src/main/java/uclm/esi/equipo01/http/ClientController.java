@@ -30,12 +30,10 @@ import uclm.esi.equipo01.service.ClientService;
 @RequestMapping("client")
 public class ClientController {
 	
-	private static ClientService clientService;
-	
 	@Autowired
-	public void setClientService(ClientService clientService) {
-		ClientController.clientService = clientService;
-	}
+	private  ClientService clientService;
+	
+	
 	
 	/*********************************************************************
 	*

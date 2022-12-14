@@ -102,6 +102,7 @@ class ConsultClient extends Component {
 					document.getElementById("surname").textContent = responseJson.errorSurname;
 					document.getElementById("nif").textContent = responseJson.errorNIF;
 					document.getElementById("phone").textContent = responseJson.errorPhone;
+					document.getElementById("address").textContent = responseJson.errorAddress;
 				}).catch((err) => {
 					console.log(err);
 				})
@@ -182,6 +183,7 @@ class ConsultClient extends Component {
 								<label class="text-danger-custom" id="nif"></label>
 								<label class="form-control-label px-0">Dirección<span class="text-danger"> *</span></label>
 								<input class="Fields" type="text" name="address" placeholder={this.state.client.address} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+								<label class="text-danger-custom" id="address"></label>
 								<Tooltip title="Debe tener 9 números y existir en España" placement="left-start">
 								<label class="form-control-label px-0">Teléfono<span class="text-danger"> *</span></label>
 								</Tooltip>

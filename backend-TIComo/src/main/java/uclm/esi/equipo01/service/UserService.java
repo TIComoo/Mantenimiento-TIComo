@@ -23,7 +23,8 @@ public abstract class UserService {
 	private static final String ERRORACCOUNT = "errorAccount";
 	private static final String ACCOUNTNOTACTIVATED = "Account not activated";
 	
-	protected static ValidatorService validatorService;
+	@Autowired
+	protected  ValidatorService validatorService;
 
 	public abstract ResponseEntity<String> register(JSONObject jso);
 	
@@ -106,9 +107,5 @@ public abstract class UserService {
 		return new ResponseEntity<>(response.toString(), HttpStatus.UNAUTHORIZED);
 	}
 	
-	@Autowired
-	public void setValidatorService(ValidatorService validatorService) {
-		UserService.validatorService = validatorService;
-	}
 	
 }
