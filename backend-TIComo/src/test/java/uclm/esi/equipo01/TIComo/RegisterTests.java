@@ -92,7 +92,7 @@ public class RegisterTests {
 		info.put("address","Paseo de la Universidad, 4, 13071 Ciudad Real");
 		info.put("phone","666666666");
 		info.put("role", "CLIENT");
-		controller.register(info);
+		//controller.register(info);
     }
 	
 	/*********************************************************************
