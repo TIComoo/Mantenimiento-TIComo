@@ -9,9 +9,7 @@ import Box from '@mui/material/Box';
 import Table from 'react-bootstrap/Table';
 import { IMAGES, ROUTES } from '../components/constants';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faEdit, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import Tooltip from '@mui/material/Tooltip';
 
 /* FUNCTIONS */
@@ -56,7 +54,7 @@ class ClientPage extends Component {
     }
 
     state = {
-        restaurants: [], orders: [], client: {},clientAux:{}, orders: [], disabled: true,
+        restaurants: [], orders: [], client: {}, disabled: true,
         value: (this.props.location.value == undefined) ? 2 : this.props.location.value
     }
 
@@ -101,7 +99,6 @@ class ClientPage extends Component {
             return response.json();
         }).then(data => {
             this.setState({ client: data })
-            this.setState({ clientAux: data })
         }).catch((err) => {
             console.log(err);
         })
@@ -129,7 +126,6 @@ class ClientPage extends Component {
             }).then((response) => {
                 if (response.status == 200) {
                     alert("Cambios guardados correctamente");
-                    this.state.clientAux=this.state.client
                     this.handleModifyClick();
                 }
                 return response.text();
@@ -381,33 +377,33 @@ class ClientPage extends Component {
                                         <Tooltip title="No puede contener: [1-9]/*@..." placement="top-start">
                                             <label class="form-control-label px-0">Nombre<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input type="text" name="name" placeholder={this.state.clientAux.name} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input type="text" name="name" placeholder={this.state.client.name} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="name"></label>
 
                                         <Tooltip title="No puede contener: [1-9]/*@..." placement="bottom">
                                         <label class="form-control-label px-0">Apellidos<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input class="Fields" type="text" name="surname" placeholder={this.state.clientAux.surname} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="surname" placeholder={this.state.client.surname} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="surname"></label>
 
                                         <label class="form-control-label px-0">Email<span class="text-danger"> *</span></label>
-                                        <input class="Fields" type="text" name="email" placeholder={this.state.clientAux.email} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="email" placeholder={this.state.client.email} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="email"></label>
 
                                     </div><div class='cardInTab'>
                                         <Tooltip title="Debe tener 8 números y 1 letra" placement="top-start">
                                         <label class="form-control-label px-0">NIF<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input class="Fields" type="text" name="nif" placeholder={this.state.clientAux.nif} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="nif" placeholder={this.state.client.nif} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="nif"></label>
 
                                         <label class="form-control-label px-0">Dirección<span class="text-danger"> *</span></label>
-                                        <input class="Fields" type="text" name="address" placeholder={this.state.clientAux.address} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="address" placeholder={this.state.client.address} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
 
                                         <Tooltip title="Debe tener 9 números y existir en España" placement="bottom">
                                         <label class="form-control-label px-0">Teléfono<span class="text-danger"> *</span></label>
                                         </Tooltip>
-                                        <input class="Fields" type="text" name="phone" placeholder={this.state.clientAux.phone} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
+                                        <input class="Fields" type="text" name="phone" placeholder={this.state.client.phone} disabled={(this.state.disabled) ? "disabled" : ""} required="" onChange={this.handleChange} />
                                         <label class="text-danger-custom" id="phone"></label>
                                     </div>
                                     <Tooltip title="Editar" placement="top-start">
