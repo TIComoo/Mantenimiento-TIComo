@@ -76,15 +76,15 @@ public class LoginTests {
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
 	    
-		info.put("email", "carlosphinclient@gmail.com");
-		info.put("password", "client123*CLIENT");
+		info.put("email", "cliente_g5@gmail.com");
+		info.put("password", "448aa73afa2ceabcaa07193e651fdc8d003834e42b4744e11705586ee48ddc4d027d113ce002da62fc6cb65b459d5ccad791a08f0f1dd9930d41afa4a6c4f4cb");
 		
 		JSONObject jso = new JSONObject(info);
 		
 		Mockito.when(service.login(jso)).thenReturn(new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK));
 		ResponseEntity<String> httpResponse = controller.login(info);
 		
-		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertEquals(HttpStatus.UNAUTHORIZED, httpResponse.getStatusCode());
 	}
 	
 	@Test
@@ -122,8 +122,8 @@ public class LoginTests {
 		info.put("password", "client123*CLIENT");
 		
 	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK);
-		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
+	   // ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK);
+		assertEquals(HttpStatus.OK, result.getStatusCode());
 	}
 		
 	
@@ -150,8 +150,8 @@ public class LoginTests {
 		info.put("password", "client123*CLIENT");
 		
 	    ResponseEntity<String> result = clientService.login(info);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK);
-	    assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
+	   // ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK);
+	    assertEquals(HttpStatus.OK, result.getStatusCode());
 	}
 
 }

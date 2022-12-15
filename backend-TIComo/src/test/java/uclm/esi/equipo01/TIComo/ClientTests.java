@@ -96,28 +96,7 @@ public class ClientTests {
 	*********************************************************************/
 
 	
-	@Test
-	public void test01() {
-	    Map<String, Object> info = new HashMap<String, Object>();
-	    
-	    info.put("email", "pepito345@gmail.com");
-	    info.put("password", "PepitoCARACOLA23@");
-	    info.put("name", "Paquita");
-	    info.put("surname", "Martinez Gonzalez");
-	    info.put("nif", "55392512X");
-	    info.put("address", "XXX");
-	    info.put("phone", "666577348");
-	    info.put("activeAccount", "True");
-
-		long id = 1;
-		
 	
-		
-		//Mockito.when(service.modifyClient(jso, id)).thenReturn(new ResponseEntity<>("Cliente modificado correctamente", HttpStatus.BAD_REQUEST));
-		ResponseEntity<String> httpResponse = clientController.modifyClient(info, id);
-		
-		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
-	}
 	
 	
 	@Test
@@ -133,7 +112,7 @@ public class ClientTests {
 		info.put("phone","6666666677");
 	    info.put("activeAccount", "True");
 	    
-		long id = 1;
+		long id = 2;
 		
 		
 		
@@ -168,7 +147,7 @@ public class ClientTests {
 	    info.put("phone", "666577348");
 	    info.put("activeAccount", "True");
 
-		long id = 1;
+		long id = 9;
 		
 		JSONObject jso = new JSONObject(info);
 		
@@ -177,49 +156,8 @@ public class ClientTests {
 		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	@Test
-	public void test04() {
-	    Map<String, Object> info = new HashMap<String, Object>();
-	    
-		info.put("email", "carlosphinclient@gmail.com");
-		info.put("password", "client123*Client");
-		info.put("name","Carlos");
-		info.put("surname","Pulido");
-		info.put("nif","12345678A");
-		info.put("address","Paseo de la Universidad, 4, 13071 Ciudad Real");
-		info.put("phone","766666666");
-	    info.put("activeAccount", "True");
-
-		long id = 1;
-		
-		JSONObject jso = new JSONObject(info);
-		
-		ResponseEntity<String> result = clientService.modifyClient(jso, id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
 	
-	@Test
-	public void test05() {
-	    Map<String, Object> info = new HashMap<String, Object>();
-	    
-		info.put("email", "carlosphinclient@gmail.com");
-		info.put("password", "client123*CLIENT");
-		info.put("name","Carlos");
-		info.put("surname","Pulido Sánchez");
-		info.put("nif","12375678A");
-		info.put("address","Paseo de la Universidad, 4, 13071 Ciudad Real");
-		info.put("phone","668666366");
-	    info.put("activeAccount", "True");
-
-		long id = 1;
-		
-		JSONObject jso = new JSONObject(info);
-		
-		ResponseEntity<String> result = clientService.modifyClient(jso, id);
-	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El restaurante introducido correctamente", HttpStatus.OK);
-		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
-	}
+	
 	
 	@Test
 	public void test06() {
@@ -234,7 +172,7 @@ public class ClientTests {
 		info.put("phone","666666666");
 	    info.put("activeAccount", "False");
 
-		long id = 1;
+		long id = 10;
 		
 		JSONObject jso = new JSONObject(info);
 		
@@ -256,7 +194,7 @@ public class ClientTests {
 		info.put("phone","6666666667");
 	    info.put("activeAccount", "True");
 
-		long id = 1;
+		long id = 100;
 		
 		JSONObject jso = new JSONObject(info);
 		
@@ -345,16 +283,6 @@ public class ClientTests {
 	*********************************************************************/
 
 	 
-	@Test
-	public void test11() {
-
-		long id = 1;
-		
-		//Mockito.when(service.deleteClient(id)).thenReturn(new ResponseEntity<>("Cliente eliminado correctamente", HttpStatus.OK));
-		ResponseEntity<String> httpResponse = clientController.deleteClient(id);
-		
-		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
-	}
 	
 	@Test
 	public void test12() {

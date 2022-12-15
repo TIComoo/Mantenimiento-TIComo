@@ -407,7 +407,7 @@ public class AdminTests {
 		Mockito.when(service.modifyAdmin(jso, id)).thenReturn(new ResponseEntity<>("Administrador modificado correctamente", HttpStatus.OK));
 		ResponseEntity<String> httpResponse = adminController.modifyAdmin(info, id);
 		
-		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 	
 
