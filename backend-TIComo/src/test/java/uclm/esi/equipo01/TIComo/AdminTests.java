@@ -389,7 +389,7 @@ public class AdminTests {
 	*
 	*********************************************************************/
 
-	
+	 
 	@Test
 	public void test15() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -409,7 +409,7 @@ public class AdminTests {
 		
 		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-		
+	
 
 	
 	@Test
@@ -731,6 +731,6 @@ public class AdminTests {
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-		
+	
 	
 }
