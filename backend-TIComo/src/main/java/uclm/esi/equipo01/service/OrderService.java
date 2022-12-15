@@ -87,28 +87,28 @@ public class OrderService {
 	* is thrown: None.
 	*
 	*********************************************************************/
-	public ResponseEntity<String> deleteOrderAtencion(long idOrder) {
-		if (!Manager.get().getOrderRepository().existsById(idOrder)) {
-			return new ResponseEntity<>("Plato no encontrado", HttpStatus.BAD_REQUEST);
-		}
-		List<PlateAndOrder> pYp= Manager.get().getPlateAndOrderRepository().findAll();
-		int contador=0;
-		int idAlto=0;
-		for(int i=0;i<pYp.size();i++){
-			if(pYp.get(i).getOrderID()==idOrder){
-				if(pYp.get(i).getId()>idAlto){
-					idAlto=(int)pYp.get(i).getId();
-				}
-				contador++;
-				Manager.get().getPlateAndOrderRepository().delete(pYp.get(i));
-			}
-		}
-		Manager.get().setSequence(7, (int)idAlto-contador);
-		Manager.get().setSequence(6, (int)idOrder-1);
+	// public ResponseEntity<String> deleteOrderAtencion(long idOrder) {
+	// 	if (!Manager.get().getOrderRepository().existsById(idOrder)) {
+	// 		return new ResponseEntity<>("Plato no encontrado", HttpStatus.BAD_REQUEST);
+	// 	}
+	// 	List<PlateAndOrder> pYp= Manager.get().getPlateAndOrderRepository().findAll();
+	// 	int contador=0;
+	// 	int idAlto=0;
+	// 	for(int i=0;i<pYp.size();i++){
+	// 		if(pYp.get(i).getOrderID()==idOrder){
+	// 			if(pYp.get(i).getId()>idAlto){
+	// 				idAlto=(int)pYp.get(i).getId();
+	// 			}
+	// 			contador++;
+	// 			Manager.get().getPlateAndOrderRepository().delete(pYp.get(i));
+	// 		}
+	// 	}
+	// 	Manager.get().setSequence(7, (int)idAlto-contador);
+	// 	Manager.get().setSequence(6, (int)idOrder-1);
 
-		Manager.get().getOrderRepository().deleteById(idOrder);
-		return new ResponseEntity<>("Plato eliminado correctamente", HttpStatus.OK);
-	}
+	// 	Manager.get().getOrderRepository().deleteById(idOrder);
+	// 	return new ResponseEntity<>("Plato eliminado correctamente", HttpStatus.OK);
+	// }
 
 	public ResponseEntity<String> deleteOrder(long idOrder) {
 		if (!Manager.get().getOrderRepository().existsById(idOrder)) {
@@ -370,106 +370,86 @@ public class OrderService {
 		return new ResponseEntity<>("Pedido modificado correctamente", HttpStatus.OK);
 	}
 	
-	public ResponseEntity<String> modifyAtencion(JSONObject jso, long clientID)throws CustomException {
-		long orderID = Long.parseLong(jso.getString("orderID"));
-		double totalPrice = 0;
-		JSONObject plates = new JSONObject(jso.getString("cart"));
-		Iterator<String> keys = plates.keys();
+	// public ResponseEntity<String> modifyAtencion(JSONObject jso, long clientID)throws CustomException {
+	// 	long orderID = Long.parseLong(jso.getString("orderID"));
+	// 	double totalPrice = 0;
+	// 	JSONObject plates = new JSONObject(jso.getString("cart"));
+	// 	Iterator<String> keys = plates.keys();
 		
-		Order order = Manager.get().getOrderRepository().findById(orderID).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
-		List<Long> carta=new ArrayList<Long>();
-		while(keys.hasNext()) {
-			String key = keys.next();
+	// 	Order order = Manager.get().getOrderRepository().findById(orderID).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
+	// 	List<Long> carta=new ArrayList<Long>();
+	// 	while(keys.hasNext()) {
+	// 		String key = keys.next();
 			
-			carta.add(Long.parseLong(key));
+	// 		carta.add(Long.parseLong(key));
 
-			if(esta(Long.parseLong(key),orderID)){
-				JSONObject aux = new JSONObject(plates.get(key));
-				double price = Double.parseDouble(aux.getString("price"));
-				int quantity = Integer.parseInt(aux.getString("quantity"));
-				totalPrice += price*quantity;
+	// 		if(esta(Long.parseLong(key),orderID)){
+	// 			JSONObject aux = new JSONObject(plates.get(key));
+	// 			double price = Double.parseDouble(aux.getString("price"));
+	// 			int quantity = Integer.parseInt(aux.getString("quantity"));
+	// 			totalPrice += price*quantity;
 			
-				PlateAndOrder plateAndOrder = new PlateAndOrder(idEnMongo(Long.parseLong(key),orderID),Long.parseLong(key), order.getId(), quantity);
+	// 			PlateAndOrder plateAndOrder = new PlateAndOrder(idEnMongo(Long.parseLong(key),orderID),Long.parseLong(key), order.getId(), quantity);
 			
-				Manager.get().getPlateAndOrderRepository().save(plateAndOrder);
-			}else{
-				JSONObject aux = new JSONObject(plates.get(key));
-				double price = Double.parseDouble(aux.getString("price"));
-				int quantity = Integer.parseInt(aux.getString("quantity"));
-				totalPrice += price*quantity;
+	// 			Manager.get().getPlateAndOrderRepository().save(plateAndOrder);
+	// 		}else{
+	// 			JSONObject aux = new JSONObject(plates.get(key));
+	// 			double price = Double.parseDouble(aux.getString("price"));
+	// 			int quantity = Integer.parseInt(aux.getString("quantity"));
+	// 			totalPrice += price*quantity;
 			
-				PlateAndOrder plateAndOrder = new PlateAndOrder(Long.parseLong(key), order.getId(), quantity);
+	// 			PlateAndOrder plateAndOrder = new PlateAndOrder(Long.parseLong(key), order.getId(), quantity);
 			
-				Manager.get().getPlateAndOrderRepository().save(plateAndOrder);
-			}
+	// 			Manager.get().getPlateAndOrderRepository().save(plateAndOrder);
+	// 		}
 			
-		}
+	// 	}
 		
-		order.setPrice(totalPrice);
-		Manager.get().getOrderRepository().save(order);
-		return new ResponseEntity<>("Pedido añadido correctamente", HttpStatus.OK);
-	}
+	// 	order.setPrice(totalPrice);
+	// 	Manager.get().getOrderRepository().save(order);
+	// 	return new ResponseEntity<>("Pedido añadido correctamente", HttpStatus.OK);
+	// }
 
-	public void noEstaEnCarta(List<Long> carta,long idO) throws CustomException{
+	
+	// public long idEnMongo(long idP, long idO){
+	// 	long idAux=0;
 
-		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
-		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+	// 	List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+	// 	List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
 		
-		for(int i=0;i<pYp.size();i++){
-			if(pYp.get(i).getOrderID()==idO){
-				aux.add(pYp.get(i));
-			}
-		}
+	// 	for(int i=0;i<pYp.size();i++){
+	// 		if(pYp.get(i).getOrderID()==idO){
+	// 			aux.add(pYp.get(i));
+	// 		}
+	// 	}
 
-		for(int i=0;i<aux.size();i++){
+	// 	for(int i=0;i<aux.size();i++){
+	// 		if(aux.get(i).getPlateID()==idP){
+	// 			idAux=aux.get(i).getId();
+	// 		}
+	// 	}
 
-			if(	Arrays.asList(carta).contains((long)aux.get(i).getPlateID())){
-				Manager.get().getPlateAndOrderRepository().delete(aux.get(i));
-			}
-
-		}
-
-
-	}
-	public long idEnMongo(long idP, long idO){
-		long idAux=0;
-
-		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
-		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+	// 	return idAux;
+	// }
+	// public boolean esta(long idP, long idO){
+	// 	boolean esta=false;
+	// 	List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
+	// 	List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
 		
-		for(int i=0;i<pYp.size();i++){
-			if(pYp.get(i).getOrderID()==idO){
-				aux.add(pYp.get(i));
-			}
-		}
+	// 	for(int i=0;i<pYp.size();i++){
+	// 		if(pYp.get(i).getOrderID()==idO){
+	// 			aux.add(pYp.get(i));
+	// 		}
+	// 	}
+	// 	System.out.println(aux);
 
-		for(int i=0;i<aux.size();i++){
-			if(aux.get(i).getPlateID()==idP){
-				idAux=aux.get(i).getId();
-			}
-		}
-
-		return idAux;
-	}
-	public boolean esta(long idP, long idO){
-		boolean esta=false;
-		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
-		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
-		
-		for(int i=0;i<pYp.size();i++){
-			if(pYp.get(i).getOrderID()==idO){
-				aux.add(pYp.get(i));
-			}
-		}
-		System.out.println(aux);
-
-		for(int i=0;i<aux.size();i++){
-			if(aux.get(i).getPlateID()==idP){
-				esta=true;
-			}
-		}
-		return esta;
-	}
+	// 	for(int i=0;i<aux.size();i++){
+	// 		if(aux.get(i).getPlateID()==idP){
+	// 			esta=true;
+	// 		}
+	// 	}
+	// 	return esta;
+	// }
 	/*********************************************************************
 	*
 	* - Method name: calculateAverageRate
