@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.openjson.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uclm.esi.equipo01.model.Plate;
 import uclm.esi.equipo01.model.Restaurant;
 import uclm.esi.equipo01.service.RestaurantService;
+import uclm.esi.equipo01.service.ValidatorService;
 
 /*********************************************************************
 *
@@ -30,8 +30,7 @@ import uclm.esi.equipo01.service.RestaurantService;
 @RequestMapping("restaurant")
 public class RestaurantController {
 
-	@Autowired
-	private RestaurantService restaurantService;
+	private RestaurantService restaurantService=new RestaurantService(new ValidatorService());
 	
 
 	/*********************************************************************

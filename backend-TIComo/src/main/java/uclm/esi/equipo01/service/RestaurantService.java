@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.github.openjson.JSONException;
 import com.github.openjson.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,7 @@ public class RestaurantService {
 	
 	private ValidatorService validatorService;
 	
-	@Autowired
+	
 	public RestaurantService (ValidatorService validatorService) {
 		this.validatorService = validatorService;
 	}

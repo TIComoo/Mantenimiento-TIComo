@@ -110,7 +110,7 @@ public class RiderTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -156,7 +156,7 @@ public class RiderTests {
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
 	
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test03 to test10
@@ -186,7 +186,7 @@ public class RiderTests {
 		
 	    ResponseEntity<String> result = riderService.register(info);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Rider registrado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	@Test
@@ -340,7 +340,7 @@ public class RiderTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test11() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -388,7 +388,7 @@ public class RiderTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test13 to test24
@@ -627,7 +627,7 @@ public class RiderTests {
 	*
 	*********************************************************************/
 
-	/* 
+	 
 	@Test
 	public void test25() {
     
@@ -649,7 +649,7 @@ public class RiderTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test27 to test31

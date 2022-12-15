@@ -108,7 +108,7 @@ public class OrderTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -129,7 +129,7 @@ public class OrderTests {
 		ResponseEntity<String> httpResponse = controller.makeOrder(info,idClient);	
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-*/
+
 	
 	/*********************************************************************
 	*
@@ -244,7 +244,7 @@ public class OrderTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test07() {
 		Map<String, Object> info = new HashMap<String, Object>();
@@ -278,7 +278,7 @@ public class OrderTests {
 		ResponseEntity<String> httpResponse = controller.modifyOrder(info, id);
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-		*/
+		
 	/*********************************************************************
 	*
 	* - Method name: test09 to test17
@@ -371,16 +371,16 @@ public class OrderTests {
 	*
 	*********************************************************************/
 
-	/* 
+
 	@Test
 	public void test18() {
 
-	    long idOrder = 1;
+	    long idOrder = 14;
 		
 		Mockito.when(service.deleteOrder(idOrder)).thenReturn(new ResponseEntity<>(HttpStatus.OK));
 		ResponseEntity<String> httpResponse = controller.deleteOrder(idOrder);	
 	
-		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 	
 	@Test
@@ -393,7 +393,7 @@ public class OrderTests {
 	
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test20 to test25

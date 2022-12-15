@@ -24,7 +24,6 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.junit.AfterClass;
-import org.mockito.Mockito;
 
 /*********************************************************************
 *
@@ -41,8 +40,6 @@ public class ClientTests {
 	@Autowired
 	private ClientService clientService;
 
-	@Autowired
-	private ClientService service;
 
 	@Autowired
 	private ClientController clientController;
@@ -98,7 +95,7 @@ public class ClientTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -114,15 +111,15 @@ public class ClientTests {
 
 		long id = 1;
 		
-		JSONObject jso = new JSONObject(info);
+	
 		
-		Mockito.when(service.modifyClient(jso, id)).thenReturn(new ResponseEntity<>("Cliente modificado correctamente", HttpStatus.OK));
+		//Mockito.when(service.modifyClient(jso, id)).thenReturn(new ResponseEntity<>("Cliente modificado correctamente", HttpStatus.BAD_REQUEST));
 		ResponseEntity<String> httpResponse = clientController.modifyClient(info, id);
 		
 		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-	*/
-	/* 
+	
+	
 	@Test
 	public void test02() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -138,14 +135,14 @@ public class ClientTests {
 	    
 		long id = 1;
 		
-		JSONObject jso = new JSONObject(info);
+		
 		
 		//Mockito.when(service.modifyClient(jso, id)).thenReturn(new ResponseEntity<>("Cliente modificado incorrectamente", HttpStatus.BAD_REQUEST));
 		ResponseEntity<String> httpResponse = clientController.modifyClient(info, id);
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test03 to test10
@@ -347,16 +344,16 @@ public class ClientTests {
 	*
 	*********************************************************************/
 
-	/* 
+	 
 	@Test
 	public void test11() {
 
 		long id = 1;
 		
-		Mockito.when(service.deleteClient(id)).thenReturn(new ResponseEntity<>("Cliente eliminado correctamente", HttpStatus.OK));
+		//Mockito.when(service.deleteClient(id)).thenReturn(new ResponseEntity<>("Cliente eliminado correctamente", HttpStatus.OK));
 		ResponseEntity<String> httpResponse = clientController.deleteClient(id);
 		
-		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 	
 	@Test
@@ -364,12 +361,12 @@ public class ClientTests {
 
 		long id = 100;
 		
-		Mockito.when(service.deleteClient(id)).thenReturn(new ResponseEntity<>("Cliente eliminado incorrectamente", HttpStatus.BAD_REQUEST));
+		//Mockito.when(service.deleteClient(id)).thenReturn(new ResponseEntity<>("Cliente eliminado incorrectamente", HttpStatus.BAD_REQUEST));
 		ResponseEntity<String> httpResponse = clientController.deleteClient(id);
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test12 to testXX

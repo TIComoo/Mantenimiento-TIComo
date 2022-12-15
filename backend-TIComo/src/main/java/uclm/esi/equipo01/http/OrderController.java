@@ -3,7 +3,6 @@ package uclm.esi.equipo01.http;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +33,8 @@ import uclm.esi.equipo01.service.OrderService;
 @RequestMapping("order")
 public class OrderController {
 
-	@Autowired
-	private OrderService orderService;
+	
+	private OrderService orderService=new OrderService();
 	
 	
 
@@ -105,7 +104,7 @@ public class OrderController {
 	@PostMapping("/modifyOrderAtencion/{id}")
 	public ResponseEntity<String> modifyOrderAtencion(@RequestBody Map<String, Object> info, @PathVariable long id) throws CustomException {
 		JSONObject jso = new JSONObject(info);
-		return orderService.modifyAtencion(jso, id);
+		return orderService.modifyAtencion(jso);
 	}
 	
 	/*********************************************************************

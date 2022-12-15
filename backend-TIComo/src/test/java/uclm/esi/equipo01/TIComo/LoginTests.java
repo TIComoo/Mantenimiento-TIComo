@@ -71,7 +71,7 @@ public class LoginTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -84,7 +84,7 @@ public class LoginTests {
 		Mockito.when(service.login(jso)).thenReturn(new ResponseEntity<>("Usuario logeado correctamente", HttpStatus.OK));
 		ResponseEntity<String> httpResponse = controller.login(info);
 		
-		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 	
 	@Test
@@ -100,7 +100,7 @@ public class LoginTests {
 		
 		assertEquals(HttpStatus.UNAUTHORIZED, httpResponse.getStatusCode());
 	}
-	*/
+	
 	
 	/*********************************************************************
 	*

@@ -118,7 +118,7 @@ public class RestaurantTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -136,7 +136,7 @@ public class RestaurantTests {
 		Mockito.when(service.addRestaurant(jso)).thenReturn(new ResponseEntity<>("El restaurante introducido incorrectamente", HttpStatus.OK));
 		ResponseEntity<String> httpResponse = controller.addRestaurant(info);
 		
-		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 	
 	@Test
@@ -158,7 +158,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test03 to test11
@@ -337,7 +337,7 @@ public class RestaurantTests {
 	*
 	*********************************************************************/
 
-	/* 
+	 
 	@Test
 	public void test12() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -357,11 +357,11 @@ public class RestaurantTests {
 		Mockito.when(service.modifyRestaurant(jso, id)).thenReturn(new ResponseEntity<>("El restaurante modificado correctamente", HttpStatus.OK));
 		ResponseEntity<String> httpResponse = controller.modifyRestaurant(info, id);
 		
-		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 
-	*/
-	/* 
+	
+	 
 	@Test
 	public void test13() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -383,7 +383,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test14 to test18
@@ -469,7 +469,7 @@ public class RestaurantTests {
 	*
 	*********************************************************************/
 
-	/* 
+	 
 	@Test
 	public void test19() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -488,8 +488,8 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-	*/
-	/* 
+	
+	
 	@Test
 	public void test20() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -617,7 +617,7 @@ public class RestaurantTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test26() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -660,7 +660,7 @@ public class RestaurantTests {
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
 	
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test28 to test31
@@ -674,7 +674,7 @@ public class RestaurantTests {
 	*
 	*********************************************************************/
 
-	/* 
+	 
 	@Test
 	public void test28() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -696,7 +696,7 @@ public class RestaurantTests {
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 
-	*/
+	
 	
 	@Test
 	public void test29() {
@@ -765,7 +765,7 @@ public class RestaurantTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test32() {
 		
@@ -787,7 +787,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	/*********************************************************************
 	*
 	* - Method name: test34 to test39
@@ -827,7 +827,7 @@ public class RestaurantTests {
 		
 		ResponseEntity<String> result = restaurantService.deletePlate(id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("El plato eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
 	
@@ -845,7 +845,7 @@ public class RestaurantTests {
 	*
 	*********************************************************************/
 
-	/* 
+	 
 	@Test
 	public void test40() {
 		
@@ -854,7 +854,7 @@ public class RestaurantTests {
 		Mockito.when(service.deleteRestaurant(id)).thenReturn(new ResponseEntity<>("El restaurante eliminado incorrectamente", HttpStatus.BAD_REQUEST));
 		ResponseEntity<String> httpResponse = controller.deleteRestaurant(id);
 		
-		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
 		
 	@Test
@@ -867,7 +867,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/ 
+	
 	/*********************************************************************
 	*
 	* - Method name: test42 to test47

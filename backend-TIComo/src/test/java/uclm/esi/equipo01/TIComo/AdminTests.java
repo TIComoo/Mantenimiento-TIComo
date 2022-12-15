@@ -42,9 +42,11 @@ public class AdminTests {
 	
 	@Autowired
 	private AdminService adminService;
-	
+	@Autowired
 	private UserController controller;
+	@Autowired
 	private AdminService service;
+	@Autowired
 	private AdminController adminController;
 	
     private static MongoOperations mongoOperations;
@@ -117,7 +119,7 @@ public class AdminTests {
 	*
 	*********************************************************************/
 
-	/* 
+	 
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -125,7 +127,7 @@ public class AdminTests {
 		info.put("name", "Lucía");
 		info.put("surname", "Martinez");
 		info.put("zone", "XXX");
-		info.put("email", "carlosphin@gmail.com");
+		info.put("email", "lucia1@gmail.com");
 		info.put("password", "Pepito23@");
 		
 		info.put("role", "ADMIN");
@@ -145,7 +147,7 @@ public class AdminTests {
 		info.put("name", "Lucí4");
 		info.put("surname", "M4rtinez");
 		info.put("zone", "XXX");
-		info.put("email", "carlosphin.gmail.com");
+		info.put("email", "carlosphin1.gmail.com");
 		info.put("password", "pepito23@");
 		
 		info.put("role", "ADMIN");
@@ -156,7 +158,7 @@ public class AdminTests {
 		ResponseEntity<String> httpResponse = controller.register(info);
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	*/
+	
 	
 	/*********************************************************************
 	*
@@ -387,7 +389,7 @@ public class AdminTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test15() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -395,7 +397,7 @@ public class AdminTests {
 		info.put("name", "Calamar");
 		info.put("surname", "Martinez");
 		info.put("zone", "XXX");
-		info.put("email", "carlosphin@gmail.com");
+		info.put("email", "carlosphin2@gmail.com");
 		info.put("password", "Pepito23@");
 		
 		long id = 1;
@@ -403,13 +405,13 @@ public class AdminTests {
 		JSONObject jso = new JSONObject(info);
 		
 		Mockito.when(service.modifyAdmin(jso, id)).thenReturn(new ResponseEntity<>("Administrador modificado correctamente", HttpStatus.OK));
-		//ResponseEntity<String> httpResponse = adminController.modifyAdmin(info, id);
+		ResponseEntity<String> httpResponse = adminController.modifyAdmin(info, id);
 		
-		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
+		assertNotEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-	*/	
+		
 
-	/* 
+	
 	@Test
 	public void test16() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -430,7 +432,7 @@ public class AdminTests {
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}	
 
-	*/
+	
 	
 	/*********************************************************************
 	*
@@ -573,7 +575,7 @@ public class AdminTests {
 		info.put("email", "carlosphin@gmail.com");
 		info.put("password", "pepito23@");
 		
-		long id = 2;
+		long id = 170;
 		
 	    ResponseEntity<String> result = adminService.modifyAdmin(info, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador modificado incorrectamente", HttpStatus.BAD_REQUEST);
@@ -590,7 +592,7 @@ public class AdminTests {
 		info.put("email", "carlosphin@gmail.com");
 		info.put("password", "Pepitotry@");
 		
-		long id = 2;
+		long id = 100;
 		
 	    ResponseEntity<String> result = adminService.modifyAdmin(info, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador modificado incorrectamente", HttpStatus.BAD_REQUEST);
@@ -607,7 +609,7 @@ public class AdminTests {
 		info.put("email", "carlosphin@gmail.com");
 		info.put("password", "PEPITO23@");
 		
-		long id = 2;
+		long id = 170;
 		
 	    ResponseEntity<String> result = adminService.modifyAdmin(info, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador modificado incorrectamente", HttpStatus.BAD_REQUEST);
@@ -624,7 +626,7 @@ public class AdminTests {
 		info.put("email", "carlosphin@gmail.com");
 		info.put("password", "Pepito23MAGO");
 		
-		long id = 2;
+		long id = 180;
 		
 	    ResponseEntity<String> result = adminService.modifyAdmin(info, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador modificado incorrectamente", HttpStatus.BAD_REQUEST);
@@ -641,7 +643,7 @@ public class AdminTests {
 		info.put("email", "carlosphin@gmail.com");
 		info.put("password", "Pe23@");
 		
-		long id = 2;
+		long id = 150;
 		
 	    ResponseEntity<String> result = adminService.modifyAdmin(info, id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador modificado incorrectamente", HttpStatus.BAD_REQUEST);
@@ -661,7 +663,7 @@ public class AdminTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 
 	@Test
 	public void test29() {
@@ -677,7 +679,7 @@ public class AdminTests {
 	@Test
 	public void test30() {
 
-		long id = 30;
+		long id = 170;
 		
 		Mockito.when(service.deleteAdmin(id)).thenReturn(new ResponseEntity<>("Administrador eliminado incorrectamente", HttpStatus.BAD_REQUEST));
 		ResponseEntity<String> httpResponse = adminController.deleteAdmin(id);
@@ -698,7 +700,7 @@ public class AdminTests {
 	*
 	*********************************************************************/
 
-	/* 
+	
 	@Test
 	public void test31() {
 		
@@ -722,13 +724,13 @@ public class AdminTests {
 	@Test
 	public void test33() {
 		
-		long id = 1;
+		long id = 170;
 		
 	    ResponseEntity<String> result = adminService.deleteAdmin(id);
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Administrador eliminado incorrectamente", HttpStatus.BAD_REQUEST);
-		assertNotEquals(valueExpected.getStatusCode(), result.getStatusCode());
+		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
 	
-	*/	
+		
 	
 }

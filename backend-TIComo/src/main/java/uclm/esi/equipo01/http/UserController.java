@@ -4,7 +4,7 @@ package uclm.esi.equipo01.http;
 import java.util.Map;
 
 import com.github.openjson.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,14 +28,14 @@ import uclm.esi.equipo01.service.RiderService;
 @RequestMapping("user")
 public class UserController {
 	
-	@Autowired
-	private  AdminService adminService;
 	
-	@Autowired
-	private  RiderService riderService;
+	private  AdminService adminService=new AdminService();
 	
-	@Autowired
-	private  ClientService clientService;
+	
+	private  RiderService riderService=new RiderService();
+	
+	
+	private  ClientService clientService=new ClientService();
 	
 
 	

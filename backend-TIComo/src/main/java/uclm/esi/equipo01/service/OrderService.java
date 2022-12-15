@@ -2,7 +2,6 @@ package uclm.esi.equipo01.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -103,7 +102,7 @@ public class OrderService {
 				Manager.get().getPlateAndOrderRepository().delete(pYp.get(i));
 			}
 		}
-		Manager.get().setSequence(7, (int)idAlto-contador);
+		Manager.get().setSequence(7, idAlto-contador);
 		Manager.get().setSequence(6, (int)idOrder-1);
 
 		Manager.get().getOrderRepository().deleteById(idOrder);
@@ -144,9 +143,8 @@ public class OrderService {
 	public List<Plate> orderCart(long id) throws CustomException{
 
 		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
-		List<Plate> aux=new ArrayList<Plate>();
+		List<Plate> aux=new ArrayList<>();
 
-		System.out.println(pYp.size());
 
 		for(int i=0;i<pYp.size();i++){
 
@@ -370,14 +368,14 @@ public class OrderService {
 		return new ResponseEntity<>("Pedido modificado correctamente", HttpStatus.OK);
 	}
 	
-	public ResponseEntity<String> modifyAtencion(JSONObject jso, long clientID)throws CustomException {
+	public ResponseEntity<String> modifyAtencion(JSONObject jso)throws CustomException {
 		long orderID = Long.parseLong(jso.getString("orderID"));
 		double totalPrice = 0;
 		JSONObject plates = new JSONObject(jso.getString("cart"));
 		Iterator<String> keys = plates.keys();
 		
 		Order order = Manager.get().getOrderRepository().findById(orderID).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
-		List<Long> carta=new ArrayList<Long>();
+		List<Long> carta=new ArrayList<>();
 		while(keys.hasNext()) {
 			String key = keys.next();
 			
@@ -415,7 +413,7 @@ public class OrderService {
 		long idAux=0;
 
 		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
-		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+		List<PlateAndOrder> aux=new ArrayList<>();
 		
 		for(int i=0;i<pYp.size();i++){
 			if(pYp.get(i).getOrderID()==idO){
@@ -434,14 +432,14 @@ public class OrderService {
 	public boolean esta(long idP, long idO){
 		boolean esta=false;
 		List<PlateAndOrder> pYp=Manager.get().getPlateAndOrderRepository().findAll();
-		List<PlateAndOrder> aux=new ArrayList<PlateAndOrder>();
+		List<PlateAndOrder> aux=new ArrayList<>();
 		
 		for(int i=0;i<pYp.size();i++){
 			if(pYp.get(i).getOrderID()==idO){
 				aux.add(pYp.get(i));
 			}
 		}
-		System.out.println(aux);
+		
 
 		for(int i=0;i<aux.size();i++){
 			if(aux.get(i).getPlateID()==idP){

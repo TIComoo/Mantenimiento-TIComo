@@ -2,7 +2,7 @@ package uclm.esi.equipo01.service;
 
 import com.github.openjson.JSONObject;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,8 @@ public abstract class UserService {
 	private static final String ERRORACCOUNT = "errorAccount";
 	private static final String ACCOUNTNOTACTIVATED = "Account not activated";
 	
-	@Autowired
-	protected  ValidatorService validatorService;
+	
+	protected  ValidatorService validatorService=new ValidatorService();
 
 	public abstract ResponseEntity<String> register(JSONObject jso);
 	
