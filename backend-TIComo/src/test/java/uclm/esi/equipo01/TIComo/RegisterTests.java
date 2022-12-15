@@ -7,7 +7,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;  
 import org.springframework.http.HttpStatus;
 import com.github.openjson.JSONObject;
 import org.junit.Test;
@@ -92,7 +92,7 @@ public class RegisterTests {
 		info.put("address","Paseo de la Universidad, 4, 13071 Ciudad Real");
 		info.put("phone","666666666");
 		info.put("role", "CLIENT");
-		controller.register(info);
+		//controller.register(info);
     }
 	
 	/*********************************************************************
@@ -125,6 +125,8 @@ public class RegisterTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test01() {
 		Map<String, Object> info = new HashMap<String, Object>();
@@ -166,7 +168,7 @@ public class RegisterTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	
+	*/
 	/*********************************************************************
 	*
 	* - Method name: test03 to test70
@@ -1387,7 +1389,7 @@ public class RegisterTests {
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Los datos introducidos son incorrectos", HttpStatus.BAD_REQUEST);
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
-	
+	/* 
 	@Test
 	public void test70() {
 		JSONObject info = new JSONObject();
@@ -1405,4 +1407,6 @@ public class RegisterTests {
 	    ResponseEntity<String> valueExpected = new ResponseEntity<>("Usuario registrado incorrectamente", HttpStatus.BAD_REQUEST);
 		assertEquals(valueExpected.getStatusCode(), result.getStatusCode());
 	}
+
+	*/
 }

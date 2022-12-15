@@ -70,6 +70,8 @@ public class LoginTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -98,7 +100,7 @@ public class LoginTests {
 		
 		assertEquals(HttpStatus.UNAUTHORIZED, httpResponse.getStatusCode());
 	}
-	
+	*/
 	
 	/*********************************************************************
 	*

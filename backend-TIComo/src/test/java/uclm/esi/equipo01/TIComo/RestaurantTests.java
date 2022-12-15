@@ -117,6 +117,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -156,7 +158,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	
+	*/
 	/*********************************************************************
 	*
 	* - Method name: test03 to test11
@@ -334,6 +336,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test12() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -355,7 +359,9 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-	
+
+	*/
+	/* 
 	@Test
 	public void test13() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -377,7 +383,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	
+	*/
 	/*********************************************************************
 	*
 	* - Method name: test14 to test18
@@ -390,6 +396,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	
 	@Test
 	public void test14() {
 		JSONObject info = new JSONObject();
@@ -460,6 +468,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test19() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -478,7 +488,8 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-	
+	*/
+	/* 
 	@Test
 	public void test20() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -605,6 +616,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test26() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -647,6 +660,7 @@ public class RestaurantTests {
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
 	
+	*/
 	/*********************************************************************
 	*
 	* - Method name: test28 to test31
@@ -659,6 +673,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test28() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -679,6 +695,8 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
+
+	*/
 	
 	@Test
 	public void test29() {
@@ -746,6 +764,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test32() {
 		
@@ -767,7 +787,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	
+	*/
 	/*********************************************************************
 	*
 	* - Method name: test34 to test39
@@ -824,6 +844,8 @@ public class RestaurantTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test40() {
 		
@@ -845,7 +867,7 @@ public class RestaurantTests {
 		
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	
+	*/ 
 	/*********************************************************************
 	*
 	* - Method name: test42 to test47

@@ -107,6 +107,8 @@ public class OrderTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test01() {
 	    Map<String, Object> info = new HashMap<String, Object>();
@@ -127,7 +129,7 @@ public class OrderTests {
 		ResponseEntity<String> httpResponse = controller.makeOrder(info,idClient);	
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-
+*/
 	
 	/*********************************************************************
 	*
@@ -241,6 +243,8 @@ public class OrderTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test07() {
 		Map<String, Object> info = new HashMap<String, Object>();
@@ -257,7 +261,7 @@ public class OrderTests {
 		ResponseEntity<String> httpResponse = controller.modifyOrder(info, id);
 		assertEquals(HttpStatus.OK, httpResponse.getStatusCode());
 	}
-	
+
 	@Test
 	public void test08() {
 		Map<String, Object> info = new HashMap<String, Object>();
@@ -274,7 +278,7 @@ public class OrderTests {
 		ResponseEntity<String> httpResponse = controller.modifyOrder(info, id);
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	
+		*/
 	/*********************************************************************
 	*
 	* - Method name: test09 to test17
@@ -366,6 +370,8 @@ public class OrderTests {
 	* is thrown: None.
 	*
 	*********************************************************************/
+
+	/* 
 	@Test
 	public void test18() {
 
@@ -387,7 +393,7 @@ public class OrderTests {
 	
 		assertEquals(HttpStatus.BAD_REQUEST, httpResponse.getStatusCode());
 	}
-	
+	*/
 	/*********************************************************************
 	*
 	* - Method name: test20 to test25
