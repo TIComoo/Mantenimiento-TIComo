@@ -12,11 +12,15 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES {
     private static SecretKeySpec secretKey;
     private static byte[] key;
+
+    private AES(){
+      //Construcctor vacio
+    }
     
     public static void setKey(final String myKey) {
         MessageDigest sha = null;
         try {
-          key = myKey.getBytes("UTF-8");
+          key = myKey.getBytes("UTF_8");
           sha = MessageDigest.getInstance("SHA-1");
           key = sha.digest(key);
           key = Arrays.copyOf(key, 16);
@@ -29,26 +33,26 @@ public class AES {
       public static String encrypt(final String strToEncrypt, final String secret) {
         try {
           setKey(secret);
-          Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+          Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
           cipher.init(Cipher.ENCRYPT_MODE, secretKey);
           return Base64.getEncoder()
-            .encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+            .encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF_8")));
         } catch (Exception e) {
-          System.out.println("Error while encrypting: " + e.toString());
+          return e.getMessage();
         }
-        return null;
+        
       }
     
       public static String decrypt(final String strToDecrypt, final String secret) {
         try {
           setKey(secret);
-          Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+          Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
           cipher.init(Cipher.DECRYPT_MODE, secretKey);
           return new String(cipher.doFinal(Base64.getDecoder()
             .decode(strToDecrypt)));
         } catch (Exception e) {
-          System.out.println("Error while decrypting: " + e.toString());
+          return e.getMessage();
         }
-        return null;
+        
       }
 }

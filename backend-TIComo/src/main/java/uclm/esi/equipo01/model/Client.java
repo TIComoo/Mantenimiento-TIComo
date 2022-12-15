@@ -50,7 +50,7 @@ public class Client extends User {
 			String phone) {
 		super(email, pwd, name, surname);
 		super.setId(Manager.get().generateSequence(SEQUENCE_ID));
-		this.nif = AES.encrypt(nif, "sha256");;;
+		this.nif = AES.encrypt(nif, "sha256");
 		this.address = address;
 		this.phone = phone;
 		this.activeAccount = true;

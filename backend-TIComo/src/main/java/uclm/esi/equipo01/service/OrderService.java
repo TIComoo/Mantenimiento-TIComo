@@ -148,11 +148,9 @@ public class OrderService {
 
 		for(int i=0;i<pYp.size();i++){
 
-			Plate plato=new Plate();
-
 			if(pYp.get(i).getOrderID()==id){
 				int cant=pYp.get(i).getQuantity();
-				plato=Manager.get().getPlateRepository().findById(pYp.get(i).getPlateID()).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
+				Plate plato=Manager.get().getPlateRepository().findById(pYp.get(i).getPlateID()).orElseThrow(() -> new CustomException("El Id del pedido no existe."));
 
 				for(int k=0;k<cant;k++){
 					aux.add(plato);
