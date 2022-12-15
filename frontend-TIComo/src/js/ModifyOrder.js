@@ -271,7 +271,7 @@ class ModifyOrder extends Component {
                 if (response.status == 200) {
                     alert("Cambios guardados correctamente");
                     this.props.history.push({
-                        pathname: '/atencion',
+                        pathname: '/atencion/showAllOrdersByClient/:id',
                         id: this.state.client,
                         restaurantID: this.state.restaurantID,
                         value: 3
